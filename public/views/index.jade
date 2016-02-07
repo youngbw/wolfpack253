@@ -3,8 +3,20 @@ html
 head
     title Wolfpack Project
     include ./includes/head.jade
-body
-    div
-        img(class="img-responsive pull-right" src="img/wolf-logo.png" alt="Wolfpack")
+body    
 
-    p(class="text-right") Here is some text
+
+    nav(class="navbar navbar-default navbar-fixed-top")
+        
+        div(class="container-fluid")
+            
+            div(class="navbar-header logo-container")
+            
+                a(class="navbar-brand" href="/home") <img class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
+                
+            div(class="center")
+        
+                ul(class="nav nav-pills")
+                    
+                    li(role="presentation") <a href="">Guilds</a>
+                    
