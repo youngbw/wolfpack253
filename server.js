@@ -13,12 +13,8 @@ app.locals.pretty = true; // pretty html
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 
-app.get('/', function(req, res) {
-    res.render('index.jade');
-});
-app.get('/login', function(req, res) {
-    res.render('login.jade');
-});
+// Setup routes
+require('./routes.js')(app);
 
 var port = process.env.PORT || 8080;
 
