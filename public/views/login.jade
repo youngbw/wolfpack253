@@ -4,18 +4,19 @@ html
         title Wolfpack Login
         link(rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css")
-    body
-        div(class="col-sm-6 col-sm-offset-3")
-            h1
-                span(class="fa fa-sign-in") Login
-            form(action="/login" method="post")
-                div(class="form-group")
-                    label Username
-                    input(type="text" class="form-control" name="username")
-                div(class="form-group")
-                    label Password
-                    input(type="text" class="form-control" name="password")
-                button(type="submit" class="btn btn-warning btn-lg") Login
-            hr
-            p Need an account? <a href="/signup")Signup</a>
-            p Or go <a href="/")home.</a>
+        link(rel="stylesheet" href="css/colors.css")
+    body(class="jumbotron dark-blue")
+        div(class="container")
+            div(class="col-sm-6 col-sm-offset-3")
+                h1
+                    span(class="fa fa-sign-in") Login
+                form(action="/login" method="post")
+                    div(class="form-group")
+                        label Username
+                        input(type="text" class="form-control" name="username")
+                    div(class="form-group")
+                        label Password
+                        input(type="text" class="form-control" name="password")
+                    button(type="submit" class="btn btn-warning btn-lg") Login
+                hr
+                p Need an account? <a href="/signup">Signup</a>
