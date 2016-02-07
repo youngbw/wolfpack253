@@ -3,6 +3,8 @@ var path = require('path');
 var express = require('express');
 app = express();
 
+var router = express.Router();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'jade');
