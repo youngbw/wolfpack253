@@ -14,6 +14,9 @@ app.use(morgan('dev'));
 app.get('/', function(req, res) {
     res.render('index.jade');
 });
+app.get('/login', function(req, res) {
+    res.render('login.jade');
+});
 
 var port = process.env.PORT || 8080;
 
