@@ -1,0 +1,31 @@
+{
+  "name": "wolfpack253",
+  "description": "Project website for the Wolfpack",
+  "main": "index.js",
+  "authors": [
+    "Brent Young",
+    "Brandt Strom"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "wolfpack253"
+  ],
+  "homepage": "https://github.com/youngbw/wolfpack253",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0"
+  }
+}

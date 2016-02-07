@@ -1,0 +1,26 @@
+{
+  "name": "wolfpack253",
+  "version": "1.0.0",
+  "description": "Project website for the Wolfpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngbw/wolfpack253.git"
+  },
+  "keywords": [
+    "wolfpack253"
+  ],
+  "author": "Brent Young, Brandt Strom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youngbw/wolfpack253/issues"
+  },
+  "homepage": "https://github.com/youngbw/wolfpack253#readme",
+  "dependencies": {
+    "bower": "^1.7.7",
+    "express": "^4.13.4"
+  }
+}
