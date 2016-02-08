@@ -7,7 +7,21 @@
     box-sizing: border-box;
 }*/
 
-body { padding-top: 70px; } /* This keeps the body content below the nav bar */
+body { padding-top: 70px; background-color: #2B4E72;} /* This keeps the body content below the nav bar */
+
+.jumbotron {
+   background: url(/img/jumbo.jpg);
+   min-height: 500px;
+}
+
+.jumbotron h1 {
+    color: white;
+
+}
+
+.showcase {
+    margin-left: 5%;
+}
 
 .nav-pills {
     padding-top: 5px;
