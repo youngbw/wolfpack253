@@ -7,7 +7,7 @@
 
 			//home page
 			.when('/', {
-				templateUrl: './views/home.html',
+				templateUrl: '/partials/home.jade',
 				controller: 'HomeController'
 			});
 
