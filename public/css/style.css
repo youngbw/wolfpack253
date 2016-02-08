@@ -1,11 +1,11 @@
 /* general styles */
 
-* {
+/** {
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
-}
+}*/
 
 body { padding-top: 70px; } /* This keeps the body content below the nav bar */
 

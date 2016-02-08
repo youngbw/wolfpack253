@@ -1,28 +1,43 @@
 doctype html
 html
-head
-    title Wolfpack Project
-    include ./includes/head.jade
-body    
-
-
-    nav(class="navbar navbar-default navbar-fixed-top")
+    head
+        title Wolfpack Project
+        include ./includes/head.jade
         
-        div(class="container-fluid")
+    body(ng-app="wolfpackApp" ng-controller="HomeController")
+
+
+        nav(class="navbar navbar-default navbar-fixed-top")
             
-            div(class="navbar-header logo-container")
-            
-                a(class="navbar-brand" href="/home") <img class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
+            div(class="container-fluid")
                 
-            div(class="center")
+                div(class="navbar-header logo-container")
+                
+                    a(class="navbar-brand" href="/") <img class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
+                    
+                div(class="center")
+            
+                    ul(class="nav nav-pills")
+                        
+                        li(role="presentation") <a href="">Guilds</a>
+                        
+                        li(role="presentation") <a href="">Chats</a>
+                        
+                        li(role="presentation") <a href="">Albums</a>
+                        
+                        li(role="presentation") <a href="">Events</a>
+                        
+
+        div(class="container")
         
-                ul(class="nav nav-pills")
-                    
-                    li(role="presentation") <a href="">Guilds</a>
-                    
-                    li(role="presentation") <a href="">Chats</a>
-                    
-                    li(role="presentation") <a href="">Albums</a>
-                    
-                    li(role="presentation") <a href="">Events</a>
-                    
+            p Here is some index content
+
+            div(ng-view)
+
+
+        script(src="libs/angular/angular.min.js")
+        script(src="libs/angular-route/angular-route.min.js")
+        
+        script(src="js/controllers/HomeCtrl.js")
+        script(src="js/appRoutes.js")
+        script(src="js/app.js")

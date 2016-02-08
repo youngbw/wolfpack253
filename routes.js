@@ -17,4 +17,11 @@ module.exports = function(app) {
     });
 
     app.use(router);
+
+
+    app.get('*', function(req, res) {
+
+    	res.sendfile('./public/views/index.jade');
+
+    });
 };
