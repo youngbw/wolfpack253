@@ -1,3 +1,3 @@
 
 
-angular.module('wolfpackApp', ['ngRoute', 'appRoutes', 'HomeCtrl']);
+var app = angular.module('wolfpackApp', ['ngRoute', 'appRoutes']);

@@ -13,6 +13,11 @@ module.exports = function(app) {
         res.render('./partials/' + name);
     });
 
+    router.get('/directives/:name', function(req, res) {
+        var name = req.params.name;
+        res.render('./directives/' + name);
+    });
+
     router.get('*', function(req, res) {
         res.render('index');
     });

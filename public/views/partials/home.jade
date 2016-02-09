@@ -4,8 +4,12 @@
     
 div(ng-controller="HomeController")
     
-    h2 Feature List
+    div(class="container")
     
-    div(ng-repeat="feature in features")
+        h2 Feature List
     
-        featureInfo(info="feature")
+        div(ng-repeat="tab in tabs")
+        
+            featureinfo(item="tab")
+            
+            p {{tab.title}}
