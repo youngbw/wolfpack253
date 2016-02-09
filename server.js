@@ -1,5 +1,6 @@
 var morgan = require('morgan');
 var path = require('path');
+var mongoose = require('mongoose');
 var express = require('express');
 app = express();
 
@@ -15,6 +16,9 @@ app.use(morgan('dev'));
 
 // Setup routes
 require('./routes.js')(app);
+
+// Setup database
+require('./config/db.js')(mongoose);
 
 var port = process.env.PORT || 8080;
 
