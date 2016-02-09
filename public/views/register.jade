@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        title Wolfpack Signup
+        link(rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css")
+        link(rel="stylesheet" href="css/colors.css")
+    body(class="jumbotron dark-blue")
+        div(class="container")
+            div(class="col-sm-6 col-sm-offset-3")
+                h1
+                    span(class="fa fa-sign-in") Register
+                form(role="form" action="/register" method="post")
+                    div(class="form-group")
+                        label(for="username") Username
+                        input#username.form-control(type="text" name="username" placeholder='Enter Username')
+                    div(class="form-group")
+                        label(for="password") Password
+                        input#password.form-control(type="password" name="password" placeholder='Enter Password')
+                    button(type="submit" class="btn btn-warning btn-lg") Register

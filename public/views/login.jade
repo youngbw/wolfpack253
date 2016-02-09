@@ -10,7 +10,12 @@ html
             div(class="col-sm-6 col-sm-offset-3")
                 h1
                     span(class="fa fa-sign-in") Login
-                form(action="/auth/login" method="post")
+                
+                if(message)
+                    div(class="alert alert-danger")
+                        | #{message}
+                
+                form(action="/login" method="post")
                     div(class="form-group")
                         label Username
                         input(type="text" class="form-control" name="username")
