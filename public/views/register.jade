@@ -10,6 +10,11 @@ html
             div(class="col-sm-6 col-sm-offset-3")
                 h1
                     span(class="fa fa-sign-in") Register
+                    
+                if(message.length > 0)
+                    div(class="alert alert-danger")
+                        | #{message}
+                        
                 form(role="form" action="/register" method="post")
                     div(class="form-group")
                         label(for="username") Username

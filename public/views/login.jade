@@ -11,17 +11,18 @@ html
                 h1
                     span(class="fa fa-sign-in") Login
                 
-                if(message)
+                if(message.length > 0)
                     div(class="alert alert-danger")
                         | #{message}
                 
-                form(action="/login" method="post")
+                form(role="form" action="/login" method="post")
                     div(class="form-group")
-                        label Username
-                        input(type="text" class="form-control" name="username")
+                        label(for="username") Username
+                        input#username.form-control(type="text" name="username" placeholder='Enter Username')
                     div(class="form-group")
-                        label Password
-                        input(type="text" class="form-control" name="password")
-                    button(type="submit" class="btn btn-warning btn-lg") Login
+                        label(for="password") Password
+                        input#password.form-control(type="password" name="password" placeholder='Enter Password')
+                        br
+                        button(type="submit" class="btn btn-warning btn-lg") Login
                 hr
-                p Need an account? <a href="/signup">Signup</a>
+                p Need an account? <a href="/register">Register</a>

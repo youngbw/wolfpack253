@@ -9,26 +9,28 @@ module.exports = function(app, passport) {
 
     router.route('/login')
         .get(function(req, res) {
-            res.render('login');
+            res.render('login', { message: req.flash('error') });
         })
-        .post(passport.authenticate('local', {
-                successRedirect: '/',
-                failureRedirect: 'login'
-        }));
+        .post(passport.authenticate('local', { successRedirect: '/',
+                                               failureRedirect: '/login',
+                                               failureFlash: 'Invalid username or password.' }));
     router.post('logout', function(req, res) {
         // TODO
     });
     router.route('/register')
         .get(function(req, res) {
-            res.render('register');
+            res.render('register', { message: req.flash('error') });
         })
         .post(function(req, res, next) {
-            var newUser = new User({ username: req.body.username });
-            User.register(newUser, req.body.password, function(err, user) {
+            console.log('User registering...');
+            User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
                 if (err) {
-                    return res.render('register', { user : user });
+                    console.log('Error while user register! - ' + err);
+                    return res.render('register', { user : user, message: err.message });
                 }
-                    res.redirect('/login');
+                console.log('User ' + req.body.username + ' registered!');
+
+                res.redirect('/');
             });
         });
 
