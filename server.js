@@ -15,7 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 
 // Setup routes
-require('./routes.js')(app);
+require('./routing/auth.js')(app);
+require('./routing/routes.js')(app);
 
 // Setup database
 require('./config/db.js')(mongoose);

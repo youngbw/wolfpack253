@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title Wolfpack Login
+        title Wolfpack Signup
         link(rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css")
         link(rel="stylesheet" href="css/colors.css")
@@ -9,14 +9,12 @@ html
         div(class="container")
             div(class="col-sm-6 col-sm-offset-3")
                 h1
-                    span(class="fa fa-sign-in") Login
-                form(action="/auth/login" method="post")
+                    span(class="fa fa-sign-in") Signup
+                form(action="/auth/signup" method="post")
                     div(class="form-group")
                         label Username
                         input(type="text" class="form-control" name="username")
                     div(class="form-group")
                         label Password
                         input(type="text" class="form-control" name="password")
-                    button(type="submit" class="btn btn-warning btn-lg") Login
-                hr
-                p Need an account? <a href="/signup">Signup</a>
+                    button(type="submit" class="btn btn-warning btn-lg") Signup
