@@ -1,2 +1,11 @@
 .jumbotron
     h1.showcase WOLFPACK253
+    
+    
+div(ng-controller="HomeController")
+    
+    h2 Feature List
+    
+    div(ng-repeat="feature in features")
+    
+        featureInfo(info="feature")
