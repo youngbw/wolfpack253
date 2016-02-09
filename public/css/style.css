@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }*/
 
-body { padding-top: 70px; background-color: #2B4E72;} /* This keeps the body content below the nav bar */
+body { padding-top: 0px; background-color: #2B4E72;} /* This keeps the body content below the nav bar */
 
 .jumbotron {
    background: url(/img/jumbo.jpg);
