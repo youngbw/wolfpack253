@@ -14,6 +14,23 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
    min-height: 500px;
 }
 
+.navbar-right {
+    margin-right: 10px;
+}
+
+.nav-pills {
+    padding-top: 5px;
+}
+
+.nav-pills > li {
+    background-color: #4E4D4A;
+    border-radius: 10px;
+}
+
+.nav-pills button {
+    background-color: #4E4D4A;
+}
+
 .accent-text {
     color: #94BA65; /* light green from colors.css */
 }
@@ -43,15 +60,6 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
     margin-left: 5%;
 }
 
-.nav-pills {
-    padding-top: 5px;
-}
-
-.center {
-    margin: auto;
-    width: 75%;
-	display: flex;
-}
 
 #logo {
     max-width: 40px;
