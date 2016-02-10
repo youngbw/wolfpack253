@@ -5,7 +5,7 @@ html
         base(href="/home")
         include ./includes/head.jade
         
-    body(ng-app="wolfpackApp")
+    body(ng-app="wolfpackApp" class="dark-gray")
 
 
         nav(class="navbar navbar-default navbar-fixed-top")
@@ -20,13 +20,27 @@ html
             
                     ul(class="nav nav-pills")
                         
-                        li(role="presentation") <a href="">Guilds</a>
+                        li(role="presentation") <a class="fa fa-gamepad accent-text" href="">Guilds</a>
                         
-                        li(role="presentation") <a href="">Chats</a>
+                        li(role="presentation") <a class="fa fa-weixin accent-text" href="">Chats</a>
                         
-                        li(role="presentation") <a href="">Albums</a>
+                        li(role="presentation") <a class="fa fa-picture-o accent-text" href="">Albums</a>
                         
-                        li(role="presentation") <a href="">Events</a>
+                        li(role="presentation") <a class="fa fa-calendar-check-o accent-text" href="">Events</a>
                         
+                        
+                //- div(class="dropdown navbar-right")
+                //- 
+                //-     button(class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Profile
+                //- 
+                //-         span(class="caret")
+                //-     
+                //-     ul(class="dropdown-menu navbar-right" aria-labelledby="dropdownMenu1")
+                //-     
+                //-         li <a href="#">Action</a></li>
+                //-         li <a href="#">Another action</a></li>
+                //-         li <a href="#">Something else here</a></li>
+                //-         li(role="separator" class="divider")
+                //-         li <a href="#">Separated link</a>
         
         div(ng-view)

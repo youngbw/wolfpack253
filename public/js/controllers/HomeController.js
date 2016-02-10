@@ -3,22 +3,22 @@
 app.controller('HomeController', ['$scope', function($scope) {
 
     $scope.tagline = "Home Page";
-    $scope.tabs = [
+    $scope.features = [
         {
             title: 'Guilds',
-            price: 100
+            image: '/img/guilds.jpg'
         },
         {
             title: 'Events',
-            price: 100
+            image: '/img/events.jpg'
         },
         {
             title: 'Chats',
-            price: 100
+            image: '/img/chats.jpg'
         },
         {
             title: 'Albums',
-            price: 100
+            image: '/img/albums.jpg'
         }
     ];
 

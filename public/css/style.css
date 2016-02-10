@@ -7,16 +7,36 @@
     box-sizing: border-box;
 }*/
 
-body { padding-top: 0px;} /* This keeps the body content below the nav bar */
+body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body content below the nav bar */
 
 .jumbotron {
    background: url(/img/jumbo.jpg);
    min-height: 500px;
 }
 
+.accent-text {
+    color: #94BA65; /* light green from colors.css */
+}
+
+.row {
+    margin-bottom: 25px;
+}
+
+.matting {
+    margin: 20px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 12px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.matting img {
+    border-radius: 12px;
+}
+
 .jumbotron h1 {
     color: white;
-
 }
 
 .showcase {
@@ -29,7 +49,7 @@ body { padding-top: 0px;} /* This keeps the body content below the nav bar */
 
 .center {
     margin: auto;
-    width: 80%;
+    width: 75%;
 	display: flex;
 }
 

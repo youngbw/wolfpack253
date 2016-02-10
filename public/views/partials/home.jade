@@ -1,15 +1,31 @@
 .jumbotron
-    h1.showcase WOLFPACK253
+    h1(class="showcase accent-text") WOLFPACK253
     
     
 div(ng-controller="HomeController")
     
     div(class="container")
-    
-        h2 Feature List
-    
-        div(ng-repeat="tab in tabs")
         
-            featureinfo(item="tab")
+        div(class="row")
+        
+            div(ng-repeat="feature in features | limitTo:2")
             
-            p {{tab.title}}
+                //- featureinfo(item="tab")
+                div(class="text-center col-md-5 matting")
+                
+                    img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
+                    
+                    h3 {{ feature.title }}
+            
+        
+        div(class="row")
+        
+            div(ng-repeat="feature in features | limitTo:2:2")
+            
+                div(class="text-center col-md-5 matting")
+                
+                    img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
+                    
+                    h3 {{ feature.title }}
+                
+            
