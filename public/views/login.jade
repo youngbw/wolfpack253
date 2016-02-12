@@ -11,11 +11,11 @@ html
                 h1
                     span(class="fa fa-sign-in") Login
                 
-                if(message.length > 0)
-                    div(class="alert alert-danger")
-                        | #{message}
+                //- if(message.error)
+                //-     div(class="alert alert-danger")
+                //-         | #{message.error}
                 
-                form(role="form" action="/login" method="post")
+                form(role="form" action="/auth/login" method="post")
                     div(class="form-group")
                         label(for="username") Username
                         input#username.form-control(type="text" name="username" placeholder='Enter Username')

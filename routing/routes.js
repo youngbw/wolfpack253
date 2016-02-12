@@ -3,11 +3,6 @@ var router = express.Router();
 
 module.exports = function(app) {
 
-    // Define 'GET' routes
-    router.get('/', function(req, res) {
-        res.render('index');
-    });
-
     router.get('/partials/:name', function(req, res) {
         var name = req.params.name;
         res.render('./partials/' + name);
@@ -16,6 +11,18 @@ module.exports = function(app) {
     router.get('/directives/:name', function(req, res) {
         var name = req.params.name;
         res.render('./directives/' + name);
+    });
+
+    router.get('/login', function(req, res) {
+        res.render('./login');
+    });
+
+    router.get('/register', function(req, res) {
+        res.render('./register');
+    });
+
+    router.get('/home', function(req, res) {
+        res.render('./index');
     });
 
     router.get('*', function(req, res) {

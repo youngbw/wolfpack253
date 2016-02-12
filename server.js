@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var flash = require('connect-flash');
 var express = require('express');
 var router = express.Router();
 app = express();
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 app.use(passport.initialize());
+app.use(flash());
 
 // Setup database
 require('./config/db.js')(mongoose);
