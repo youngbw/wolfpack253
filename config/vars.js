@@ -1,3 +1,3 @@
 module.exports = {
-    sessionSecret : 'frisky dingo'
+    secret : 'frisky_dingo'
 };

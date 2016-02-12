@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 
 // Define the schema for our user model
@@ -11,8 +10,6 @@ var User = new Schema({
         dateCreated  : { type: Date, default: Date.now },
         admin : { type: Boolean, default: false }
 });
-
-User.plugin(passportLocalMongoose);
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', User);
