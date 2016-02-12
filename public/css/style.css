@@ -11,7 +11,8 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
 
 .jumbotron {
    background: url(/img/jumbo.jpg);
-   min-height: 500px;
+   min-height: 400px;
+   background-size: cover;
 }
 
 .navbar-right {
@@ -23,17 +24,13 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
 }
 
 .nav-pills > li {
-    background-color: #4E4D4A;
+    /*background-color: #4E4D4A;*/
     border-radius: 10px;
 }
 
-.nav-pills button {
+/*.nav-pills button {
     background-color: #4E4D4A;
-}
-
-.accent-text {
-    color: #94BA65; /* light green from colors.css */
-}
+}*/
 
 .row {
     margin-bottom: 20px;
