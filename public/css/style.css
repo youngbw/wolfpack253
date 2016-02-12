@@ -46,6 +46,7 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
     border-radius: 12px;
     color: white;
     font-family: 'PT Sans', sans-serif;
+    cursor: pointer;
 }
 
 .matting img {
