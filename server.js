@@ -2,6 +2,7 @@ var morgan = require('morgan');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 var express = require('express');
 var router = express.Router();
 app = express();
@@ -17,11 +18,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
+app.use(passport.initialize());
 
 // Setup database
 require('./config/db.js')(mongoose);
+require('./models/User');
+
+require('./config/passport');
 
 // Setup routes
+require('./routing/auth.js')(app);
 require('./routing/routes.js')(app);
 
 var port = process.env.PORT || 1337;
