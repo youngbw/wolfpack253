@@ -10,8 +10,9 @@ div(ng-controller="HomeController")
         
             div(ng-repeat="feature in features")
             
-                //- featureinfo(item="tab")
-                div(class="text-center col-md-5 matting")
+                //- featureinfo(item="feature")
+                
+                div(class="text-center col-md-2 col-md-push-1 matting" ng-mouseenter="enlargeItem($event)" ng-mouseleave="ensmallItem($event)")
                 
                     img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
                     

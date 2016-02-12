@@ -36,11 +36,11 @@ body { padding-top: 0px; background-color: #4E4D4A} /* This keeps the body conte
 }
 
 .row {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .matting {
-    margin: 20px;
+    margin: 15px;
     padding: 5px;
     border: 2px solid black;
     border-radius: 12px;

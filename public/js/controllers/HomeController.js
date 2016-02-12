@@ -20,6 +20,29 @@ app.controller('HomeController', ['$scope', function($scope) {
             title: 'Albums',
             image: '/img/albums.jpg'
         }
-    ];
+    ]
+
+    $scope.enlargeItem = function(event) {
+        // $(event.currentTarget).height(function(index, height) {
+        //     $(this).height(height + 20);
+        // });
+
+        $(event.currentTarget).width(function(index, width) {
+            // $(this).width(width + 10);
+        });
+
+    }
+
+    $scope.ensmallItem = function(event) {
+        // $(event.currentTarget).height(function(index, height) {
+        //     $(this).height(height - 20);
+        // });
+
+        $(event.currentTarget).width(function(index, width) {
+            // $(this).width(width - 10);
+        });
+
+    }
+
 
 }]);
