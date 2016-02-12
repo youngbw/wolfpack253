@@ -23,23 +23,15 @@ app.controller('HomeController', ['$scope', function($scope) {
     ]
 
     $scope.enlargeItem = function(event) {
-        // $(event.currentTarget).height(function(index, height) {
-        //     $(this).height(height + 20);
-        // });
-
-        $(event.currentTarget).width(function(index, width) {
-            // $(this).width(width + 10);
+        $(event.currentTarget).height(function(index, height) {
+            $(this).height(height + 5);
         });
 
     }
 
     $scope.ensmallItem = function(event) {
-        // $(event.currentTarget).height(function(index, height) {
-        //     $(this).height(height - 20);
-        // });
-
-        $(event.currentTarget).width(function(index, width) {
-            // $(this).width(width - 10);
+        $(event.currentTarget).height(function(index, height) {
+            $(this).height(height - 5);
         });
 
     }
