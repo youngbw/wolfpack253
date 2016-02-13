@@ -31,9 +31,5 @@ app.controller('HomeController', ['$scope', '$location', '$route', function($sco
         $location.path( hash );
     };
 
-    $scope.removeActive = function() {
-        $('.active').removeClass('active');
-    };
-
 
 }]);
