@@ -8,8 +8,33 @@
 			//home page
 			.when('/', {
 				templateUrl: '/partials/home.jade',
-				controller: 'HomeController'
-			});
+				controller: 'HomeController',
+				activetab: 'home'
+			})
+
+			.when('/guilds', {
+				templateUrl: '/partials/guilds.jade',
+				controller: 'GuildsController',
+				activetab: 'guilds'
+			})
+
+			.when('/chats', {
+				templateUrl: '/partials/chats.jade',
+				controller: 'ChatsController',
+				activetab: 'chats'
+			})
+
+			.when('/events', {
+				templateUrl: '/partials/events.jade',
+				controller: 'EventsController',
+				activetab: 'events'
+			})
+
+			.when('/albums', {
+				templateUrl: '/partials/albums.jade',
+				controller: 'AlbumsController',
+				activetab: 'albums'
+			})
 
 
 			// // nerds page that will use the nerd controller

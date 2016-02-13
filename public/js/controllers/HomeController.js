@@ -1,26 +1,39 @@
 
 
-app.controller('HomeController', ['$scope', function($scope) {
+app.controller('HomeController', ['$scope', '$location', '$route', function($scope, $location, $route) {
 
+    $scope.$route = $route;
     $scope.tagline = "Home Page";
     $scope.features = [
         {
             title: 'Guilds',
-            image: '/img/guilds.jpg'
+            image: '/img/guilds.jpg',
+            route: '/guilds'
         },
         {
             title: 'Events',
-            image: '/img/events.jpg'
+            image: '/img/events.jpg',
+            route: '/events'
         },
         {
             title: 'Chats',
-            image: '/img/chats.jpg'
+            image: '/img/chats.jpg',
+            route: '/chats'
         },
         {
             title: 'Albums',
-            image: '/img/albums.jpg'
+            image: '/img/albums.jpg',
+            route: '/albums'
         }
-    ]
+    ];
+
+    $scope.go = function(hash) {
+        $location.path( hash );
+    };
+
+    $scope.removeActive = function() {
+        $('.active').removeClass('active');
+    };
 
 
 }]);

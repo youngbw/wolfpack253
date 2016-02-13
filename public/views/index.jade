@@ -6,7 +6,7 @@ html
         base(href="/home")
         include ./includes/head.jade
         
-    body(ng-app="wolfpackApp" class="dark-gray")
+    body(ng-app="wolfpackApp" class="dark-gray" ng-controller="HomeController")
 
 
         nav(class="navbar navbar-default navbar-fixed-top")
@@ -21,13 +21,13 @@ html
             
                     ul(class="nav nav-pills")
                         
-                        li(role="presentation") <a class="fa fa-gamepad accent-text" href="">Guilds</a>
+                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'guilds'}") <a class="fa fa-gamepad" href="/guilds">Guilds</a>
                         
-                        li(role="presentation") <a class="fa fa-weixin accent-text" href="">Chats</a>
+                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'chats'}") <a class="fa fa-weixin" href="/chats">Chats</a>
                         
-                        li(role="presentation") <a class="fa fa-picture-o accent-text" href="">Albums</a>
+                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'albums'}") <a class="fa fa-picture-o" href="/albums">Albums</a>
                         
-                        li(role="presentation") <a class="fa fa-calendar-check-o accent-text" href="">Events</a>
+                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'events'}") <a class="fa fa-calendar-check-o" href="/events">Events</a>
                         
                         
                         div(class="dropdown navbar-right")

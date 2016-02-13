@@ -8,9 +8,9 @@ module.exports = function(app) {
         res.render('./partials/' + name);
     });
 
-    router.get('/directives/:name', function(req, res) {
+    router.get('./directives/:name', function(req, res) {
         var name = req.params.name;
-        res.render('./directives/' + name);
+        res.render('publid/views/directives/' + name);
     });
 
     router.get('/login', function(req, res) {
@@ -22,6 +22,10 @@ module.exports = function(app) {
     });
 
     router.get('/home', function(req, res) {
+        res.render('./index');
+    });
+
+    router.get('/guilds', function(req, res) {
         res.render('./index');
     });
 
