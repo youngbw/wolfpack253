@@ -22,19 +22,5 @@ app.controller('HomeController', ['$scope', function($scope) {
         }
     ]
 
-    $scope.enlargeItem = function(event) {
-        $(event.currentTarget).height(function(index, height) {
-            $(this).height(height + 5);
-        });
-
-    }
-
-    $scope.ensmallItem = function(event) {
-        $(event.currentTarget).height(function(index, height) {
-            $(this).height(height - 5);
-        });
-
-    }
-
 
 }]);
