@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 800px) {
 
     div {
         display: block;
