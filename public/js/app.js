@@ -1,4 +1,4 @@
-var app = angular.module('wolfpackApp', ['ngRoute', 'appRoutes']);
+var app = angular.module('wolfpackApp', ['ui.router', 'ngRoute', 'appRoutes']);
 
 app.factory('auth', ['$http', '$window', function($http, $window){
 
@@ -9,11 +9,11 @@ app.factory('auth', ['$http', '$window', function($http, $window){
     var auth = {};
 
     auth.saveToken = function (token){
-        $window.localStorage['flapper-news-token'] = token;
+        $window.localStorage['wolfpack-token'] = token;
     };
 
     auth.getToken = function (){
-        return $window.localStorage['flapper-news-token'];
+        return $window.localStorage['wolfpack-token'];
     };
 
     auth.isLoggedIn = function(){
@@ -50,7 +50,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
     };
 
     auth.logOut = function(){
-        $window.localStorage.removeItem('flapper-news-token');
+        $window.localStorage.removeItem('wolfpack-token');
     };
 
     return auth;

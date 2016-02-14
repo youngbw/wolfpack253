@@ -1,48 +1,29 @@
 // public/js/appRoutes.js
 
 
-	angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+	angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
 
-		$routeProvider
-
-			//home page
-			.when('/', {
-				templateUrl: '/partials/home.jade',
-				controller: 'HomeController',
-				activetab: 'home'
-			})
-
-			.when('/guilds', {
-				templateUrl: '/partials/guilds.jade',
-				controller: 'GuildsController',
-				activetab: 'guilds'
-			})
-
-			.when('/chats', {
-				templateUrl: '/partials/chats.jade',
-				controller: 'ChatsController',
-				activetab: 'chats'
-			})
-
-			.when('/events', {
-				templateUrl: '/partials/events.jade',
-				controller: 'EventsController',
-				activetab: 'events'
-			})
-
-			.when('/albums', {
-				templateUrl: '/partials/albums.jade',
-				controller: 'AlbumsController',
-				activetab: 'albums'
-			})
-
-
-			// // nerds page that will use the nerd controller
-			// .when('/nerds', {
-			// 	templateUrl: 'views/nerd.html',
-			// 	controller: 'NerdController'
-			// });
+		$stateProvider.state('home', {
+			url: '/',
+			templateUrl: '/partials/home.jade',
+			controller: 'HomeController'
+		}).state('guilds', {
+			url: '/guilds',
+			templateUrl: '/partials/guilds.jade',
+			controller: 'GuildsController',
+		}).state('chats', {
+			url: '/chats',
+			templateUrl: '/partials/chats.jade',
+			controller: 'ChatsController'
+		}).state('events', {
+			url: '/events',
+			templateUrl: '/partials/events.jade',
+			controller: 'EventsController'
+		}).state('albums', {
+			url: '/albums',
+			templateUrl: '/partials/albums.jade',
+			controller: 'AlbumsController',
+		});
 
 		$locationProvider.html5Mode({ enabled: true, baseLocation: false});
-
 	}]);
