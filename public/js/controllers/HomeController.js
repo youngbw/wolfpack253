@@ -1,8 +1,8 @@
 
 
-app.controller('HomeController', ['$scope', '$location', '$route', function($scope, $location, $route) {
+app.controller('HomeController', ['$scope', '$location', '$route', '$state', function($scope, $location, $route, $state) {
 
-    $scope.$route = $route;
+    $scope.$route = $state;
     $scope.tagline = "Home Page";
     $scope.features = [
         {

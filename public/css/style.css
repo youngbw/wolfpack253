@@ -7,27 +7,40 @@
     box-sizing: border-box;
 }
 
+div {
+		display: block;
+}
+
+body {
+		padding-top: 70px;
+		background-color: #4E4D4A;
+		background: url(/img/jumbo.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+}
+
+.matting {
+	/*margin: 15px;*/
+	padding: 5px;
+	border: 2px solid black;
+	border-radius: 12px;
+	color: white;
+	font-family: 'PT Sans', sans-serif;
+	cursor: pointer;
+}
+
+.matting img {
+	border-radius: 12px;
+}
+
+#logo {
+	max-width: 40px;
+	max-height: 40px;
+	margin-top: -10px;
+}
+
+/* Large Screen Widths */
 @media (min-width: 800px) {
-
-    div {
-        display: block;
-    }
-
-    body {
-        padding-top: 70px;
-        background-color: #4E4D4A;
-        background: url(/img/jumbo.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-     } /* This keeps the body content below the nav bar */
-
-    /*.jumbotron {
-       background: url(/img/jumbo.jpg);
-       max-height: 400px;
-       background-size: cover;
-
-    }
-    */
 
     .container {
         margin: auto;
@@ -71,6 +84,7 @@
         bottom: 0;
         right: 0;
         padding-bottom: 15px;
+				font-size: 1em;
     }
 
     .right-panel div p {
@@ -90,38 +104,85 @@
         border-radius: 10px;
     }
 
-    .matting {
-        /*margin: 15px;*/
-        padding: 5px;
-        border: 2px solid black;
-        border-radius: 12px;
-        color: white;
-        font-family: 'PT Sans', sans-serif;
-        cursor: pointer;
-    }
-
-    .matting img {
-        border-radius: 12px;
-    }
-
-    .jumbotron h1 {
-        color: white;
-    }
-
     .showcase {
         font-size: 5em;
         font-weight: bold;
     }
 
+}
 
-    #logo {
-        max-width: 40px;
-        max-height: 40px;
-        margin-top: -10px;
-    }
+/* Small Screen Widths */
+@media (max-width: 799px) {
 
-    #logo-container {
-        margin-right: 20px;
-    }
+	.container {
+		margin: auto;
+		max-width: 800px;
+		background-color: rgba(0, 0, 0, 0.75);
+		border-radius: 5px;
+		text-align: center;
+		align-content: center;
+		display: flex;
+		flex-direction: column;
+	}
 
+	.left-panel {
+		margin: auto;
+		position: relative;
+		width: 50%;
+		height: auto;
+		order: 2;
+	}
+
+	.row {
+		display: inline-flex;
+	}
+
+	.right-panel {
+		width: 100%;
+		height: auto;
+		margin: auto;
+		order: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.panel-content {
+		width: 100%;
+		height: auto;
+		margin: auto;
+		position: relative;
+		padding-bottom: 5px;
+		order: 1;
+	}
+
+	.edit-link {
+		width: 100%;
+		height: auto;
+		margin-top: 10px;
+		padding-bottom: 15px;
+		font-size: 1em;
+		position: relative;
+		order: 2;
+	}
+
+	.right-panel div p {
+		font-size: 1em;
+	}
+
+
+	.matting img {
+			border-radius: 12px;
+	}
+
+	.showcase {
+		margin: auto;
+		width: 100%;
+		position: relative;
+		font-size: 2.5em;
+		font-weight: bold;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}
 }
