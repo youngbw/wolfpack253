@@ -4,6 +4,8 @@ app.controller('HomeController', ['$scope', '$location', '$route', '$state', fun
 
     $scope.$route = $state;
     $scope.tagline = "Home Page";
+    $scope.dailyMessage = 'This section will conain information from the peeps' +
+    'who wrote this site and be about anything really, maybe a spot to put highlight info from the other pages or shout out messages a member wants the other members to know.'
     $scope.features = [
         {
             title: 'Guilds',

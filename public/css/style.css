@@ -19,6 +19,22 @@ body {
 		background-repeat: no-repeat;
 }
 
+h1 {
+	cursor: pointer;
+}
+
+li .active {
+	background-color: #2790B0;
+	border: 2px solid  #2B4E72;
+	color: white;
+}
+
+.nav > li > a:focus {
+	background-color: #2790B0;
+	border: 2px solid  #2B4E72;
+	color: white;
+}
+
 .matting {
 	/*margin: 15px;*/
 	padding: 5px;

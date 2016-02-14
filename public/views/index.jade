@@ -21,13 +21,13 @@ html
             
                     ul(class="nav nav-pills")
                         
-                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'guilds'}") <a class="fa fa-gamepad" href="/guilds">Guilds</a>
+                        li <a ui-sref="guilds" ui-sref-active="active" class="fa fa-gamepad">Guilds</a>
                         
-                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'chats'}") <a class="fa fa-weixin" href="/chats">Chats</a>
+                        li <a ui-sref="chats" ui-sref-active="active" class="fa fa-weixin" href="/chats">Chats</a>
                         
-                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'albums'}") <a class="fa fa-picture-o" href="/albums">Albums</a>
+                        li <a ui-sref="albums" ui-sref-active="active" class="fa fa-picture-o" href="/albums">Albums</a>
                         
-                        li(role="presentation" data-toggle="tab" ng-class="{active: $route.current.activetab == 'events'}") <a class="fa fa-calendar-check-o" href="/events">Events</a>
+                        li <a ui-sref="events" ui-sref-active="active" class="fa fa-calendar-check-o" href="/events">Events</a>
                         
                         
                         div(class="dropdown navbar-right")
