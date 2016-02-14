@@ -31,5 +31,17 @@ app.controller('HomeController', ['$scope', '$location', '$route', function($sco
         $location.path( hash );
     };
 
+    $scope.mouseEntered = function(event) {
+        $(event.currentTarget).css({
+            'border': '2px solid #94BA65'
+        });
+    };
+
+    $scope.mouseExited = function(event) {
+        $(event.currentTarget).css({
+            'border': '2px solid black'
+        });
+    };
+
 
 }]);
