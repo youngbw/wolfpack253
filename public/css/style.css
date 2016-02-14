@@ -7,72 +7,121 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1000px) {
 
-}
+    div {
+        display: block;
+    }
 
-.container {
-    margin: auto;
-    max-width: 800px;
-}
+    body {
+        padding-top: 70px;
+        background-color: #4E4D4A;
+        background: url(/img/jumbo.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+     } /* This keeps the body content below the nav bar */
 
-body { 
-    padding-top: 70px;
-    background-color: #4E4D4A;
-    background: url(/img/jumbo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
- } /* This keeps the body content below the nav bar */
+    /*.jumbotron {
+       background: url(/img/jumbo.jpg);
+       max-height: 400px;
+       background-size: cover;
 
-/*.jumbotron {
-   background: url(/img/jumbo.jpg);
-   max-height: 400px;
-   background-size: cover;
+    }
+    */
 
-}
-*/
-.navbar-right {
-    margin-right: 10px;
-}
+    .container {
+        margin: auto;
+        max-width: 800px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border-radius: 5px;
+    }
 
-.nav-pills {
-    padding-top: 5px;
-}
+    .content-mod {
+        font-size: .8em;
+    }
 
-.nav-pills > li {
-    /*background-color: #4E4D4A;*/
-    border-radius: 10px;
-}
+    .left-panel {
+        position: relative;
+        height: auto;
+        width: 20%;
+        display: block;
+        float: left;
+    }
 
-.matting {
-    margin: 15px;
-    padding: 5px;
-    border: 2px solid black;
-    border-radius: 12px;
-    color: white;
-    font-family: 'PT Sans', sans-serif;
-    cursor: pointer;
-}
+    .right-panel {
+        width: 75%;
+        height: auto;
+        display: block;
+        float: right;
+    }
 
-.matting img {
-    border-radius: 12px;
-}
+    .panel-content {
+        width: 75%;
+        height: auto;
+        position: relative;
+        padding-bottom: 5px;
+        display: inline-block;
+    }
 
-.jumbotron h1 {
-    color: white;
-}
+    .edit-link {
+        width: 20%;
+        height: auto;
+        position: absolute;
+        display: inline-block;
+        bottom: 0;
+        right: 0;
+        padding-bottom: 15px;
+    }
 
-.showcase {
-    margin-left: 5%;
-}
+    .right-panel div p {
+        font-size: 1.3em;
+    }
+
+    .navbar-right {
+        margin-right: 10px;
+    }
+
+    .nav-pills {
+        padding-top: 5px;
+    }
+
+    .nav-pills > li {
+        /*background-color: #4E4D4A;*/
+        border-radius: 10px;
+    }
+
+    .matting {
+        /*margin: 15px;*/
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 12px;
+        color: white;
+        font-family: 'PT Sans', sans-serif;
+        cursor: pointer;
+    }
+
+    .matting img {
+        border-radius: 12px;
+    }
+
+    .jumbotron h1 {
+        color: white;
+    }
+
+    .showcase {
+        font-size: 5em;
+        font-weight: bold;
+    }
 
 
-#logo {
-    max-width: 40px;
-    max-height: 40px;
-    margin-top: -10px;
-}
+    #logo {
+        max-width: 40px;
+        max-height: 40px;
+        margin-top: -10px;
+    }
 
-#logo-container {
-    margin-right: 20px;
+    #logo-container {
+        margin-right: 20px;
+    }
+
 }

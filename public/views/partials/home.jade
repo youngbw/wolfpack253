@@ -1,20 +1,39 @@
 //- .jumbotron
-h1(class="showcase accent-text") WOLFPACK253
+//- h1(class="showcase accent-text") WOLFPACK253
     
     
 div(ng-controller="HomeController")
     
     div(class="container")
-        
-        div(class="row")
-        
+            
+        div(class="left-panel")
+            
             div(ng-repeat="feature in features")
             
-                //- featureinfo(item="feature")
-                
-                div(class=" dark-gray text-center col-md-2 col-md-push-1 matting"  ng-click="go( feature.route )")
-                
-                    img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
+                    //- featureinfo(item="feature")
+                    div(class="row")
                     
-                    h3 {{ feature.title }}
+                        div(class=" dark-gray text-center col-md-12 matting"  ng-click="go( feature.route )")
+                        
+                            img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
+                            
+                            h3 {{ feature.title }}
+                
+        
+        div(class="right-panel")
+
+            h1(class="showcase") WOLFPACK253
+                
+                
             
+            hr
+            
+            div(class="col-md-12")
+            
+                h2(class="panel-content") Message of the Day
+                
+                a(href="#" class="edit-link fa fa-pencil content-mod pull-right") change message
+            
+            div(class="col-md-12")
+                
+                p This section will conain information from the peeps who wrote this site and be about anything really, maybe a spot to put highlight info from the other pages or shout out messages a member wants the other members to know
