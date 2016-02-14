@@ -85,7 +85,7 @@ li .active {
     }
 
     .panel-content {
-        width: 75%;
+        width: auto;
         height: auto;
         position: relative;
         padding-bottom: 5px;
@@ -93,14 +93,14 @@ li .active {
     }
 
     .edit-link {
-        width: 20%;
+        width: auto;
         height: auto;
         position: absolute;
         display: inline-block;
         bottom: 0;
         right: 0;
         padding-bottom: 15px;
-				font-size: 1em;
+		ont-size: 1em;
     }
 
     .right-panel div p {
