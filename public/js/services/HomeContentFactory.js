@@ -1,4 +1,6 @@
-app.factory('HomeContentFactory', ['$http', function($http) {
+app.factory('HomeContentFactory', ['$resource', function($resource) {
+
 
     
+
 }]);
