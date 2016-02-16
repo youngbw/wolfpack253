@@ -25,12 +25,15 @@ app.use(flash());
 // Setup database
 require('./config/db.js')(mongoose);
 require('./models/User');
+require('./models/DailyMessage');
 
 require('./config/passport');
 
 // Setup routes
 require('./routing/auth.js')(app);
+require('./routing/homepageRoutes.js')(app);
 require('./routing/routes.js')(app);
+
 
 var port = process.env.PORT || 1337;
 

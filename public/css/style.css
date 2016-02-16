@@ -23,6 +23,11 @@ h1 {
 	cursor: pointer;
 }
 
+hr {
+	width: 90%;
+	display: inline-flex;
+}
+
 li .active {
 	background-color: #2790B0;
 	border: 2px solid  #2B4E72;
@@ -90,6 +95,7 @@ li .active {
         position: relative;
         padding-bottom: 5px;
         display: inline-block;
+
     }
 
     .edit-link {
@@ -100,11 +106,13 @@ li .active {
         bottom: 0;
         right: 0;
         padding-bottom: 15px;
-		ont-size: 1em;
+		font-size: 1em;
+		cursor: pointer;
     }
 
     .right-panel div p {
         font-size: 1.3em;
+		display: block;
     }
 
     .navbar-right {
@@ -179,6 +187,7 @@ li .active {
 		font-size: 1em;
 		position: relative;
 		order: 2;
+		cursor: pointer;
 	}
 
 	.right-panel div p {

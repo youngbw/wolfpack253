@@ -19,8 +19,13 @@ div(ng-controller="HomeController")
             
                 h2(class="panel-content") Message of the Day
                 
-                a(href="#" class="edit-link fa fa-pencil pull-right") change message
+                a(class="edit-link fa fa-pencil pull-right" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.") change message
             
             div(class="col-md-12")
                 
-                p {{ dailyMessage }}
+                p {{ dailyMessage.message }}
+                
+                p(class="pull-right") - {{ dailyMessage.author | uppercase }}
+                
+            hr
+            

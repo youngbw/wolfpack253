@@ -1,11 +1,16 @@
 
 
-app.controller('HomeController', ['$scope', '$location', '$route', '$state', function($scope, $location, $route, $state) {
+angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', 'HomeContentFactory', function($scope, $location, $route, $state, HomeContentFactory) {
 
     $scope.$route = $state;
     $scope.tagline = "Home Page";
-    $scope.dailyMessage = 'This section will conain information from the peeps' +
-    'who wrote this site and be about anything really, maybe a spot to put highlight info from the other pages or shout out messages a member wants the other members to know.'
+
+    $scope.dailyMessage = {
+        message: HomeContentFactory.motd,
+        status: HomeContentFactory.motdStatus,
+        author: HomeContentFactory.motdAuthor
+    }
+
     $scope.features = [
         {
             title: 'Guilds',
@@ -44,6 +49,5 @@ app.controller('HomeController', ['$scope', '$location', '$route', '$state', fun
             'border': '2px solid black'
         });
     };
-
 
 }]);
