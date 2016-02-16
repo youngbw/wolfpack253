@@ -6,7 +6,8 @@ var vars = require('../config/vars');
 var UserSchema = new mongoose.Schema({
     username: {type: String, lowercase: true, unique: true},
     hash: String,
-    salt: String
+    salt: String,
+    admin: {type: Boolean, default: false}
 });
 
 UserSchema.methods.setPassword = function(password) {
