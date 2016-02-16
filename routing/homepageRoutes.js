@@ -24,7 +24,7 @@ module.exports = function(app) {
             if (!motd || !req.body.message) return new Error('Could not find MOTD');
             if (err) return err;
             var current = motd[0];
-            current.updateMessage(req.body.message, function(err, current) {
+            current.updateMessage(req.body.message, req.body.author, function(err, current) {
                 if (err) return err;
                 return res.json(current);
             });

@@ -7,11 +7,22 @@ var DailyMessageSchema = new mongoose.Schema({
     message: {type: String, required: true}
 });
 
-DailyMessageSchema.methods.updateMessage = function(message, cb) {
+DailyMessageSchema.methods.updateMessage = function(message, author, cb) {
 
-    this.message = message;
-    this.date = Date.now;
-    this.save(cb);
+    if (message) {
+        this.message = message;
+        this.date = Date.now;
+
+        if (author) {
+            this.author = author;
+        }
+
+        this.save(cb);
+    }
+
+
+
+
 
 };
 

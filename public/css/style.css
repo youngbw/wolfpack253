@@ -28,6 +28,11 @@ hr {
 	display: inline-flex;
 }
 
+ div  .popover-content {
+	color: black;
+	font-size: 1.1em;
+}
+
 li .active {
 	background-color: #2790B0;
 	border: 2px solid  #2B4E72;

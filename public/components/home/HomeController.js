@@ -50,4 +50,10 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
         });
     };
 
+    activate();
+    function activate() {
+        $('.active-popover').popover();
+    }
+
+
 }]);
