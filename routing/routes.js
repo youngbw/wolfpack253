@@ -3,9 +3,10 @@ var router = express.Router();
 
 module.exports = function(app) {
 
-    router.get('/partials/:name', function(req, res) {
+    router.get('/:component/:name', function(req, res) {
+        var component = req.params.component;
         var name = req.params.name;
-        res.render('./partials/' + name);
+        res.render(component + '/' + name);
     });
 
     router.get('./directives/:name', function(req, res) {
@@ -21,12 +22,12 @@ module.exports = function(app) {
         res.render('./register');
     });
 
-    router.get('/home', function(req, res) {
+    router.get('/guilds', function(req, res) {
         res.render('./index');
     });
 
-    router.get('/guilds', function(req, res) {
-        res.render('./index');
+    router.get('/', function(req, res) {
+        res.render('index');
     });
 
     router.get('*', function(req, res) {

@@ -1,0 +1,7 @@
+div(class="row")
+
+    div(class="dark-gray text-center col-md-12 matting"  ng-mouseenter="mouseEntered($event)" ng-mouseleave="mouseExited($event)" ng-click="go( feature.route )")
+    
+        img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
+        
+        h3 {{ feature.title }}

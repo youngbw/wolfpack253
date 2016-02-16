@@ -3,25 +3,29 @@
 
 	angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
 
-		$stateProvider.state('home', {
+		$stateProvider.state('default', {
 			url: '/',
-			templateUrl: '/partials/home.jade',
+			templateUrl: 'home/home.jade',
+			controller: 'HomeController'
+		}).state('home', {
+			url: '/home',
+			templateUrl: 'home/home.jade',
 			controller: 'HomeController'
 		}).state('guilds', {
 			url: '/guilds',
-			templateUrl: '/partials/guilds.jade',
+			templateUrl: 'guilds/guilds.jade',
 			controller: 'GuildsController'
 		}).state('chats', {
 			url: '/chats',
-			templateUrl: '/partials/chats.jade',
+			templateUrl: 'chats/chats.jade',
 			controller: 'ChatsController'
 		}).state('events', {
 			url: '/events',
-			templateUrl: '/partials/events.jade',
+			templateUrl: 'events/events.jade',
 			controller: 'EventsController'
 		}).state('albums', {
 			url: '/albums',
-			templateUrl: '/partials/albums.jade',
+			templateUrl: 'albums/albums.jade',
 			controller: 'AlbumsController'
 		});
 

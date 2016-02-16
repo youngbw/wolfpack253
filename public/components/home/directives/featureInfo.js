@@ -1,10 +1,9 @@
 
 app.directive('featureInfo', function() {
-
     return {
         restrict: 'E',
         scope: {item: '='},
-        templateUrl: '/directives/featureInfo'
+        templateUrl: '/home/directives/featureInfo.jade'
     };
 
 });

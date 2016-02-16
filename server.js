@@ -11,13 +11,13 @@ app = express();
 var vars = require('./config/vars.js');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'public/views'));
+app.set('views', path.join(__dirname, '/public/components'));
 app.set('view engine', 'jade');
 app.locals.pretty = true; // pretty html
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(morgan('dev'));
 app.use(passport.initialize());
 app.use(flash());
