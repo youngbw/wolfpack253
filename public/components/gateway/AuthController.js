@@ -1,3 +1,3 @@
-app.controller('AuthController', ['$http, $scope', function($http, $scope) {
+angular.module('wolfpackApp').controller('AuthController', ['$http, $scope', function($http, $scope) {
     //TODO....
 }]);

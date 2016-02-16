@@ -9,8 +9,13 @@ script(src="libs/angular-ui-router/release/angular-ui-router.js")
 script(src="libs/angular-route/angular-route.min.js")
 
 //-MODULES
-script(src="js/app.js")
+script(src="modules/app.js")
+script(src="modules/gateway.js")
+script(src="modules/wolfpackApp.js")
+    
 script(src="js/appRoutes.js")
+script(src="js/gatewayRoutes.js")
+script(src="js/wolfpackRoutes.js")
 
 //-CONTROLLERS
 script(src="components/home/HomeController.js")
@@ -18,10 +23,12 @@ script(src="components/guilds/GuildsController.js")
 script(src="components/chats/ChatsController.js")
 script(src="components/events/EventsController.js")
 script(src="components/albums/AlbumsController.js")
+script(src="components/gateway/AuthController.js")
 
 //- SERVICES / FACTORIES / PROVIDERS
 script(src="components/home/HomeContentFactory.js")
-
+script(src="components/shared/services/authFactory.js")
+    
 //-DIRECTIVES
 script(src="components/home/directives/featureInfo.js")
 script(src="components/home/directives/motdPopover.js")

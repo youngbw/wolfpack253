@@ -1,5 +1,4 @@
 
-
 angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', 'HomeContentFactory', function($scope, $location, $route, $state, HomeContentFactory) {
 
     $scope.$route = $state;
