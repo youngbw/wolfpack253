@@ -9,12 +9,12 @@ app.controller('HomeController', ['$scope', '$location', '$route', '$state', fun
     $scope.features = [
         {
             title: 'Guilds',
-            image: '/img/guilds.jpg',
+            image: '../img/guilds.jpg',
             route: '/guilds'
         },
         {
             title: 'Events',
-            image: '/img/events.jpg',
+            image: './img/events.jpg',
             route: '/events'
         },
         {
@@ -24,7 +24,7 @@ app.controller('HomeController', ['$scope', '$location', '$route', '$state', fun
         },
         {
             title: 'Albums',
-            image: '/img/albums.jpg',
+            image: 'img/albums.jpg',
             route: '/albums'
         }
     ];

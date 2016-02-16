@@ -5,16 +5,8 @@ div(ng-controller="HomeController")
         div(class="left-panel")
             
             div(ng-repeat="feature in features")
-            
-                    //- featureinfo(item="feature")
-                    div(class="row")
                     
-                        div(class="dark-gray text-center col-md-12 matting"  ng-mouseenter="mouseEntered($event)" ng-mouseleave="mouseExited($event)" ng-click="go( feature.route )")
-                        
-                            img(ng-src="{{ feature.image }}" alt="feature image" class="img-responsive")
-                            
-                            h3 {{ feature.title }}
-                
+                    feature-info(item="feature")
         
         div(class="right-panel")
 
