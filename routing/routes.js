@@ -15,6 +15,10 @@ module.exports = function(app) {
         res.render(component + '/' + name);
     });
 
+    router.get('/', function(req, res) {
+        res.render('./gateway/gateway')
+    });
+
     router.get('*', function(req, res) {
         res.render('index');
     });

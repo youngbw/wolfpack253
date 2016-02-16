@@ -1,6 +1,7 @@
-div(ng-controller="AuthController")
+div
     h1
-        span(class="fa fa-sign-in") Register
+        span(class="fa fa-sign-in")
+            | Register
         
     form(role="form" action="/auth/register" method="post")
         div(class="form-group")
@@ -9,4 +10,5 @@ div(ng-controller="AuthController")
         div(class="form-group")
             label(for="password") Password
             input#password.form-control(type="password" name="password" placeholder='Enter Password')
+            br
         button(type="submit" class="btn btn-warning btn-lg") Register

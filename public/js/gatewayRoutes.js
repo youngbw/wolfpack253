@@ -1,15 +1,18 @@
 angular.module('gateway').config([
     '$stateProvider',
-    function($stateProvider) {
+    '$urlRouterProvider',
+    '$locationProvider',
+    function($stateProvider,$urlRouterProvider,$locationProvider) {
 
     $stateProvider.state('login', {
         url: '/login',
-        templateUrl: '/partials/login',
+        templateUrl: '/gateway/login',
         controller: 'AuthController'
     }).state('register', {
         url: '/register',
-        templateUrl: '/partials/register',
+        templateUrl: '/gateway/register',
         controller: 'AuthController'
     });
     $urlRouterProvider.otherwise('login');
+    $locationProvider.html5Mode({ enabled: true, baseLocation: false});
 }]);
