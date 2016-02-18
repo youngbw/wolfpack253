@@ -11,6 +11,13 @@ div {
 		display: block;
 }
 
+body.center {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 body {
 		padding-top: 70px;
 		background-color: #4E4D4A;
