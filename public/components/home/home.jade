@@ -12,20 +12,42 @@ div(ng-controller="HomeController")
 
             h1(class="showcase") WOLFPACK253
                 
+            hr
+            
+            div(class="home-section")
+            
+                    div(class="col-md-12")
+                    
+                        h2(class="panel-content") Message of the Day
+                        
+                        label(class="edit-link fa fa-pencil pull-right" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")<span> change message </span>
+            
+                    div(class="col-md-12 home-message")
+                        
+                        span {{ dailyMessage.message }}
+                        
+                        span(class="home-author") - {{ dailyMessage.author | uppercase }}
                 
             hr
             
-            div(class="col-md-12")
+            div(class="home-section")
             
-                h2(class="panel-content") Message of the Day
+                div(class="col-md-12")
                 
-                label(class="edit-link fa fa-pencil pull-right" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.") change message
-            
-            div(class="col-md-12")
-                
-                p {{ dailyMessage.message }}
-                
-                p(class="pull-right") - {{ dailyMessage.author | uppercase }}
-                
+                    h2(class="panel-content") Voice Chat Info
+                    
+                    div(class="home-vent")
+                    
+                        div(class="home-list") Server: wolfpack253.typefrag.components
+                        
+                        div(class="home-list") Password: pandahat
+                        
+                        div(class="home-list") Port: 1337
+                        
+                        
             hr
+                
+                    
+            
+                
             

@@ -15,19 +15,19 @@ html
                 
                 div(class="navbar-header")
                 
-                    a(class="navbar-brand" href="/home") <img class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
+                    a(class="navbar-brand" href="/home") <img ui-sref-active="active" class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
                     
                 div(class="hidden-xs")
             
                     ul(class="nav nav-pills")
                         
-                        li <a ui-sref="guilds" ui-sref-active="active" class="fa fa-gamepad">Guilds</a>
+                        li <a ui-sref="guilds" ui-sref-active="active" class="fa fa-gamepad home-nav-item">Guilds</a>
                         
-                        li <a ui-sref="chats" ui-sref-active="active" class="fa fa-weixin" href="/chats">Chats</a>
+                        li <a ui-sref="chats" ui-sref-active="active" class="fa fa-weixin home-nav-item">Chats</a>
                         
-                        li <a ui-sref="albums" ui-sref-active="active" class="fa fa-picture-o" href="/albums">Albums</a>
+                        li <a ui-sref="albums" ui-sref-active="active" class="fa fa-picture-o home-nav-item">Albums</a>
                         
-                        li <a ui-sref="events" ui-sref-active="active" class="fa fa-calendar-check-o" href="/events">Events</a>
+                        li <a ui-sref="events" ui-sref-active="active" class="fa fa-calendar-check-o home-nav-item" >Events</a>
                         
                         
                         div(class="dropdown navbar-right")
