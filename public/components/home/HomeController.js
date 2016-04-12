@@ -51,7 +51,23 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
 
     activate();
     function activate() {
-        $('.active-popover').popover();
+        var popoverTemplate = ['<div class="popover">',
+        '<div class="arrow"></div>',
+        '<div class="popover-content">',
+        '</div>',
+        '</div>'].join('');
+
+        var content = ['<div><input type="text"/></div>'].join('');
+
+
+        $('body').popover({
+            selector: '[rel=popover]',
+            trigger: 'click',
+            content: content,
+            template: popoverTemplate,
+            placement: "top",
+            html: true
+        });
     }
 
 
