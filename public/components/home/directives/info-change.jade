@@ -1,0 +1,13 @@
+div(class="info-change_container")
+
+    p {{ heading }}
+
+    div(class="form-group")
+
+        form
+            
+            input(type="text" name="motdmessage" class="form-control" id="dailyMessageField")
+            
+            br
+            
+            input(type="submit" value="Save" class="info-change_submit" ng-click="sendChange()")

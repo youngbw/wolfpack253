@@ -10,6 +10,9 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
         author: HomeContentFactory.motdAuthor
     }
 
+    $scope.type = '';
+    var isShowing = false;
+
     $scope.features = [
         {
             title: 'Guilds',
@@ -49,26 +52,16 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
         });
     };
 
-    activate();
-    function activate() {
-        var popoverTemplate = ['<div class="popover">',
-        '<div class="arrow"></div>',
-        '<div class="popover-content">',
-        '</div>',
-        '</div>'].join('');
+    $scope.showInfo = function(type) {
+        if ($scope.type === type) {
+            isShowing = false;
+            $scope.type = '';
+        } else {
+            $scope.type = type;
+            isShowing = true;
+        }
 
-        var content = ['<div><input type="text"/></div>'].join('');
-
-
-        $('body').popover({
-            selector: '[rel=popover]',
-            trigger: 'click',
-            content: content,
-            template: popoverTemplate,
-            placement: "top",
-            html: true
-        });
-    }
+    };
 
 
 }]);

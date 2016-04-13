@@ -1,0 +1,9 @@
+.info-change_submit {
+    color: black;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.info-change_container {
+    padding: 1em;
+}

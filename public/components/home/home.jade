@@ -16,17 +16,19 @@ div(ng-controller="HomeController")
             
             div(class="home-section")
             
-                    div(class="col-md-12")
+                div(class="col-md-12")
+                
+                    h2(class="panel-content") Message of the Day
                     
-                        h2(class="panel-content") Message of the Day
+                    label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo('dailyMessage')")
+        
+                div(class="col-md-12 home-message")
+                    
+                    span {{ dailyMessage.message }}
+                    
+                    span(class="home-author") - {{ dailyMessage.author | uppercase }}
                         
-                        label(class="edit-link fa fa-pencil pull-right active-popover" rel="popover" data-placement="top")<span> change message </span>
-            
-                    div(class="col-md-12 home-message")
-                        
-                        span {{ dailyMessage.message }}
-                        
-                        span(class="home-author") - {{ dailyMessage.author | uppercase }}
+            div(info-change ng-show="type === 'dailyMessage'" info="{{type}}" message="{{dailyMessage.message}}")
                 
             hr
             
@@ -36,15 +38,19 @@ div(ng-controller="HomeController")
                 
                     h2(class="panel-content") Voice Chat Info
                     
-                    div(class="home-vent")
+                    label(class="fa fa-pencil pull-right edit-link" ng-click="showInfo('ventInfo')")
+                    
+                    div(class="home-vent col-md-12")
                     
                         div(class="home-list") Server: wolfpack253.typefrag.components
                         
                         div(class="home-list") Password: pandahat
                         
                         div(class="home-list") Port: 1337
-                        
-                        
+    
+                
+            div(info-change ng-show="type === 'ventInfo'" info="{{type}}")
+                
             hr
                 
                     

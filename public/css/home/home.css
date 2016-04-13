@@ -121,15 +121,12 @@ li .active {
 
 }
 
+.home-section {
+	margin-bottom: 1em;
+	float: right;
+}
+
 .edit-link {
-    width: auto;
-    height: auto;
-    position: absolute;
-    display: inline-block;
-    bottom: 0;
-    right: 0;
-    padding-bottom: 15px;
-	font-size: 1em;
 	cursor: pointer;
 }
 
@@ -184,7 +181,7 @@ li .active {
 		display: inline-flex;
 	}
 
-	.home-section {
+	.ction {
 		text-align: center;
 	}
 

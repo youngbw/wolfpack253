@@ -15,6 +15,8 @@ angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($
             })
             .error(function(error) {
                 dataFactory.status = 'Unable to load the MOTD: ' + error.message;
+                dataFactory.motd = '';
+                dataFactory.motdAuthor = '';
             });
     }
 
@@ -23,7 +25,15 @@ angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($
     }
 
     dataFactory.changeMessage = function(message) {
-        return $http.put(urlBase, message);
+        return $http.put(urlBase, message)
+        .success(function(result) {
+            dataFactory.motd = result.message;
+            dataFactory.motdAuthor = result.author;
+            dataFactory.status = '' + result.status + ' ' + result.statusText;
+        })
+        .error(function(error) {
+
+        });
     }
 
     return dataFactory;
