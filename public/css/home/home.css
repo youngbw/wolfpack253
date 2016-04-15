@@ -113,9 +113,6 @@ li .active {
 }
 
 .panel-content {
-    width: auto;
-    height: auto;
-    position: relative;
     padding-bottom: 5px;
     display: inline-block;
 
@@ -123,7 +120,6 @@ li .active {
 
 .home-section {
 	margin-bottom: 1em;
-	float: right;
 }
 
 .edit-link {

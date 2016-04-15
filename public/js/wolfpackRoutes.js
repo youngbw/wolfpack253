@@ -5,22 +5,10 @@ angular.module('wolfpackApp').config([
 
 	$stateProvider.state('default', {
 		url: '/',
-		templateUrl: 'home/home.jade',
-		controller: 'HomeController',
-		resolve: {
-			dailyMessage: ['HomeContentFactory', function(HomeContentFactory) {
-				return HomeContentFactory.getMOTD();
-			}]
-		}
+		templateUrl: 'home/home.jade'
 	}).state('home', {
 		url: '/home',
-		templateUrl: 'home/home.jade',
-		controller: 'HomeController',
-		resolve: {
-			dailyMessage: ['HomeContentFactory', function(HomeContentFactory) {
-				return HomeContentFactory.getMOTD();
-			}]
-		}
+		templateUrl: 'home/home.jade'
 	}).state('guilds', {
 		url: '/guilds',
 		templateUrl: 'guilds/guilds.jade',

@@ -22,13 +22,13 @@ div(ng-controller="HomeController")
                     
                     label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo('dailyMessage')")
         
-                div(class="col-md-12 home-message")
-                    
-                    span {{ dailyMessage.message }}
-                    
-                    span(class="home-author") - {{ dailyMessage.author | uppercase }}
+                    div(class="col-md-12 home-message")
                         
-            div(info-change ng-show="type === 'dailyMessage'" info="{{type}}" message="{{dailyMessage.message}}")
+                        span(class="home-list" ng-model="dailyMessage.message") {{ dailyMessage.message }}
+                        
+                        span(class="home-author" ng-model="dailyMessage.author") - {{ dailyMessage.author | uppercase }}
+                        
+            div(info-change ng-show="type === 'dailyMessage'" info="{{type}}")
                 
             hr
             

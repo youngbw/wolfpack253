@@ -5,9 +5,9 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
     $scope.tagline = "Home Page";
 
     $scope.dailyMessage = {
-        message: HomeContentFactory.motd,
-        status: HomeContentFactory.motdStatus,
-        author: HomeContentFactory.motdAuthor
+        message: null,
+        status: null,
+        author: null
     }
 
     $scope.type = '';
@@ -63,5 +63,16 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
 
     };
 
+    function init() {
+        if ($scope.dailyMessage.message === null) {
+            HomeContentFactory.getMOTD().success(function(result) {
+                $scope.dailyMessage.message = result.message;
+                $scope.dailyMessage.author = result.author;
+                $scope.dailyMessage.status = result.status;
+            });
+        }
+        console.log($scope.dailyMessage.message);
+    }
+    init();
 
 }]);

@@ -7,17 +7,17 @@ angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($
     dataFactory.status;
 
     dataFactory.getMOTD = function() {
-        return $http.get(urlBase)
-            .success(function(message) {
-                dataFactory.motd = message.message;
-                dataFactory.motdAuthor = message.author;
-                dataFactory.status = '' + message.status + ' ' + message.statusText;
-            })
-            .error(function(error) {
-                dataFactory.status = 'Unable to load the MOTD: ' + error.message;
-                dataFactory.motd = '';
-                dataFactory.motdAuthor = '';
-            });
+        return $http.get(urlBase);
+            // .success(function(message) {
+            //     dataFactory.motd = message.message;
+            //     dataFactory.motdAuthor = message.author;
+            //     dataFactory.status = '' + message.status + ' ' + message.statusText;
+            // })
+            // .error(function(error) {
+            //     dataFactory.status = 'Unable to load the MOTD: ' + error.message;
+            //     dataFactory.motd = '';
+            //     dataFactory.motdAuthor = '';
+            // });
     }
 
     dataFactory.createMessage = function(message) {
@@ -25,15 +25,15 @@ angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($
     }
 
     dataFactory.changeMessage = function(message) {
-        return $http.put(urlBase, message)
-        .success(function(result) {
-            dataFactory.motd = result.message;
-            dataFactory.motdAuthor = result.author;
-            dataFactory.status = '' + result.status + ' ' + result.statusText;
-        })
-        .error(function(error) {
-
-        });
+        return $http.put(urlBase, message);
+        // .success(function(result) {
+        //     dataFactory.motd = result.message;
+        //     dataFactory.motdAuthor = result.author;
+        //     dataFactory.status = '' + result.status + ' ' + result.statusText;
+        // })
+        // .error(function(error) {
+        //
+        // });
     }
 
     return dataFactory;

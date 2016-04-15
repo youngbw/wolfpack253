@@ -13,7 +13,7 @@ module.exports = function(app) {
 
             if (err) return err;
 
-            current = motd[0];
+            var current = motd[0];
 
             res.json(current);
         });
