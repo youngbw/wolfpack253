@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactory, $rootScope) {
+angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactory) {
 
     return {
         restrict: 'A',
@@ -11,7 +11,6 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                 scope.author = '';
 
                 scope.sendChange = function() {
-                    // This is for the daily Message case
                     var theMessage = $('#dailyMessageField').val();
                     $('#dailyMessageField').val('');
                     if (scope.message !== '') {
@@ -19,7 +18,6 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                     } else {
                         createMessage(theMessage, 'Brent');
                     }
-                    // $rootScope.$broadcast('dailyMessageChange', {message: scope.message, author: scope.author});
                     scope.isShowing = false;
                 }
 
