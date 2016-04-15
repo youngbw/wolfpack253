@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactory) {
+angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactory, $rootScope) {
 
     return {
         restrict: 'A',
@@ -15,12 +15,13 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                     if (attrs.info === 'dailyMessage') {
                         var theMessage = $('#dailyMessageField').val();
                         if (scope.message !== '') {
-                            HomeContentFactory.changeMessage({message: theMessage, author: "Brent"});
+                            changeMessage(theMessage, 'Brent');
                         } else {
-                            HomeContentFactory.createMessage({message: theMessage, author: "Brent"});
+                            createMessage(theMessage, 'Brent');
                         }
+                        $rootScope.$broadcast('dailyMessageChange', {message: scope.message, author: scope.author});
                     // This is for the vent info case
-                } else if (attrs.info === 'ventInfo') {
+                    } else if (attrs.info === 'ventInfo') {
 
                     }
 
@@ -37,11 +38,22 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                     HomeContentFactory.getMOTD().success(function(result) {
                         scope.message = result.message;
                         scope.author = result.author;
-                        console.log("hitting it");
                     });
                 }
 
+                function changeMessage(theMessage, theAuthor) {
+                    HomeContentFactory.changeMessage({message: theMessage, author: theAuthor}).success(function(result) {
+                        scope.message = result.message;
+                        scope.author = result.author;
+                    });
+                }
 
+                function createMessage(theMessage, theAuthor) {
+                    HomeContentFactory.createMessage({message: theMessage, author: "Brent"}).success(function(result) {
+                        scope.message = result.message;
+                        scope.author = result.author;
+                    });
+                }
             }
         }
     };

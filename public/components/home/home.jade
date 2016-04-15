@@ -24,9 +24,9 @@ div(ng-controller="HomeController")
         
                     div(class="col-md-12 home-message")
                         
-                        span(class="home-list" ng-model="dailyMessage.message") {{ dailyMessage.message }}
+                        span(class="home-list" ng-model="message") {{ message }}
                         
-                        span(class="home-author" ng-model="dailyMessage.author") - {{ dailyMessage.author | uppercase }}
+                        span(class="home-author" ng-model="author") - {{ author | uppercase }}
                         
             div(info-change ng-show="type === 'dailyMessage'" info="{{type}}")
                 
