@@ -12,19 +12,15 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
 
                 scope.sendChange = function() {
                     // This is for the daily Message case
-                    if (attrs.info === 'dailyMessage') {
-                        var theMessage = $('#dailyMessageField').val();
-                        if (scope.message !== '') {
-                            changeMessage(theMessage, 'Brent');
-                        } else {
-                            createMessage(theMessage, 'Brent');
-                        }
-                        $rootScope.$broadcast('dailyMessageChange', {message: scope.message, author: scope.author});
-                    // This is for the vent info case
-                    } else if (attrs.info === 'ventInfo') {
-
+                    var theMessage = $('#dailyMessageField').val();
+                    $('#dailyMessageField').val('');
+                    if (scope.message !== '') {
+                        changeMessage(theMessage, 'Brent');
+                    } else {
+                        createMessage(theMessage, 'Brent');
                     }
-
+                    // $rootScope.$broadcast('dailyMessageChange', {message: scope.message, author: scope.author});
+                    scope.isShowing = false;
                 }
 
 
@@ -54,6 +50,11 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                         scope.author = result.author;
                     });
                 }
+
+                scope.showInfo = function() {
+                    scope.isShowing = !scope.isShowing;
+
+                };
             }
         }
     };

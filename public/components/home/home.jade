@@ -13,22 +13,8 @@ div(ng-controller="HomeController")
             h1(class="showcase") WOLFPACK253
                 
             hr
-            
-            div(class="home-section")
-            
-                div(class="col-md-12")
-                
-                    h2(class="panel-content") Message of the Day
-                    
-                    label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo('dailyMessage')")
-        
-                    div(class="col-md-12 home-message")
                         
-                        span(class="home-list" ng-model="message") {{ message }}
-                        
-                        span(class="home-author" ng-model="author") - {{ author | uppercase }}
-                        
-            div(info-change ng-show="type === 'dailyMessage'" info="{{type}}")
+            div(info-change type="{{type}}")
                 
             hr
             
@@ -38,7 +24,7 @@ div(ng-controller="HomeController")
                 
                     h2(class="panel-content") Voice Chat Info
                     
-                    label(class="fa fa-pencil pull-right edit-link" ng-click="showInfo('ventInfo')")
+                    label(class="fa fa-pencil pull-right edit-link")
                     
                     div(class="home-vent col-md-12")
                     
@@ -47,9 +33,6 @@ div(ng-controller="HomeController")
                         div(class="home-list") Password: pandahat
                         
                         div(class="home-list") Port: 1337
-    
-                
-            div(info-change ng-show="type === 'ventInfo'" info="{{type}}")
                 
             hr
                 

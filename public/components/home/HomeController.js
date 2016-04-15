@@ -1,16 +1,9 @@
 
-angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', 'HomeContentFactory', function($scope, $location, $route, $state, HomeContentFactory) {
+angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', function($scope, $location, $route, $state) {
 
     $scope.$route = $state;
     $scope.tagline = "Home Page";
 
-    $scope.message = null
-    $scope.status = null
-    $scope.author = null
-
-
-    $scope.type = '';
-    var isShowing = false;
 
     $scope.features = [
         {
@@ -50,33 +43,5 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
             'border': '2px solid black'
         });
     };
-
-    $scope.showInfo = function(type) {
-        if ($scope.type === type) {
-            isShowing = false;
-            $scope.type = '';
-        } else {
-            $scope.type = type;
-            isShowing = true;
-        }
-
-    };
-
-    function init() {
-        if ($scope.message === null) {
-            HomeContentFactory.getMOTD().success(function(result) {
-                $scope.message = result.message;
-                $scope.author = result.author;
-                $scope.status = result.status;
-            });
-        }
-        $scope.$on('dailyMessageChange', function(event, args) {
-            console.log(args.message);
-            $scope.message = args.message;
-            $scope.author = args.author;
-            $scope.type = '';
-        });
-    }
-    init();
 
 }]);
