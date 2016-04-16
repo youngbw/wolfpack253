@@ -34,14 +34,21 @@ hr {
 
 li .active {
 	background-color: #2790B0;
-	border: 2px solid  #2B4E72;
 	color: white;
 }
 
 .nav > li > a:focus {
 	background-color: #2790B0;
-	border: 2px solid  #2B4E72;
 	color: white;
+}
+
+.nav > li > a:hover {
+	background-color: #2790B0;
+	color: white;
+}
+
+.nav > li > a {
+	margin-left: 1em;
 }
 
 .matting {
@@ -133,7 +140,6 @@ li .active {
 }
 
 .nav-pills > li {
-    /*background-color: #4E4D4A;*/
     border-radius: 10px;
 }
 
