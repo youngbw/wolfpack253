@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var daily = mongoose.model('DailyMessage');
 var router = express.Router();
 
-// var message = mongoose.model('DailyMessage');
+var message = mongoose.model('DailyMessage');
 
 module.exports = function(app) {
 
