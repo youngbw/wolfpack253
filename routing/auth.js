@@ -3,7 +3,7 @@ var passport = require('passport');
 var jwt = require('express-jwt');
 var express = require('express');
 var router = express.Router();
-
+var User = mongoose.model('User');
 var vars = require('../config/vars');
 var auth = jwt({secret: vars.secret, userProperty: 'payload'});
 

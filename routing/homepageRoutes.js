@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var daily = mongoose.model('DailyMessage');
 var router = express.Router();
 
-var message = mongoose.model('DailyMessage');
+// var message = mongoose.model('DailyMessage');
 
 module.exports = function(app) {
 
@@ -11,7 +11,7 @@ module.exports = function(app) {
 
         message.find(function (err, motd) {
 
-            if (err) return err;
+            if (err) return res.json({status: 'error', info: err});
 
             var current = motd[0];
 
