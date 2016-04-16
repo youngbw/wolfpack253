@@ -1,16 +1,15 @@
-div(class="home-section")
 
-    div(class="col-md-12")
+div(class="col-md-12")
+
+    h3(class="panel-content") Message of the Day
     
-        h3(class="panel-content") Message of the Day
-        
-        label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo()")
+    label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo()")
 
-        div(class="col-md-12 home-message")
-            
-            span(class="home-list" ng-model="message") {{ message }}
-            
-            span(class="home-author" ng-model="author") - {{ author | uppercase }}
+    div(class="col-md-12 home-message")
+        
+        span(class="home-list" ng-model="message") {{ message }}
+        
+        span(class="home-author" ng-model="author") - {{ author | uppercase }}
 
 div(ng-show="isShowing" class="info-change_container")
 

@@ -51,6 +51,10 @@ li .active {
 	margin-left: 1em;
 }
 
+.form-group {
+	padding: .5em;
+}
+
 .matting {
 	/*margin: 15px;*/
 	padding: 5px;
@@ -83,6 +87,7 @@ li .active {
 
 .home-list {
 	font-size: 1em;
+	line-height: 2;
 }
 
 .container {
@@ -113,10 +118,6 @@ li .active {
     padding-bottom: 5px;
     display: table-cell;
 
-}
-
-.home-section {
-	margin-bottom: 1em;
 }
 
 .edit-link {

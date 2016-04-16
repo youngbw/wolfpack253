@@ -1,39 +1,33 @@
 angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($http) {
 
-    var urlBase = '/motd';
+    var messageURL = '/motd';
+    var serverURL = '/serverinfo';
     var dataFactory = {};
-    dataFactory.motd;
-    dataFactory.motdAuthor;
-    dataFactory.status;
 
+    // MOTD METHODS
     dataFactory.getMOTD = function() {
-        return $http.get(urlBase);
-            // .success(function(message) {
-            //     dataFactory.motd = message.message;
-            //     dataFactory.motdAuthor = message.author;
-            //     dataFactory.status = '' + message.status + ' ' + message.statusText;
-            // })
-            // .error(function(error) {
-            //     dataFactory.status = 'Unable to load the MOTD: ' + error.message;
-            //     dataFactory.motd = '';
-            //     dataFactory.motdAuthor = '';
-            // });
+        return $http.get(messageURL);
     }
 
     dataFactory.createMessage = function(message) {
-        return $http.post(urlBase, message);
+        return $http.post(urlBase, messageURL);
     }
 
     dataFactory.changeMessage = function(message) {
-        return $http.put(urlBase, message);
-        // .success(function(result) {
-        //     dataFactory.motd = result.message;
-        //     dataFactory.motdAuthor = result.author;
-        //     dataFactory.status = '' + result.status + ' ' + result.statusText;
-        // })
-        // .error(function(error) {
-        //
-        // });
+        return $http.put(messageURL, message);
+    }
+
+    // SERVER METHODS
+    dataFactory.getServerInfo = function() {
+        return $http.get(serverURL);
+    }
+
+    dataFactory.changeServerInfo = function(info) {
+        return $http.put(serverURL, info);
+    }
+
+    dataFactory.createServerInfo = function(info) {
+        return $http.post(serverURL, info);
     }
 
     return dataFactory;

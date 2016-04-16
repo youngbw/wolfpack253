@@ -26,6 +26,7 @@ app.use(flash());
 require('./config/db.js')(mongoose);
 require('./models/User');
 require('./models/DailyMessage');
+require('./models/ServerInfo');
 
 require('./config/passport');
 

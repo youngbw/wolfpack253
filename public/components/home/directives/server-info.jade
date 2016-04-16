@@ -1,0 +1,38 @@
+div(class="col-md-12")
+
+    h3(class="panel-content") Voice Chat Info
+    
+    label(class="fa fa-pencil pull-right edit-link" ng-click="showServerInfo()")
+    
+    div(class="home-message col-md-12")
+    
+        div(class="home-list") Server: {{ serverName }}
+        
+        div(class="home-list") Password: {{ serverPW }}
+        
+        div(class="home-list") Port: {{ serverPort }}
+        
+        
+div(ng-show="serverInfoShowing" class="info-change_container")
+
+    p {{ heading }}
+
+    div(class="form-group  animate-show" ng-show="serverInfoShowing")
+
+        form
+            
+            div(class="home-form-field")
+                p Server
+                input(type="text" name="serverName" class="form-control server-info_form-control" id="serverNameField")
+            
+            div(class="home-form-field")
+                p Password
+                input(type="text" name="serverPW" class="form-control server-info_form-control" id="serverPWField")
+            
+            div(class="home-form-field")
+                p Port
+                input(type="text" name="serverPort" class="form-control server-info_form-control" id="serverPortField")
+            
+            br
+            
+            input(type="submit" value="Save" class="info-change_submit server-info_form-control" ng-click="sendServerChange()")
