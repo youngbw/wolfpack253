@@ -7,10 +7,6 @@
     box-sizing: border-box;
 }
 
-div {
-		display: block;
-}
-
 body.center {
 	position: absolute;
 	top: 30%;
@@ -26,12 +22,8 @@ body {
 		background-repeat: no-repeat;
 }
 
-h1 {
-	cursor: pointer;
-}
-
 hr {
-	width: 90%;
+	width: 100%;
 	display: inline-flex;
 }
 
@@ -74,7 +66,7 @@ li .active {
 
 .home-message {
 	display: block;
-	font-size: 1.2em;
+	margin-top: .5em;
 }
 
 .home-author {
@@ -83,12 +75,13 @@ li .active {
 }
 
 .home-list {
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 .container {
     margin: auto;
     max-width: 800px;
+	min-width: 400px;
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 5px;
 }
@@ -98,10 +91,7 @@ li .active {
 }
 
 .left-panel {
-    position: relative;
-    height: auto;
     width: 20%;
-    display: block;
     float: left;
 }
 
@@ -114,7 +104,7 @@ li .active {
 
 .panel-content {
     padding-bottom: 5px;
-    display: inline-block;
+    display: table-cell;
 
 }
 
@@ -124,6 +114,9 @@ li .active {
 
 .edit-link {
 	cursor: pointer;
+	position: absolute;
+	right: 1em;
+	top: 0;
 }
 
 .right-panel div p {
@@ -177,8 +170,8 @@ li .active {
 		display: inline-flex;
 	}
 
-	.ction {
-		text-align: center;
+	.home-list {
+		font-size: 2em;
 	}
 
 	.right-panel {
@@ -192,6 +185,7 @@ li .active {
 
 	.panel-content {
 		margin: auto;
+		display: inline-block;
 	}
 
 	.edit-link {
@@ -201,7 +195,8 @@ li .active {
 	}
 
 	.home-author {
-		font-size: .8em;
+		font-size: .7em;
+		margin-top: .5em;
 	}
 
 	.edit-link span {

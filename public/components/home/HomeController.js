@@ -1,9 +1,7 @@
 
-angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', function($scope, $location, $route, $state) {
+angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location', '$route', '$state', function($scope) {
 
-    $scope.$route = $state;
     $scope.tagline = "Home Page";
-
 
     $scope.features = [
         {
@@ -27,21 +25,5 @@ angular.module('wolfpackApp').controller('HomeController', ['$scope', '$location
             route: '/albums'
         }
     ];
-
-    $scope.go = function(hash) {
-        $location.path( hash );
-    };
-
-    $scope.mouseEntered = function(event) {
-        $(event.currentTarget).css({
-            'border': '2px solid #94BA65'
-        });
-    };
-
-    $scope.mouseExited = function(event) {
-        $(event.currentTarget).css({
-            'border': '2px solid black'
-        });
-    };
 
 }]);

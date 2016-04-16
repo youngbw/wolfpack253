@@ -9,6 +9,7 @@ angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactor
                 scope.heading = '';
                 scope.message = '';
                 scope.author = '';
+                scope.isShowing = false;
 
                 scope.sendChange = function() {
                     var theMessage = $('#dailyMessageField').val();
