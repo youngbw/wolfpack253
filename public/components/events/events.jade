@@ -11,7 +11,7 @@ div(ng-controller="EventsController")
 			
 			div(class="event_event-name-container")
 				
-				div(ng-repeat="event in day.events" class="event_event-name") {{ event.name }}
+				div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
 			
 			div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
 
