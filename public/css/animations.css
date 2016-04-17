@@ -11,3 +11,21 @@
   opacity: 0;
   width: 0;
 }
+
+
+/*.animate-hide_calendar {
+    bottom: 10em;
+    right: 10em;
+}
+
+.animate-hide_calendar.ng-hide {
+    bottom: 1em;
+    right: 1em;
+    position: absolute;
+}
+
+.animate-hide_calendar.ng-hide-add, .animate-hide_calendar.ng-hide-remove {
+    transition: all ease-in .4s;*/
+
+
+}

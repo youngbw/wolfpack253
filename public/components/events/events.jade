@@ -1,3 +1,22 @@
 div(ng-controller="EventsController")
 
-	h1 {{ tagline }}
+	div(class="event_day-container")
+	
+		div(class="event_header")
+		
+
+		div(ng-repeat="day in days | limitTo:7" class="event_date-box")
+					
+			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+
+		div(ng-repeat="day in days | limitTo:7:7" class="event_date-box")
+					
+			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			
+		div(ng-repeat="day in days | limitTo:7:14" class="event_date-box")
+					
+			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			
+		div(ng-repeat="day in days | limitTo:7:21" class="event_date-box")
+					
+			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
