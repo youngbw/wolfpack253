@@ -2,27 +2,44 @@ div(ng-controller="EventsController")
 
 	div(class="event_day-container")
 	
-		div(class="event_header")
+		div(class="event_header row")
 		
-
-		div(ng-repeat="day in days | limitTo:7" class="event_date-box")
-					
-			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			div(class="pull-left fa fa-arrow-left event_nav-arrow" ng-click="moveToPrev()" aria-hidden="true")
 			
-			div(class="event_event-name-container")
+			div(class="pull-right fa fa-arrow-right event_nav-arrow" ng-click="moveToNext()" aria-hidden="true")
+		
+			h2(class="event_month") {{ month }}
+			
+			div(class="event_week")
+			
+				div(ng-repeat="day in weekdays" class="event_week-names") {{ day }}
+		
+		div(class="row")
+
+			div(ng-repeat="day in days | limitTo:7" class="event_date-box")
+						
+				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
 				
-				div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
-			
-			div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
+				div(class="event_event-name-container")
+					
+					div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
+				
+				div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
+				
+		div(class="row")
 
-		div(ng-repeat="day in days | limitTo:7:7" class="event_date-box")
-					
-			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			div(ng-repeat="day in days | limitTo:7:7" class="event_date-box")
+						
+				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+				
+		div(class="row")
 			
-		div(ng-repeat="day in days | limitTo:7:14" class="event_date-box")
-					
-			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			div(ng-repeat="day in days | limitTo:7:14" class="event_date-box")
+						
+				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+				
+		div(class="row")
 			
-		div(ng-repeat="day in days | limitTo:7:21" class="event_date-box")
+			div(ng-repeat="day in days | limitTo:7:21" class="event_date-box")
 					
 			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>

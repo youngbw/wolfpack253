@@ -12,13 +12,14 @@
 
 .event_date-box {
     display: inline-block;
-    width: 13%;
-    margin: .3em;
+    width: 14.28%;
     background-color: rgba(0, 0, 0, 0.75);
     height: 180px;
     border-radius: 5px;
     vertical-align: top;
     position: relative;
+    border: 1px solid white;
+    box-sizing: border-box;
 }
 
 .event_num-events {
@@ -42,28 +43,39 @@
     margin-top: 1em;
 }
 
+.event_header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    padding: .5em;
+    margin-bottom: .2em;
+}
+
+.event_month {}
+
+.event_week {}
+
+.event_nav-arrow {
+    font-size: 1.5em;
+    margin: .5em;
+    cursor: pointer;
+}
+
+.event_week-names {
+    display: inline-block;
+    width: 14.28%;
+    margin-top: .2em;
+    margin-bottom: .3em;
+}
+
 /* Small Screen Widths */
 @media (max-width: 1000px) {
 
-    .event_date-box {
-        height: 100px;
-        width: 12%;
-    }
 
 }
 
 /* Small Screen Widths */
 @media (max-width: 450px) {
 
-    .event_date-box {
-        height: 35px;
-        width: 10.5%;
-    }
-
-
-    .event_date {
-        margin: .1em;
-        font-size: .75em;
-    }
 
 }
