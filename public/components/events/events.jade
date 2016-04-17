@@ -8,6 +8,12 @@ div(ng-controller="EventsController")
 		div(ng-repeat="day in days | limitTo:7" class="event_date-box")
 					
 			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+			
+			div(class="event_event-name-container")
+				
+				div(ng-repeat="event in day.events" class="event_event-name") {{ event.name }}
+			
+			div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
 
 		div(ng-repeat="day in days | limitTo:7:7" class="event_date-box")
 					

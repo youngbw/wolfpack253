@@ -5,6 +5,8 @@
 
 .event_date {
     margin: .5em;
+    background-color: rgba(255, 255, 255, .2);
+    padding-left: .5em;
 }
 
 .event_date-box {
@@ -14,6 +16,25 @@
     background-color: rgba(0, 0, 0, 0.75);
     height: 180px;
     border-radius: 5px;
+    vertical-align: top;
+    position: relative;
+}
+
+.event_num-events {
+    margin: 1em;
+    position: absolute;
+    bottom: .3em;
+    left: .3em;
+}
+
+.event_event-name {
+    margin-left: .3em;
+}
+
+.event_event-name-container {
+    overflow: hidden;
+    max-height: 50%;
+    text-align: center;
 }
 
 /* Small Screen Widths */
