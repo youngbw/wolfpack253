@@ -97,6 +97,8 @@ module.exports = function(app) {
                 if (err) return err;
                 res.json(daily);
             });
+        } else {
+            return new Error('Missing parameters');
         }
 
     });

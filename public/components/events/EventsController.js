@@ -41,10 +41,9 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 		$scope.startDay = moment(new Date()).startOf('week');
 		$scope.month = getMonthName($scope.startDay.month());
-		queryDates($scope.startDay, $scope.startDay.add(1, 'days'));
+		
 	}
 	init();
-
 
 	$scope.days = [
 		{date: $scope.startDay.format(dateFormat), events: [{name: 'Brents Birthday', note: 'Everyone is invited!'}, {name: '4th of July', note: 'National Holiday'},  {name: 'Brandts Wedding', note: 'Smooth and creamy beige'}, {name: 'Charizard Party', note: 'Like...Rawr.'}]},
@@ -73,9 +72,9 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		// console.log(start);
 		// console.log(end);
 		EventContentFactory.getEvents(start, end).success(function(result) {
-			// console.log('success ' + result);
+			console.log('success ' + result.status);
 		}).error(function(err) {
-			// console.log('error ' + err);
+			console.log('error ' + err);
 		});
 	}
 
