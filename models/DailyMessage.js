@@ -20,10 +20,6 @@ DailyMessageSchema.methods.updateMessage = function(message, author, cb) {
         this.save(cb);
     }
 
-
-
-
-
 };
 
 

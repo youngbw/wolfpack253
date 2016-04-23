@@ -19,8 +19,8 @@ angular.module('wolfpackApp').config([
 		controller: 'ChatsController'
 	}).state('events', {
 		url: '/events',
-		templateUrl: 'events/events.jade',
-		controller: 'EventsController'
+		templateUrl: 'events/events.jade'
+		// controller: 'EventsController'
 	}).state('albums', {
 		url: '/albums',
 		templateUrl: 'albums/albums.jade',

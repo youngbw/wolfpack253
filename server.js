@@ -26,6 +26,7 @@ app.use(flash());
 require('./config/db.js')(mongoose);
 require('./models/User');
 require('./models/DailyMessage');
+require('./models/EventModels');
 require('./models/ServerInfo');
 
 require('./config/passport');
@@ -33,6 +34,7 @@ require('./config/passport');
 // Setup routes
 require('./routing/auth.js')(app);
 require('./routing/homepageRoutes.js')(app);
+require('./routing/eventpageRoutes.js')(app);
 require('./routing/routes.js')(app);
 
 
