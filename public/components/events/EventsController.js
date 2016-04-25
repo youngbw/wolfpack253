@@ -25,6 +25,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		'Saturday'
 	];
 
+	$scope.days = [];
 
 	$scope.tagline = 'Events Page';
 
@@ -39,19 +40,17 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 	function init() {
 
-		$scope.startDay = moment(new Date()).startOf('week');
-		$scope.month = getMonthName($scope.startDay.month());
-		
+		// This will bring us back to the beginning of the current month
+		$scope.startDay = moment(new Date()).startOf('month');
+
+		// This will set us back a few days to the start of the week that contains the first of the month to match up sundays
+		$scope.startDay.subtract($scope.startDay.day(), 'days');
+
+		// $scope.month = getMonthName($scope.startDay.month());
+		queryDates($scope.startDay, $scope.startDay.clone().add(daysToShow, 'days'));
+
 	}
 	init();
-
-	$scope.days = [
-		{date: $scope.startDay.format(dateFormat), events: [{name: 'Brents Birthday', note: 'Everyone is invited!'}, {name: '4th of July', note: 'National Holiday'},  {name: 'Brandts Wedding', note: 'Smooth and creamy beige'}, {name: 'Charizard Party', note: 'Like...Rawr.'}]},
-		 	{date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1},
-		{date: 7}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1},
-		{date: 14}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1},
-		{date: 21}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1}, {date: 1}
-	];
 
 	function getMonthName(index) {
 		return months[index] + ' ' + $scope.startDay.format('YYYY');
@@ -59,23 +58,59 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 
 	$scope.moveToPrev = function() {
-		$scope.startDay.subtract(28, 'days');
-		$scope.month = getMonthName($scope.startDay.month());
+		$scope.startDay.subtract(daysToShow, 'days');
+		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
 	};
 
 	$scope.moveToNext = function() {
-		$scope.startDay.add(28, 'days');
-		$scope.month = getMonthName($scope.startDay.month());
+		$scope.startDay.add(daysToShow, 'days');
+		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
 	};
 
 	function queryDates(start, end) {
-		// console.log(start);
-		// console.log(end);
-		EventContentFactory.getEvents(start, end).success(function(result) {
-			console.log('success ' + result.status);
+		$scope.loading = true;
+		// The call uses exlcusive for start date
+		EventContentFactory.getEvents(start.clone().subtract(1, 'days'), end).success(function(result) {
+			setDates(start, result.eventData);
+			setMonth();
+			$scope.loading = false;
 		}).error(function(err) {
-			console.log('error ' + err);
+			console.log(err);
 		});
+	}
+
+	function setDates(firstDay, events) {
+		$scope.days = [];
+		// add the actual calendar date to the $scope.days struct
+		for (var j = 0; j < daysToShow; j++) {
+			$scope.days.push({date: firstDay.clone()});
+			firstDay.add(1, 'days');
+		}
+
+		// add events into the appropriate days
+
+		var index = 0;
+		for (var i = 0; i < $scope.days.length; i++) {
+			var list = [];
+			while ( index < events.length && moment(events[index].date).isSame($scope.days[i].date)) {
+				list.push(events[index]);
+				index += 1;
+			}
+			$scope.days[i].events = list;
+		}
+	}
+
+	$scope.formatDate = function(index) {
+		var theDate = $scope.days[index].date;
+		return theDate.format(dateFormat);
+	}
+
+	function setMonth() {
+		$scope.month = getMonthName($scope.startDay.month());
+		var next = $scope.startDay.clone().add(daysToShow - 1, 'days').month();
+		if (next !== $scope.startDay.month()) {
+			$scope.month += ' / ' + getMonthName(next);
+		}
 	}
 
 

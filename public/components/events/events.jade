@@ -18,7 +18,7 @@ div(ng-controller="EventsController")
 
 			div(ng-repeat="day in days | limitTo:7" class="event_date-box")
 						
-				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+				div(class="event_date") <span class="event_date-actual">{{formatDate($index)}}</span>
 				
 				div(class="event_event-name-container")
 					
@@ -30,16 +30,34 @@ div(ng-controller="EventsController")
 
 			div(ng-repeat="day in days | limitTo:7:7" class="event_date-box")
 						
-				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+				div(class="event_date") <span class="event_date-actual">{{formatDate($index + 7)}}</span>
+				
+				div(class="event_event-name-container")
+					
+					div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
+				
+				div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
 				
 		div(class="row")
-			
+
 			div(ng-repeat="day in days | limitTo:7:14" class="event_date-box")
 						
-				div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+				div(class="event_date") <span class="event_date-actual">{{formatDate($index + 14)}}</span>
+				
+				div(class="event_event-name-container")
+					
+					div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
+				
+				div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
 				
 		div(class="row")
-			
+
 			div(ng-repeat="day in days | limitTo:7:21" class="event_date-box")
+						
+				div(class="event_date") <span class="event_date-actual">{{formatDate($index + 21)}}</span>
+				
+				div(class="event_event-name-container")
 					
-			div(class="event_date") <span class="event_date-actual">{{day.date}}</span>
+					div(ng-repeat="event in day.events | limitTo:3" class="event_event-name") {{ event.name }}
+				
+				div(class="event_num-events" ng-show="day.events.length > 0") {{day.events.length}} total events
