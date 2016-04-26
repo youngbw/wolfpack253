@@ -10,4 +10,3 @@ var EventSchema = new mongoose.Schema({
 
 
 mongoose.model('Event', EventSchema);
-// mongoose.model('EventDate', EventDateSchema);

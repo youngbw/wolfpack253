@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').controller('EventsController', function($scope, moment, EventContentFactory) {
+angular.module('wolfpackApp').controller('EventsController', function($scope, moment, EventContentFactory, ngDialog, $rootScope) {
 
 	var months = [
 		'January',
@@ -47,7 +47,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		$scope.startDay.subtract($scope.startDay.day(), 'days');
 
 		// $scope.month = getMonthName($scope.startDay.month());
-		queryDates($scope.startDay, $scope.startDay.clone().add(daysToShow, 'days'));
+		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
 
 	}
 	init();
@@ -70,7 +70,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	function queryDates(start, end) {
 		$scope.loading = true;
 		// The call uses exlcusive for start date
-		EventContentFactory.getEvents(start.clone().subtract(1, 'days'), end).success(function(result) {
+		EventContentFactory.getEvents(start.subtract(1, 'days'), end).success(function(result) {
 			setDates(start, result.eventData);
 			setMonth();
 			$scope.loading = false;
@@ -88,7 +88,6 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		}
 
 		// add events into the appropriate days
-
 		var index = 0;
 		for (var i = 0; i < $scope.days.length; i++) {
 			var list = [];
@@ -113,5 +112,16 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		}
 	}
 
+	$scope.openAddDialog = function() {
+		ngDialog.open({
+			template: '<div ng-click="closeAddDialog()">hello</div>',
+			plain: true,
+			scope: $scope,
+			showClose: false,
+			name: 'addDialog',
+			className: 'ngdialog-theme-default',
+			disableAnimations: true
+		});
+	};
 
 });

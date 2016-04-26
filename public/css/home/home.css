@@ -174,10 +174,6 @@ li .active {
 		order: 2;
 	}
 
-	.row {
-		display: inline-flex;
-	}
-
 	.home-list {
 		font-size: 2em;
 	}

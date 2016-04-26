@@ -38,6 +38,25 @@
 
 .event_event-name:hover {
     background-color: rgba(240, 240, 240, .5);
+    cursor: pointer;
+}
+
+.event_side-bar {
+    width: 8%;
+    padding: 1em;
+    margin: 0px .2em 0px .2em;
+    border-radius: 5px;
+    float: right;
+    text-align: center;
+}
+
+.event_add-btn:hover {
+    color: #2790B0;
+}
+
+.event_add-btn {
+    font-size: 4em;
+    cursor: pointer;
 }
 
 .event_event-name-container {
