@@ -136,10 +136,23 @@
     .ngdialog.ngdialog-theme-default .ngdialog-content {
         width: 60%;
     }
+
+    .event_modal-submit, .event_modal-date-choice {
+        display: block;
+        float: none !important;
+        margin-top: 1.75em;
+    }
+
+    .event_modal-date-label {
+        display: block;
+    }
 }
 
 /* Small Screen Widths */
 @media (max-width: 450px) {
 
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        width: 80%;
+    }
 
 }

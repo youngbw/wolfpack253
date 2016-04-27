@@ -13,11 +13,11 @@ div(class="event_modal-container")
         
         
         div(class="event_modal-footer")
-            button(class="btn btn-primary pull-left" ng-click="addNewEvent()" type="submit" value="Submit") Submit
             
-            div(class="pull-right")
+            div(class="pull-right event_modal-date-choice")
             
-                label Date:
+                label(class="event_modal-date-label") Date:
                 
                 input(placeholder="{{myDate}}" id="eventDate" class="event_modal-datepicker text-right datepicker" ng-click="initPicker()")
                 
+            button(class="event_modal-submit btn btn-primary pull-left" ng-click="addNewEvent()" type="submit" value="Submit") Submit
