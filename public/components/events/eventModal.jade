@@ -1,0 +1,23 @@
+div(class="event_modal-container")
+
+    h2(class="event_modal-title") {{ modalTitle }}
+
+    form(class="form-group")
+
+        label Title
+        input(type="text" name="eventName" class="form-control" id="eventNameField")
+        
+        
+        label Event Description
+        textarea(class="form-control event_description" rows="4")
+        
+        
+        div(class="event_modal-footer")
+            button(class="btn btn-primary pull-left" ng-click="addNewEvent()" type="submit" value="Submit") Submit
+            
+            div(class="pull-right")
+            
+                label Date:
+                
+                input(placeholder="{{myDate}}" id="eventDate" class="event_modal-datepicker text-right datepicker" ng-click="initPicker()")
+                

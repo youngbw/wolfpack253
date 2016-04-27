@@ -27,8 +27,9 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 	$scope.days = [];
 
-	$scope.tagline = 'Events Page';
-
+	$scope.modalTitle = '';
+	$scope.picker;
+	$scope.myDate;
 	$scope.loading = false;
 
 	$scope.month = '';
@@ -45,6 +46,8 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 		// This will set us back a few days to the start of the week that contains the first of the month to match up sundays
 		$scope.startDay.subtract($scope.startDay.day(), 'days');
+
+		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
 
 		// $scope.month = getMonthName($scope.startDay.month());
 		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
@@ -68,14 +71,26 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	};
 
 	function queryDates(start, end) {
-		$scope.loading = true;
+		//only show the loader if the call takes longer than a second
+		var timer;
+		timer && clearTimeout(timer);
+        timer = setTimeout(function()
+        {
+            $scope.loading = true;
+        },
+        1000);
+
+
 		// The call uses exlcusive for start date
 		EventContentFactory.getEvents(start.subtract(1, 'days'), end).success(function(result) {
 			setDates(start, result.eventData);
 			setMonth();
+			clearTimeout(timer);
 			$scope.loading = false;
 		}).error(function(err) {
 			console.log(err);
+			clearTimeout(timer);
+			$scope.loading = false;
 		});
 	}
 
@@ -113,15 +128,21 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	}
 
 	$scope.openAddDialog = function() {
+		$scope.modalTitle = 'Create New Event';
 		ngDialog.open({
-			template: '<div ng-click="closeAddDialog()">hello</div>',
-			plain: true,
+			template: '/events/eventModal.jade',
 			scope: $scope,
 			showClose: false,
-			name: 'addDialog',
-			className: 'ngdialog-theme-default',
-			disableAnimations: true
+			name: 'addEventDialog',
+			className: 'ngdialog-theme-default event_add-dialog'
 		});
+	};
+
+	$scope.initPicker = function() {
+		if (typeof picker === 'undefined') {
+			picker = $('.datepicker');
+		}
+		picker.pickadate({});
 	};
 
 });

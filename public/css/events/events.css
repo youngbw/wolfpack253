@@ -74,9 +74,48 @@
     margin-bottom: .2em;
 }
 
-.event_month {}
+.event_loading-container {
+    height: 720px;
+    width: 100%;
+}
 
-.event_week {}
+.event_loader {
+    margin-top: 360px;
+    margin-left: 50%;
+    color: #2790B0;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    width: 40%;
+}
+
+.event_modal-container .form-control {
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+.event_modal-datepicker {
+    width: 150px;
+    text-align: center;
+    border-color: #2790B0;
+}
+
+.event_modal-footer {
+    margin-top: 1.5em;
+    padding-bottom: 1em;
+}
+
+.event_description {
+    width: 100%;
+    max-width: 100%;
+    height 200px;
+}
+
+.event_modal-title {
+    color: #2790B0;
+    padding-bottom: .5em;
+    border-bottom: 1px solid;
+}
 
 .event_nav-arrow {
     font-size: 1.5em;
@@ -94,7 +133,9 @@
 /* Small Screen Widths */
 @media (max-width: 1000px) {
 
-
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        width: 60%;
+    }
 }
 
 /* Small Screen Widths */
