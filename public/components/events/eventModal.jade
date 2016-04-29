@@ -2,14 +2,14 @@ div(class="event_modal-container")
 
     h2(class="event_modal-title") {{ modalTitle }}
 
-    form(class="form-group")
+    form(ng-if="modalType === 'Add'" class="form-group")
 
         label Title
         input(type="text" name="eventName" class="form-control" id="eventNameField")
         
         
         label Event Description
-        textarea(class="form-control event_description" rows="4")
+        textarea(class="form-control event_description" id="eventDescField" rows="4")
         
         
         div(class="event_modal-footer")
@@ -18,6 +18,45 @@ div(class="event_modal-container")
             
                 label(class="event_modal-date-label") Date:
                 
-                input(placeholder="{{myDate}}" id="eventDate" class="event_modal-datepicker text-right datepicker" ng-click="initPicker()")
+                input(placeholder="{{myDate}}" id="eventDate" class="event_modal-datepicker text-right datepicker" ng-click="initPicker('add')")
                 
             button(class="event_modal-submit btn btn-primary pull-left" ng-click="addNewEvent()" type="submit" value="Submit") Submit
+
+
+    div(ng-if="modalType === 'View'")
+    
+        div(class="event_modal-edit-container")
+        
+            button(class="event_modal-delete-btn btn btn-warning" id="deleteBtn" ng-click="deleteEvent()") Delete
+            button(class="event_modal-edit-btn btn btn-warning" ng-click="editEvent()") Edit
+    
+        label Title
+        p(class="event_view-event") {{ currentTitle }}
+        
+        label Date
+        p(class="event_modal-date-choice event_view-event") {{ currentDate }}
+        
+        label Description
+        p(class="event_modal-description event_view-event") {{ currentDescription }}
+        
+        
+    div(ng-if="modalType === 'Edit'")
+    
+    
+        div(class="event_modal-edit-container")
+        
+            button(class="event_modal-delete-btn btn btn-warning" id="deleteBtn" ng-click="deleteEvent()") Delete
+            button(class="event_modal-edit-btn btn btn-primary" ng-click="saveEvent()") Save
+
+        label Title
+        input(type="text" name="eventName" class="form-control" id="eventNameField" placeholder="{{currentTitle}}")
+        
+        div(class="event_modal-date-choice")
+        
+            label(class="event_modal-date-label") Date:
+            
+            input(placeholder="{{currentDate}}" id="eventDate" class="event_modal-datepicker text-right datepicker" ng-click="initPicker('edit')")
+        
+        label Description
+        textarea(class="form-control event_description" id="eventDescField" rows="4" placeholder="{{currentDescription}}")
+        

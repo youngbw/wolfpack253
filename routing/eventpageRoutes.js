@@ -32,6 +32,10 @@ module.exports = function(app) {
             }
             var myEvent = new Event(params);
             myEvent.save(function(err, createdEvent) {
+
+                if (err) {
+                    return res.json({status: 'error', statusCode: 500});
+                }
                 res.json({status: 'success', details: createdEvent});
                 return;
             });
@@ -52,6 +56,14 @@ module.exports = function(app) {
             res.json({ status: 'success', details: updatedEvent});
 
          });
+    })
+    .delete(function(req, res) {
+        Event.remove({_id: req.params.event_id}, function(err) {
+            if (err) {
+                return new Error('Could not find ID to delete or something went wrong');
+            }
+            res.json({status: 'success'});
+        });
     });
 
     app.use(router);

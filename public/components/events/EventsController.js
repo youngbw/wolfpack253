@@ -26,17 +26,23 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	];
 
 	$scope.days = [];
-
 	$scope.modalTitle = '';
+	$scope.modalType = '';
 	$scope.picker;
-	$scope.myDate;
 	$scope.loading = false;
+
+	$scope.currentTitle;
+	$scope.currentDescription;
+	$scope.currentDate;
+	$scope.currentEvent;
 
 	$scope.month = '';
 	$scope.startDay = null;
 
+	var addEventDialog;
 	var dateFormat = 'Do';
 	var daysToShow = 28;
+	var numDeletes = 0;
 
 
 	function init() {
@@ -45,7 +51,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		$scope.startDay = moment(new Date()).startOf('month');
 
 		// This will set us back a few days to the start of the week that contains the first of the month to match up sundays
-		$scope.startDay.subtract($scope.startDay.day(), 'days');
+		$scope.startDay.subtract($scope.startDay.day() - 1, 'days');
 
 		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
 
@@ -61,14 +67,50 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 
 	$scope.moveToPrev = function() {
-		$scope.startDay.subtract(daysToShow, 'days');
-		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		if (!$scope.loading) {
+			$scope.startDay.subtract(daysToShow, 'days');
+			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		}
 	};
 
 	$scope.moveToNext = function() {
-		$scope.startDay.add(daysToShow, 'days');
-		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		if (!$scope.loading) {
+			$scope.startDay.add(daysToShow, 'days');
+			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		}
 	};
+
+	// TODO: This post request wont return if you send a title (required) through as ""
+	function createEvent(title, note, date) {
+		if (title !== "") {
+			EventContentFactory.addEvent(title, note, date.toDate()).success(function(result) {
+				addEventDialog.close();
+				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+			}).error(function(result) {
+				console.log(result);
+			});
+		}
+	}
+
+	function updateEvent(id, title, note, date) {
+		if (title !== "") {
+			EventContentFactory.updateEvent(id, title, note, date).success(function(results) {
+				addEventDialog.close();
+				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+			}).error(function(result) {
+				console.log(result);
+			});
+		}
+	}
+
+	function performDelete() {
+		EventContentFactory.deleteEvent($scope.currentEvent._id).success(function(results) {
+			addEventDialog.close();
+			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		}).error(function(result) {
+			console.log(result);
+		});
+	}
 
 	function queryDates(start, end) {
 		//only show the loader if the call takes longer than a second
@@ -129,20 +171,82 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 	$scope.openAddDialog = function() {
 		$scope.modalTitle = 'Create New Event';
-		ngDialog.open({
+		$scope.modalType = 'Add';
+		openModal();
+	};
+
+	$scope.initPicker = function(theType) {
+		var theInput = $('.datepicker').pickadate({
+			container: '.event_modal-title'
+		});
+		$scope.picker = theInput.pickadate('picker');
+		if (typeof $scope.currentDate !== 'undefined' && theType === 'edit') {
+			$scope.picker.set('select', moment($scope.currentEvent.date).toDate());
+		} else {
+			$scope.picker.set('select', new Date());
+		}
+	};
+
+	$scope.addNewEvent = function() {
+		var title = $('#eventNameField').val();
+		var note = $('#eventDescField').val();
+		var theDate;
+		if (typeof $scope.picker !== 'undefined') {
+			theDate = moment($scope.picker.get('select', 'yyyy-mm-dd'));
+		} else {
+			theDate = moment(new Date()).subtract(1, 'days');
+		}
+		// theDate = moment(theDate).subtract(1, 'days');
+		createEvent(title, note, theDate);
+	}
+
+	$scope.viewEvent = function(dayIndex, eventIndex) {
+		$scope.modalTitle = 'Event';
+		$scope.modalType = 'View';
+		$scope.currentEvent = $scope.days[dayIndex].events[eventIndex];
+		$scope.currentTitle = $scope.currentEvent.name;
+		$scope.currentDescription = $scope.currentEvent.note;
+		$scope.currentDate = moment($scope.currentEvent.date).format('YYYY MMM Do');
+		openModal();
+	};
+
+	function openModal() {
+		addEventDialog = ngDialog.open({
 			template: '/events/eventModal.jade',
 			scope: $scope,
 			showClose: false,
 			name: 'addEventDialog',
 			className: 'ngdialog-theme-default event_add-dialog'
 		});
+	}
+
+	$scope.editEvent = function() {
+		$scope.modalType = 'Edit';
+		$scope.modalTitle = 'Edit Event';
 	};
 
-	$scope.initPicker = function() {
-		if (typeof picker === 'undefined') {
-			picker = $('.datepicker');
+	$scope.saveEvent = function() {
+		var theDate = $('#eventDate').val();
+		if (theDate === '') {
+			theDate = $scope.currentEvent.date;
 		}
-		picker.pickadate({});
+		// theDate = moment(theDate);
+		var title = $('#eventNameField').val() === "" ? $scope.currentTitle : $('#eventNameField').val();
+		var note = $('#eventDescField').val() === "" ? $scope.currentDescription : $('#eventDescField').val();
+		var id = $scope.currentEvent._id;
+		updateEvent(id, title, note, theDate);
+	};
+
+	$scope.deleteEvent = function() {
+		numDeletes += 1;
+		if (numDeletes == 1) {
+			$('#deleteBtn').removeClass('btn-warning').addClass('btn-danger');
+		} else if (numDeletes == 2) {
+			performDelete();
+			numDeletes = 0;
+			numDeletes = 0;$('#deleteBtn').removeClass('btn-danger').addClass('btn-warning');
+
+		}
 	};
 
 });
