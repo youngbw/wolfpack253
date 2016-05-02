@@ -233,12 +233,16 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 			name: 'addEventDialog',
 			className: 'ngdialog-theme-default event_add-dialog'
 		});
+
+		// This runs when the modal is close, even if its just by clickout outside of modal
+		addEventDialog.closePromise.then(function (data) {
+			addEventDialog = undefined;
+			resetCurrent();
+		});
 	}
 
 	$scope.closeModal = function() {
 		addEventDialog.close();
-		addEventDialog = undefined;
-		resetCurrent();
 	};
 
 	$scope.editEvent = function(index) {
