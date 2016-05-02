@@ -25,16 +25,24 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		'Saturday'
 	];
 
+	// this will hold the main data structure
 	$scope.days = [];
+
+	// these are for the modal
 	$scope.modalTitle = '';
 	$scope.modalType = '';
 	$scope.picker;
 	$scope.loading = false;
 
+	// the are for the edit modal
 	$scope.currentTitle;
 	$scope.currentDescription;
 	$scope.currentDate;
 	$scope.currentEvent;
+
+	// these are for the view all
+	var currentDayIndex;
+	$scope.currentDay;
 
 	$scope.month = '';
 	$scope.startDay = null;
@@ -85,7 +93,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	function createEvent(title, note, date) {
 		if (title !== "") {
 			EventContentFactory.addEvent(title, note, date.toDate()).success(function(result) {
-				addEventDialog.close();
+				$scope.closeModal();
 				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
 			}).error(function(result) {
 				console.log(result);
@@ -96,7 +104,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	function updateEvent(id, title, note, date) {
 		if (title !== "") {
 			EventContentFactory.updateEvent(id, title, note, date).success(function(results) {
-				addEventDialog.close();
+				$scope.closeModal();
 				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
 			}).error(function(result) {
 				console.log(result);
@@ -106,7 +114,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 	function performDelete() {
 		EventContentFactory.deleteEvent($scope.currentEvent._id).success(function(results) {
-			addEventDialog.close();
+			$scope.closeModal();
 			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow + 1, 'days'));
 		}).error(function(result) {
 			console.log(result);
@@ -211,7 +219,9 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		$scope.currentTitle = $scope.currentEvent.name;
 		$scope.currentDescription = $scope.currentEvent.note;
 		$scope.currentDate = moment($scope.currentEvent.date).format('YYYY MMM Do');
-		openModal();
+		if (addEventDialog === undefined) {
+			openModal();
+		}
 	};
 
 	function openModal() {
@@ -227,11 +237,25 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 	$scope.closeModal = function() {
 		addEventDialog.close();
+		addEventDialog = undefined;
+		resetCurrent();
 	};
 
-	$scope.editEvent = function() {
+	$scope.editEvent = function(index) {
+		if (index !== undefined) {
+			$scope.viewEvent($scope.currentDayIndex, index);
+		}
+
 		$scope.modalType = 'Edit';
 		$scope.modalTitle = 'Edit Event';
+	};
+
+	$scope.viewAllEvents = function(index) {
+		$scope.modalType = 'viewAll';
+		$scope.modalTitle = 'All Events for the ' + $scope.formatDate(index);
+		$scope.currentDay = $scope.days[index];
+		$scope.currentDayIndex = index;
+		openModal();
 	};
 
 	$scope.saveEvent = function() {
@@ -246,11 +270,14 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		updateEvent(id, title, note, theDate);
 	};
 
-	$scope.deleteEvent = function() {
+	$scope.deleteEvent = function(index) {
 		numDeletes += 1;
 		if (numDeletes == 1) {
 			$('#deleteBtn').removeClass('btn-warning').addClass('btn-danger');
 		} else if (numDeletes == 2) {
+			if (index !== undefined) {
+				$scope.currentEvent = $scope.days[$scope.currentDayIndex].events[index];
+			}
 			performDelete();
 			numDeletes = 0;
 			numDeletes = 0;$('#deleteBtn').removeClass('btn-danger').addClass('btn-warning');
@@ -274,6 +301,8 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		$scope.currentEvent = undefined;
 		$scope.currentTitle = undefined;
 		$scope.currentDescription = undefined;
+		$scope.currentDay = undefined;
+		$scope.currentDayIndex = undefined;
 	}
 
 });

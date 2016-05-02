@@ -108,6 +108,11 @@
     right: 1em;
 }
 
+.event_modal-container hr {
+    color: #2790B0;
+    border-bottom: 1px solid;
+}
+
 .event_modal-footer {
     margin-top: 1.5em;
     padding-bottom: 1em;

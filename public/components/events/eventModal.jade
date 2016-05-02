@@ -66,3 +66,23 @@ div(class="event_modal-container")
         label Description
         textarea(class="form-control event_description" id="eventDescField" rows="4" placeholder="{{currentDescription}}")
         
+    div(ng-if="modalType === 'viewAll'")
+    
+        div(class="event_modal-edit-container")
+            button(class="btn btn-primary" ng-click="closeModal()") Close
+    
+        div(ng-repeat="event in currentDay.events track by $index")
+        
+            div(class="pull-right")
+                
+                button(class="event_modal-delete-btn btn btn-warning" id="deleteBtn" ng-click="deleteEvent($index)") Delete
+                button(class="event_modal-edit-btn btn btn-warning" ng-click="editEvent($index)") Edit
+        
+            label Title
+            p(class="event_view-event") {{ event.name }}
+            
+            label Description
+            p(class="event_modal-description event_view-event") {{ event.note }}
+            
+            hr
+            
