@@ -23,10 +23,12 @@
 }
 
 .event_num-events {
-    margin: 1em;
     position: absolute;
     bottom: .3em;
-    left: .3em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
 }
 
 .event_event-name {
@@ -36,7 +38,7 @@
     white-space: nowrap;
 }
 
-.event_event-name:hover {
+.event_event-name:hover, .event_num-events:hover {
     background-color: rgba(240, 240, 240, .5);
     cursor: pointer;
 }
@@ -138,6 +140,10 @@
 
 .event_modal-date-choice {
     margin-bottom: 1em;
+}
+
+.event_modal-close {
+    text-align: right;
 }
 
 /* Small Screen Widths */

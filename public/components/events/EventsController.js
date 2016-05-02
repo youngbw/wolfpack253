@@ -51,8 +51,9 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		$scope.startDay = moment(new Date()).startOf('month');
 
 		// This will set us back a few days to the start of the week that contains the first of the month to match up sundays
-		$scope.startDay.subtract($scope.startDay.day() - 1, 'days');
+		$scope.startDay.subtract($scope.startDay.day(), 'days');
 
+		// This will be the start date placeholder for the add dialog date chooser
 		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
 
 		// $scope.month = getMonthName($scope.startDay.month());
@@ -62,7 +63,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	init();
 
 	function getMonthName(index) {
-		return months[index] + ' ' + $scope.startDay.format('YYYY');
+		return months[index] + ' ' + $scope.startDay.clone().format('YYYY');
 	}
 
 
@@ -106,13 +107,14 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	function performDelete() {
 		EventContentFactory.deleteEvent($scope.currentEvent._id).success(function(results) {
 			addEventDialog.close();
-			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow + 1, 'days'));
 		}).error(function(result) {
 			console.log(result);
 		});
 	}
 
 	function queryDates(start, end) {
+
 		//only show the loader if the call takes longer than a second
 		var timer;
 		timer && clearTimeout(timer);
@@ -124,7 +126,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 
 		// The call uses exlcusive for start date
-		EventContentFactory.getEvents(start.subtract(1, 'days'), end).success(function(result) {
+		EventContentFactory.getEvents(start.clone().subtract(1, 'days'), end).success(function(result) {
 			setDates(start, result.eventData);
 			setMonth();
 			clearTimeout(timer);
@@ -148,10 +150,11 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 		var index = 0;
 		for (var i = 0; i < $scope.days.length; i++) {
 			var list = [];
-			while ( index < events.length && moment(events[index].date).isSame($scope.days[i].date)) {
+			while (index < events.length && momentEqual(moment(events[index].date), $scope.days[i].date)) {
 				list.push(events[index]);
 				index += 1;
 			}
+
 			$scope.days[i].events = list;
 		}
 	}
@@ -172,6 +175,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	$scope.openAddDialog = function() {
 		$scope.modalTitle = 'Create New Event';
 		$scope.modalType = 'Add';
+		resetCurrent();
 		openModal();
 	};
 
@@ -211,6 +215,7 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 	};
 
 	function openModal() {
+		numDeletes = 0;
 		addEventDialog = ngDialog.open({
 			template: '/events/eventModal.jade',
 			scope: $scope,
@@ -219,6 +224,10 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 			className: 'ngdialog-theme-default event_add-dialog'
 		});
 	}
+
+	$scope.closeModal = function() {
+		addEventDialog.close();
+	};
 
 	$scope.editEvent = function() {
 		$scope.modalType = 'Edit';
@@ -248,5 +257,23 @@ angular.module('wolfpackApp').controller('EventsController', function($scope, mo
 
 		}
 	};
+
+	function momentEqual(date1, date2) {
+		if (!moment.isMoment(date1) || !moment.isMoment(date2)) {
+			return false;
+		}
+		var years = date1.year() === date2.year();
+		var months = date1.month() === date2.month();
+		var days = date1.date() === date2.date();
+		return years && months && days;
+
+	}
+
+	function resetCurrent() {
+		$scope.currentDate = undefined;
+		$scope.currentEvent = undefined;
+		$scope.currentTitle = undefined;
+		$scope.currentDescription = undefined;
+	}
 
 });

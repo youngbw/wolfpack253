@@ -3,6 +3,10 @@ div(class="event_modal-container")
     h2(class="event_modal-title") {{ modalTitle }}
 
     form(ng-if="modalType === 'Add'" class="form-group")
+    
+        div(class="event_modal-edit-container")
+
+            button(class="btn btn-primary" ng-click="closeModal()") Close
 
         label Title
         input(type="text" name="eventName" class="form-control" id="eventNameField")
@@ -26,9 +30,10 @@ div(class="event_modal-container")
     div(ng-if="modalType === 'View'")
     
         div(class="event_modal-edit-container")
-        
+            
             button(class="event_modal-delete-btn btn btn-warning" id="deleteBtn" ng-click="deleteEvent()") Delete
             button(class="event_modal-edit-btn btn btn-warning" ng-click="editEvent()") Edit
+            button(class="btn btn-primary" ng-click="closeModal()") Close
     
         label Title
         p(class="event_view-event") {{ currentTitle }}
@@ -46,7 +51,8 @@ div(class="event_modal-container")
         div(class="event_modal-edit-container")
         
             button(class="event_modal-delete-btn btn btn-warning" id="deleteBtn" ng-click="deleteEvent()") Delete
-            button(class="event_modal-edit-btn btn btn-primary" ng-click="saveEvent()") Save
+            button(class="event_modal-edit-btn btn btn-success" ng-click="saveEvent()") Save
+            button(class="btn btn-primary" ng-click="closeModal()") Close
 
         label Title
         input(type="text" name="eventName" class="form-control" id="eventNameField" placeholder="{{currentTitle}}")
