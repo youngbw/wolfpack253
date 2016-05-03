@@ -1,9 +1,9 @@
-div
+div(ng-controller="RegisterController")
     h1
         span(class="fa fa-sign-in")
             | Register
         
-    form(role="form" action="/auth/register" method="post")
+    form(role="form")
         div(class="form-group")
             label(for="username") Username
             input#username.form-control(type="text" name="username" placeholder='Enter Username')
@@ -11,4 +11,4 @@ div
             label(for="password") Password
             input#password.form-control(type="password" name="password" placeholder='Enter Password')
             br
-        button(type="submit" class="btn btn-warning btn-lg") Register
+        button(type="submit" class="btn btn-warning btn-lg" ng-click="attemptRegister") Register

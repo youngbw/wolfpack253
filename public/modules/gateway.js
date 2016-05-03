@@ -1,1 +1,1 @@
-angular.module('gateway', ['app']);
+// angular.module('gateway', ['app']);

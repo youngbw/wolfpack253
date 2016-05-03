@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').config([
+angular.module('app').config([
     '$stateProvider',
     '$locationProvider',
     function($stateProvider, $locationProvider) {

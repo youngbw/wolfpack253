@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').factory('EventContentFactory', ['$http', function($http) {
+angular.module('app').factory('EventContentFactory', ['$http', function($http) {
 
     var eventURL = '/api/events';
 

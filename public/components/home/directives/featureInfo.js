@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').directive('featureInfo', function($location) {
+angular.module('app').directive('featureInfo', function($location) {
     return {
         restrict: 'E',
         scope: {item: '='},

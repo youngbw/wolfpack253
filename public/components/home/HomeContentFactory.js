@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').factory('HomeContentFactory', ['$http', function($http) {
+angular.module('app').factory('HomeContentFactory', ['$http', function($http) {
 
     var messageURL = '/motd';
     var serverURL = '/serverinfo';

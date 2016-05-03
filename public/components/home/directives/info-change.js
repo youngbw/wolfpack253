@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').directive('infoChange', function(HomeContentFactory) {
+angular.module('app').directive('infoChange', function(HomeContentFactory) {
 
     return {
         restrict: 'A',

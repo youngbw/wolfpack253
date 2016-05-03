@@ -1,1 +1,1 @@
-angular.module('wolfpackApp', ['app']);
+// angular.module('app', ['app']);

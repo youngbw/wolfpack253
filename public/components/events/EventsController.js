@@ -1,4 +1,4 @@
-angular.module('wolfpackApp').controller('EventsController', function($scope, moment, EventContentFactory, ngDialog, $rootScope) {
+angular.module('app').controller('EventsController', function($scope, moment, EventContentFactory, ngDialog, $rootScope) {
 
 	var months = [
 		'January',

@@ -16,7 +16,7 @@ module.exports = function(app) {
     });
 
     router.get('/', function(req, res) {
-        res.render('./gateway/gateway')
+        res.render('./gateway/login')
     });
 
     router.get('*', function(req, res) {

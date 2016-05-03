@@ -1,4 +1,4 @@
-angular.module('app').factory('auth', ['$http', '$window', function($http, $window){
+angular.module('app').factory('AuthContentFactory', ['$http', '$window', function($http, $window){
 
     var getPayload = function(token) {
         return JSON.parse($window.atob(token.split('.')[1]));
@@ -34,17 +34,20 @@ angular.module('app').factory('auth', ['$http', '$window', function($http, $wind
     };
 
     auth.register = function(user){
-        return $http.post('/register', user).success(function(data){
-            if (!data) { console.log('No response data'); }
+        return $http.post('/api/register', user);
 
-            auth.saveToken(data.token);
-        });
+        // .success(function(data){
+        //     if (!data) { console.log('No response data'); }
+        //
+        //     auth.saveToken(data.token);
+        // });
     };
 
     auth.logIn = function(user){
-        return $http.post('/login', user).success(function(data){
-            auth.saveToken(data.token);
-        });
+        return $http.post('/api/login', user);
+        // .success(function(data){
+        //     auth.saveToken(data.token);
+        // });
     };
 
     auth.logOut = function(){
