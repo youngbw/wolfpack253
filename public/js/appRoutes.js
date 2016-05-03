@@ -5,7 +5,13 @@ angular.module('app').config([
 
 	$stateProvider.state('default', {
 			url: '/',
-			templateUrl: 'home/home.jade'
+			templateUrl: 'gateway/login.jade'
+		}).state('login', {
+			url: '/login',
+			templateUrl: 'gateway/login.jade'
+		}).state('register', {
+			url: '/register',
+			templateUrl: 'gateway/register.jade'
 		}).state('home', {
 			url: '/home',
 			templateUrl: 'home/home.jade'

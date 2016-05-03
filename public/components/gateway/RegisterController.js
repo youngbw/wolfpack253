@@ -1,10 +1,10 @@
-angular.module('app').controller('RegisterController', function($scope, AuthContentFactory, $location, $rootScope) {
+angular.module('app').controller('RegisterController', function($scope, AuthContentFactory, $location, $rootScope, $cookies) {
     $scope.title = 'Register here is a title';
 
-    $scope.registerUser = function(username, password, adminPassword) {
+    function registerUser(username, password, adminPassword) {
         var isAdmin = false;
         var user = {
-            name: username,
+            username: username,
             password: password
         };
 
@@ -17,6 +17,8 @@ angular.module('app').controller('RegisterController', function($scope, AuthCont
         AuthContentFactory.register(user)
             .then(function(result) {
                 console.log(result);
+                $location.path('/home');
+
             });
 
     };
@@ -24,5 +26,12 @@ angular.module('app').controller('RegisterController', function($scope, AuthCont
     function checkAdmin(pw) {
         return true;
     }
+
+    $scope.attemptRegister = function() {
+        var username = $('#username').val();
+        var pw = $('#password').val();
+
+        registerUser(username, pw, 1);
+    };
 
 });

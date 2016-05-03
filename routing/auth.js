@@ -31,7 +31,7 @@ module.exports = function(app) {
         user.save(function (err){
             if(err){ return next(err); }
 
-            return res.json({token: user.generateJWT()})
+            return res.json({token: user.generateJWT(), userInfo: user})
         });
     });
     router.post('/api/login', function(req, res, next) {
@@ -50,5 +50,5 @@ module.exports = function(app) {
         })(req, res, next);
     });
 
-    app.use('/auth', router);
+    app.use(router);
 };
