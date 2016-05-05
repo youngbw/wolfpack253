@@ -3,7 +3,7 @@ div(ng-controller='LoginController' class="container")
         span(class="fa fa-sign-in")
             | Login
 
-    form(role="form" action="/auth/login" method="post")
+    form(role="form")
         div(class="form-group")
             label(for="username") Username
             input#username.form-control(type="text" name="username" placeholder='Enter Username')
@@ -11,6 +11,6 @@ div(ng-controller='LoginController' class="container")
             label(for="password") Password
             input#password.form-control(type="password" name="password" placeholder='Enter Password')
             br
-            button(type="submit" class="btn btn-warning btn-lg") Login
+            button(type="submit" class="btn btn-warning btn-lg" ng-click="login()") Login
     hr
     p Need an account? <a href="/register">Register</a>

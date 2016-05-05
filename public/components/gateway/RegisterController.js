@@ -1,7 +1,9 @@
-angular.module('app').controller('RegisterController', function($scope, AuthContentFactory, $location, $rootScope, $cookies) {
+angular.module('app').controller('RegisterController', function($scope, AuthenticationService, $location, $rootScope, $cookies, UserService) {
     $scope.title = 'Register here is a title';
+    $scope.dataLoading = false;
 
     function registerUser(username, password, adminPassword) {
+        $scope.dataLoading = true;
         var isAdmin = false;
         var user = {
             username: username,
@@ -14,13 +16,17 @@ angular.module('app').controller('RegisterController', function($scope, AuthCont
 
         user.admin = isAdmin;
 
-        AuthContentFactory.register(user)
-            .then(function(result) {
-                console.log(result);
-                $location.path('/home');
+        UserService.Create(user)
+            .then(function (response) {
+                if (response.success) {
+                    console.log('Registration successful');
 
+                    $location.path('/home');
+                } else {
+                    console.log(response.message);
+                    $scope.dataLoading = false;
+                }
             });
-
     };
 
     function checkAdmin(pw) {

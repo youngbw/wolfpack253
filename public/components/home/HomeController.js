@@ -1,5 +1,5 @@
 
-angular.module('app').controller('HomeController', ['$scope', function($scope) {
+angular.module('app').controller('HomeController', ['$scope', 'AuthenticationService', function($scope, AuthenticationService) {
 
     $scope.tagline = "Home Page";
 
@@ -29,5 +29,9 @@ angular.module('app').controller('HomeController', ['$scope', function($scope) {
             route: '/albums'
         }
     ];
+
+    $scope.logout = function() {
+        AuthenticationService.ClearCredentials();
+    };
 
 }]);

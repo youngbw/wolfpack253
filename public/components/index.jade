@@ -6,7 +6,7 @@ html
         base(href="/home")
         include ./shared/includes/head.jade
         
-    body(ng-app="app" class="black")
+    body(ng-app="app" ng-controller="HomeController" class="black")
 
 
         nav(class="navbar navbar-default navbar-fixed-top")
@@ -40,6 +40,6 @@ html
                             
                                 li <a href="#">My Profile</a>
                                 li(role="separator" class="divider")
-                                li <a href="#">Logout</a>
+                                li <a ng-click="logout()" href="#">Logout</a>
         
         div(ui-view)

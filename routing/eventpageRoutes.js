@@ -9,7 +9,6 @@ module.exports = function(app) {
 
     router.route('/api/events')
     .get(function(req, res) {
-        console.log(req);
         Event.find()
         .where('date').gt(req.query.queryStartDate).lt(req.query.queryEndDate)
         .sort({'date': 1})

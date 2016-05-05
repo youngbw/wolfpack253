@@ -32,7 +32,8 @@ require('./models/ServerInfo');
 require('./config/passport');
 
 // Setup routes
-require('./routing/auth.js')(app);
+// require('./routing/auth.js')(app);
+require('./routing/userRoutes.js')(app);
 require('./routing/homepageRoutes.js')(app);
 require('./routing/eventpageRoutes.js')(app);
 require('./routing/routes.js')(app);
