@@ -18,8 +18,9 @@ angular.module('app').controller('RegisterController', function($scope, Authenti
 
         UserService.Create(user)
             .then(function (response) {
-                if (response.success) {
-                    console.log('Registration successful');
+                console.log(response);
+                if (response.data.success) {
+                    AuthenticationService.SetCredentials(username, password);
 
                     $location.path('/home');
                 } else {

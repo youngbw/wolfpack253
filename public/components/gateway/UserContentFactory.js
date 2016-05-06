@@ -24,7 +24,7 @@ angular.module('app')
     }
 
     function Create(user) {
-        return $http.post('/api/users', user).then(handleSuccess, handleError('Error creating user'));
+        return $http.post('/api/users', user);
     }
 
     // function Update(user) {

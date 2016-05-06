@@ -3,7 +3,7 @@ html
     head
         title Wolfpack253
         meta(name="viewport" content="width=device-width, initial-scale-1")
-        base(href="/home")
+        base(href="/")
         include ./shared/includes/head.jade
         
     body(ng-app="app" ng-controller="HomeController" class="black")
@@ -21,13 +21,13 @@ html
             
                     ul(class="nav nav-pills")
                         
-                        li <a ui-sref="guilds" ui-sref-active="active" class="fa fa-gamepad home-nav-item">Guilds</a>
+                        li <a href="/guilds" ui-sref-active="active" class="fa fa-gamepad home-nav-item">Guilds</a>
                         
-                        li <a ui-sref="chats" ui-sref-active="active" class="fa fa-weixin home-nav-item">Chats</a>
+                        li <a href="/chats" ui-sref-active="active" class="fa fa-weixin home-nav-item">Chats</a>
                         
-                        li <a ui-sref="albums" ui-sref-active="active" class="fa fa-picture-o home-nav-item">Albums</a>
+                        li <a href="/albums" ui-sref-active="active" class="fa fa-picture-o home-nav-item">Albums</a>
                         
-                        li <a ui-sref="events" ui-sref-active="active" class="fa fa-calendar-check-o home-nav-item" >Events</a>
+                        li <a href="/events" ui-sref-active="active" class="fa fa-calendar-check-o home-nav-item" >Events</a>
                         
                         
                         div(class="dropdown navbar-right")

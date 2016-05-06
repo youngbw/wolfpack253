@@ -2,7 +2,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var User = mongoose.model('User');
-// var EventDate = mongoose.model('EventDate');
 
 module.exports = function(app) {
 
@@ -18,7 +17,7 @@ module.exports = function(app) {
                     if (err) {
                         return res.json({status: 'error', statusCode: 500});
                     }
-                    res.json({status: 'success', details: createdUser});
+                    res.json({success: true, status: 'success', details: createdUser});
                     return;
                 });
 

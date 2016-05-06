@@ -1,5 +1,5 @@
 angular.module('app')
-    .factory('AuthenticationService', function($http, $cookies, $rootScope, $timeout, UserService, BaseEncode, $location) {
+    .factory('AuthenticationService', function($http, $cookieStore, $rootScope, $timeout, UserService, BaseEncode, $location) {
         var service = {};
 
         service.Login = Login;
@@ -37,7 +37,9 @@ angular.module('app')
         function SetCredentials(username, password) {
 
             var authdata = BaseEncode.encode(username + ':' + password);
-
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 1);
+            console.log(expireDate);
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -46,13 +48,13 @@ angular.module('app')
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-            $cookies.put('globals', $rootScope.globals);
+            $cookieStore.put('globals', $rootScope.globals, {expires: expireDate});
             $location.path('/home');
         }
 
         function ClearCredentials() {
             $rootScope.globals = {};
-            $cookies.remove('globals');
+            $cookieStore.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
             $location.path('/login');
         }

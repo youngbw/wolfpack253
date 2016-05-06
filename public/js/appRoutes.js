@@ -3,10 +3,7 @@ angular.module('app').config([
 	'$locationProvider',
 	 function($stateProvider, $locationProvider) {
 
-	$stateProvider.state('default', {
-			url: '/',
-			templateUrl: 'gateway/login.jade'
-		}).state('login', {
+	$stateProvider.state('login', {
 			url: '/login',
 			templateUrl: 'gateway/login.jade'
 		}).state('register', {
