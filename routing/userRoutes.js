@@ -35,6 +35,24 @@ module.exports = function(app) {
           });
         });
 
+    router.route('/api/users/:user_id')
+        .put(function(req, res) {
+            User.findByIdAndUpdate(req.params.user_id, {$set: req.body}, function(err, updatedUser){
+                if (err) {
+                    return res.json({status: 'error', success: false, details: err});
+                }
+
+                return res.json({success: true, status: 'success', details: updatedUser});
+            });
+        })
+        .delete(function(req, res) {
+            User.remove({_id: req.params.user_id}, function(err) {
+                if (err) {
+                    return new Error('Could not find ID to delete or something went wrong');
+                }
+                res.json({status: 'success', success: true});
+            });
+        });
 
 
     app.use(router);

@@ -4,7 +4,7 @@ div(class="container" ng-controller="ProfileController")
     
         h2 {{currentUser.username}}'s Profile
                     
-        p(class="profile_info-right") Date joined: {{currentUser.joinDate}}
+        p(class="profile_info-right") Date joined: {{currentUser.joinDate | date}}
         
         
     div(class="profile_edit-section")
@@ -13,7 +13,7 @@ div(class="container" ng-controller="ProfileController")
     
         a(class="edit-link fa fa-pencil" ng-click="showUserInfo = !showUserInfo") Edit
     
-        div(class="profile_user-info-section animate-show" ng-show="showUserInfo")
+        form(class="profile_user-info-section animate-show" ng-show="showUserInfo" id="userInfoForm")
         
             label Username: 
             
@@ -38,7 +38,7 @@ div(class="container" ng-controller="ProfileController")
             
             
             
-    div(class="profile_edit-section")
+    form(class="profile_edit-section" id="extAccountForm")
     
         h4 External Accounts
     
@@ -69,4 +69,4 @@ div(class="container" ng-controller="ProfileController")
     
             button(class="btn btn-primary" ng-click="save()" type="submit") Save
             
-            button(class="btn btn-warning" ng-click="delete()" type="submit") Delete
+            button(class="btn btn-warning" ng-click="delete()" type="submit" id="deleteProfButton") Delete

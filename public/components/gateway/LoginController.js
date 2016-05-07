@@ -10,7 +10,7 @@ angular.module('app').controller('LoginController', function($scope, $location, 
                 console.log(response);
                 if (response.success) {
 
-                    AuthenticationService.SetCredentials(response.details.username, response.details.password);
+                    AuthenticationService.SetCredentials(response.details.username, response.details.password, true);
                     $location.path('/home');
                 } else {
                     console.log(response.message);

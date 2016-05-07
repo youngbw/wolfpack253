@@ -17,7 +17,7 @@ angular.module('app')
 
         }
 
-        function SetCredentials(username, password) {
+        function SetCredentials(username, password, isRedirect) {
 
             var authdata = BaseEncode.encode(username + ':' + password);
             var expireDate = new Date();
@@ -32,7 +32,10 @@ angular.module('app')
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals, {expires: expireDate});
-            $location.path('/home');
+            if (isRedirect) {
+                $location.path('/home');
+            }
+
         }
 
         function ClearCredentials() {

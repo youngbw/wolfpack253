@@ -20,7 +20,7 @@ angular.module('app').controller('RegisterController', function($scope, Authenti
             .then(function (response) {
                 console.log(response);
                 if (response.data.success) {
-                    AuthenticationService.SetCredentials(username, password);
+                    AuthenticationService.SetCredentials(username, password, true);
 
                     $location.path('/home');
                 } else {

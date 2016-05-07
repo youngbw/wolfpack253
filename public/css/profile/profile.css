@@ -62,6 +62,7 @@
 
 .profile_action-buttons {
     width: 19%;
+    display: inline-flex;
 }
 
 .profile_how-to {

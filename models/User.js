@@ -7,7 +7,15 @@ var UserSchema = new mongoose.Schema({
     username: {type: String, lowercase: true, unique: true},
     password: String,
     // salt: String,
-    admin: {type: Boolean, default: false}
+    email: {type: String, lowercase: true, default: ''},
+    accounts: {
+        steam: {
+            username: {type: String, default: ''},
+            password: {type: String, default: ''}
+        }
+    },
+    admin: {type: Boolean, default: false},
+    joinDate: {type: Date, default: new Date()}
 });
 
 // UserSchema.methods.setPassword = function(password) {
