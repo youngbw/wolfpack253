@@ -79,6 +79,18 @@ div(ng-controller="EventsController")
 						div(ng-repeat="event in day.events | limitTo:3" class="event_event-name" ng-click="viewEvent($parent.$index + 28, $index)") {{ event.name }}
 					
 					div(class="event_num-events" ng-show="day.events.length > 0" ng-click="viewAllEvents($index + 28)") {{day.events.length}} total events
+					
+			div(class="row" ng-show="days.length > 34")
+
+				div(ng-repeat="day in days | limitTo:7:35" class="event_date-box"  ng-class="{disabled: day.insideMonth}")
+							
+					div(class="event_date") <span class="event_date-actual">{{formatDate($index + 35)}}</span>
+					
+					div(class="event_event-name-container")
+						
+						div(ng-repeat="event in day.events | limitTo:3" class="event_event-name" ng-click="viewEvent($parent.$index + 35, $index)") {{ event.name }}
+					
+					div(class="event_num-events" ng-show="day.events.length > 0" ng-click="viewAllEvents($index + 35)") {{day.events.length}} total events
 
 					
 		div(class="event_loading-container" ng-show="loading")
