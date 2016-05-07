@@ -1,0 +1,72 @@
+div(class="container" ng-controller="ProfileController")
+
+    div(class="profile_header")
+    
+        h2 {{currentUser.username}}'s Profile
+                    
+        p(class="profile_info-right") Date joined: {{currentUser.joinDate}}
+        
+        
+    div(class="profile_edit-section")
+    
+        h4 User Information
+    
+        a(class="edit-link fa fa-pencil" ng-click="showUserInfo = !showUserInfo") Edit
+    
+        div(class="profile_user-info-section animate-show" ng-show="showUserInfo")
+        
+            label Username: 
+            
+                p(class="profile_current-value") {{currentUser.username}}
+            
+            input(type="text" name="username" class="form-control" id="usernameField")
+            
+            
+            label Email: 
+            
+                p(class="profile_current-value") {{currentUser.email}}
+            
+            input(type="text" name="email" class="form-control" id="emailField")
+            
+            label Password:
+            
+            input(type="password" name="userPassword" class="form-control" id="PWField")
+            
+            label Re-enter Password:
+            
+            input(type="password" name="userPassword2" class="form-control" id="PWField2")
+            
+            
+            
+    div(class="profile_edit-section")
+    
+        h4 External Accounts
+    
+        a(class="edit-link fa fa-pencil" ng-click="showExtAccounts = !showExtAccounts") Edit
+    
+        div(class="profile_user-info-section animate-show" ng-show="showExtAccounts")
+        
+        
+            h4(class="profile_imp-title") Steam
+        
+            label Steam Name: 
+            
+                p(class="profile_current-value") {{currentUser.accounts.steam.username}}
+            
+            input(type="text" name="steamname" class="form-control" id="steamUsernameField")
+            
+            
+            label Password:
+            
+            input(type="password" name="steamPassword" class="form-control" id="steamPWField")
+
+
+    div(class="profile_footer")
+    
+        p(class="profile_how-to") Fill out any field you would like to update and click save!
+        
+        div(class="pull-right profile_action-buttons")
+    
+            button(class="btn btn-primary" ng-click="save()" type="submit") Save
+            
+            button(class="btn btn-warning" ng-click="delete()" type="submit") Delete

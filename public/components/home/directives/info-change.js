@@ -1,4 +1,4 @@
-angular.module('app').directive('infoChange', function(HomeContentFactory) {
+angular.module('app').directive('infoChange', function(HomeContentFactory, UserService, $cookieStore) {
 
     return {
         restrict: 'A',
@@ -11,13 +11,15 @@ angular.module('app').directive('infoChange', function(HomeContentFactory) {
                 scope.author = '';
                 scope.isShowing = false;
 
+                scope.currentUserName = null;
+
                 scope.sendChange = function() {
                     var theMessage = $('#dailyMessageField').val();
                     $('#dailyMessageField').val('');
                     if (scope.message !== '') {
-                        changeMessage(theMessage, 'Brent');
+                        changeMessage(theMessage, scope.currentUserName);
                     } else {
-                        createMessage(theMessage, 'Brent');
+                        createMessage(theMessage, scope.currentUserName);
                     }
                     scope.isShowing = false;
                 }
@@ -26,6 +28,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory) {
                 init();
                 function init() {
                     scope.heading = 'What changes would you like to make?';
+                    scope.currentUserName = $cookieStore.get('globals').currentUser.username;
                     getDailyMessage();
                 }
 
@@ -44,7 +47,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory) {
                 }
 
                 function createMessage(theMessage, theAuthor) {
-                    HomeContentFactory.createMessage({message: theMessage, author: "Brent"}).success(function(result) {
+                    HomeContentFactory.createMessage({message: theMessage, author: scope.currentUserName}).success(function(result) {
                         scope.message = result.message;
                         scope.author = result.author;
                     });

@@ -63,7 +63,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 		// This will be the start date placeholder for the add dialog date chooser
 		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
-		
+
 		setEndOfMonthAndQuery();
 
 	}
@@ -138,7 +138,6 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		// The call uses exlcusive for start date
 		EventContentFactory.getEvents(start.clone().subtract(1, 'days'), end).success(function(result) {
 			setDates(start, result.eventData, difference);
-			console.log($scope.days);
 			clearTimeout(timer);
 			$scope.loading = false;
 		}).error(function(err) {
@@ -155,8 +154,6 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 			$scope.days.push({date: firstDay.clone(), insideMonth: j < $scope.backDays || j >= difference - $scope.forwardDays });
 			firstDay.add(1, 'days');
 		}
-
-		console.log($scope.days);
 
 		// add events into the appropriate days
 		var index = 0;

@@ -9,6 +9,9 @@ angular.module('app').config([
 		}).state('register', {
 			url: '/register',
 			templateUrl: 'gateway/register.jade'
+		}).state('profile', {
+			url: '/profile',
+			templateUrl: 'profile/profile.jade'
 		}).state('home', {
 			url: '/home',
 			templateUrl: 'home/home.jade'

@@ -1,0 +1,85 @@
+.profile_header {
+    text-transform: capitalize;
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.profile_header h2 {
+    margin-bottom: 1.5em;
+}
+
+.profile_header p {
+    margin-left: 1em;
+    font-size: 1em;
+}
+
+.profile_info-right {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+
+}
+
+.profile_user-info-section {
+    padding-top: 1em;
+    padding: 1em;
+}
+
+.profile_user-info-section label {
+    display: block;
+}
+
+.profile_user-info-section input {
+    margin-bottom: 1.5em;
+    width: 100%;
+    display: inline-block;
+}
+
+.profile_edit-section {
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(242, 242, 242, .2);
+    position: relative;
+    border-radius: 10px;
+
+}
+
+.profile_edit-section .edit-link {
+    position: absolute;
+    right: 1em;
+    top: 2em;
+    color: white;
+}
+
+.profile_imp-title {
+    font-weight: bolder;
+    padding: .2em;
+    border-radius: 5px;
+    background-color: #2B4E72;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.profile_action-buttons {
+    width: 19%;
+}
+
+.profile_how-to {
+    width: 80%;
+    line-height: 1.2em;
+    display: inline-block;
+}
+
+.profile_current-value {
+    text-transform: uppercase;
+    display: inline;
+}
+
+.profile_footer {
+    clear: both;
+    padding-bottom: 1.5em;
+}
+
+.profile_footer button {
+    margin-left: .5em;
+}
