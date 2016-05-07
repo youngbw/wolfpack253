@@ -85,4 +85,9 @@ div(class="event_modal-container")
             p(class="event_modal-description event_view-event") {{ event.note }}
             
             hr
+    div(ng-if="modalType === 'View'" class="text-right")
+    
+        button(ng-if="currentDay.events.length > 1" ng-click="moveToEvent(-1)" class="btn btn-primary") Prev
+        
+        button(ng-if="currentDay.events.length > 1" ng-click="moveToEvent(1)" class="btn btn-primary") Next
             

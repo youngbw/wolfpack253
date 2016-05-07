@@ -39,6 +39,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	$scope.currentDescription;
 	$scope.currentDate;
 	$scope.currentEvent;
+	$scope.currentEventIndex;
 
 	// these are for the view all
 	var currentDayIndex;
@@ -215,10 +216,11 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	$scope.viewEvent = function(dayIndex, eventIndex) {
 		$scope.modalTitle = 'Event';
 		$scope.modalType = 'View';
+		$scope.currentDay = $scope.days[dayIndex];
 		$scope.currentEvent = $scope.days[dayIndex].events[eventIndex];
-		$scope.currentTitle = $scope.currentEvent.name;
-		$scope.currentDescription = $scope.currentEvent.note;
-		$scope.currentDate = moment($scope.currentEvent.date).format('YYYY MMM Do');
+		$scope.currentDayIndex = dayIndex;
+		$scope.currentEventIndex = eventIndex;
+		setCurrentEventData();
 		if (addEventDialog === undefined) {
 			openModal();
 		}
@@ -307,6 +309,22 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		$scope.currentDescription = undefined;
 		$scope.currentDay = undefined;
 		$scope.currentDayIndex = undefined;
+	}
+
+	$scope.moveToEvent = function(num) {
+		$scope.currentEventIndex = ($scope.currentEventIndex + num) % $scope.days[$scope.currentDayIndex].events.length;
+		if ($scope.currentEventIndex === -1) {
+			$scope.currentEventIndex = $scope.days[$scope.currentDayIndex].events.length - 1;
+		}
+		$scope.currentEvent = $scope.days[$scope.currentDayIndex].events[$scope.currentEventIndex];
+		setCurrentEventData();
+		console.log('here');
+	};
+
+	function setCurrentEventData() {
+		$scope.currentTitle = $scope.currentEvent.name;
+		$scope.currentDescription = $scope.currentEvent.note;
+		$scope.currentDate = moment($scope.currentEvent.date).format('YYYY MMM Do');
 	}
 
 });
