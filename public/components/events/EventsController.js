@@ -60,6 +60,10 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 		// This will bring us back to the beginning of the current month
 		$scope.startDay = moment(new Date()).startOf('month');
+
+		// This will be the start date placeholder for the add dialog date chooser
+		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
+		
 		setEndOfMonthAndQuery();
 
 	}
