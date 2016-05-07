@@ -135,6 +135,11 @@ li .active {
     margin-right: 10px;
 }
 
+.navbar-header {
+	width: 100%;
+	min-width: 350px;
+}
+
 .nav-pills {
     padding-top: 5px;
 }
