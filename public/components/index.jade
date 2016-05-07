@@ -17,29 +17,23 @@ html
                 
                     a(class="navbar-brand" href="/home") <img ui-sref-active="active" class="img-responsive" id="logo" src="img/wolf-logo.png" alt="Wolfpack"/>
                     
-                div(class="hidden-xs")
-            
-                    ul(class="nav nav-pills")
-                        
-                        li <a ui-sref="guilds" href="/guilds" ui-sref-active="active" class="fa fa-gamepad home-nav-item">Guilds</a>
-                        
-                        li <a ui-sref="chats" href="/chats" ui-sref-active="active" class="fa fa-weixin home-nav-item">Chats</a>
-                        
-                        li <a ui-sref="albums" href="/albums" ui-sref-active="active" class="fa fa-picture-o home-nav-item">Albums</a>
-                        
-                        li <a ui-sref="events" href="/events" ui-sref-active="active" class="fa fa-calendar-check-o home-nav-item" >Events</a>
-                        
-                        
-                        div(class="dropdown navbar-right")
-                        
-                            button(class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true") Profile &nbsp
-                        
-                                span(class="caret")
+                    div
+                
+                        ul(class="nav nav-pills")
                             
-                            ul(class="dropdown-menu" aria-labelledby="dropdownMenu1")
+                            li(ng-repeat="feature in features" ng-if="feature.active") <a ui-sref="{{feature.route}}" href="/{{feature.route}}" ui-sref-active="active" class="{{feature.icon}} home-nav-item">{{feature.title}}</a>
                             
-                                li <a href="/profile">My Profile</a>
-                                li(role="separator" class="divider")
-                                li <a ng-click="logout()">Logout</a>
+                            
+                            div(class="dropdown navbar-right pull-right")
+                            
+                                button(class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true") Profile &nbsp
+                            
+                                    span(class="caret")
+                                
+                                ul(class="dropdown-menu" aria-labelledby="dropdownMenu1")
+                                
+                                    li <a href="/profile">My Profile</a>
+                                    li(role="separator" class="divider")
+                                    li <a ng-click="logout()">Logout</a>
         
         div(ui-view)

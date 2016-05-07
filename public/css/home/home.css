@@ -92,7 +92,7 @@ li .active {
 .container {
     margin: auto;
     max-width: 800px;
-	min-width: 400px;
+	min-width: 350px;
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 5px;
 }
@@ -177,6 +177,11 @@ li .active {
 		font-size: 2em;
 	}
 
+	.home-message {
+		font-size: .5em;
+	}
+
+
 	.right-panel {
 		width: 100%;
 		height: auto;
@@ -198,13 +203,13 @@ li .active {
 	}
 
 	.home-author {
-		font-size: .7em;
+		font-size: 1.5em;
 		margin-top: .5em;
 	}
 
-	.edit-link span {
+	/*.edit-link span {
 		display: none;
-	}
+	}*/
 
 	.right-panel div p {
 		font-size: 1em;

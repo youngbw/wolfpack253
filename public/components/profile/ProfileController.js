@@ -20,6 +20,7 @@ angular.module('app')
     $scope.save = function() {
         var goodToGo = true;
         $scope.errorMessage = '';
+        $scope.numDeletes = 0;
 
         //grab the form values;
 
