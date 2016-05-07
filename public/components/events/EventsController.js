@@ -47,6 +47,8 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 	$scope.month = '';
 	$scope.startDay = null;
+	$scope.backDays = 0;
+	$scope.forwardDays = 0;
 
 	var addEventDialog;
 	var dateFormat = 'Do';
@@ -58,15 +60,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 		// This will bring us back to the beginning of the current month
 		$scope.startDay = moment(new Date()).startOf('month');
-
-		// This will set us back a few days to the start of the week that contains the first of the month to match up sundays
-		$scope.startDay.subtract($scope.startDay.day(), 'days');
-
-		// This will be the start date placeholder for the add dialog date chooser
-		$scope.myDate = moment(new Date()).format('Do MMM YYYY');
-
-		// $scope.month = getMonthName($scope.startDay.month());
-		queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+		setEndOfMonthAndQuery();
 
 	}
 	init();
@@ -78,15 +72,16 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 	$scope.moveToPrev = function() {
 		if (!$scope.loading) {
-			$scope.startDay.subtract(daysToShow, 'days');
-			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+			$scope.startDay.subtract(15, 'days').startOf('month');
+			setEndOfMonthAndQuery();
 		}
 	};
 
 	$scope.moveToNext = function() {
 		if (!$scope.loading) {
-			$scope.startDay.add(daysToShow, 'days');
-			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+			$scope.startDay.add(40, 'days').startOf('month');
+			setEndOfMonthAndQuery();
+
 		}
 	};
 
@@ -95,7 +90,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		if (title !== "") {
 			EventContentFactory.addEvent(title, note, date.toDate()).success(function(result) {
 				$scope.closeModal();
-				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+				setEndOfMonthAndQuery();
 			}).error(function(result) {
 				console.log(result);
 			});
@@ -106,7 +101,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		if (title !== "") {
 			EventContentFactory.updateEvent(id, title, note, date).success(function(results) {
 				$scope.closeModal();
-				queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow, 'days'));
+				setEndOfMonthAndQuery();
 			}).error(function(result) {
 				console.log(result);
 			});
@@ -116,13 +111,15 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	function performDelete() {
 		EventContentFactory.deleteEvent($scope.currentEvent._id).success(function(results) {
 			$scope.closeModal();
-			queryDates($scope.startDay.clone(), $scope.startDay.clone().add(daysToShow + 1, 'days'));
+			setEndOfMonthAndQuery();
 		}).error(function(result) {
 			console.log(result);
 		});
 	}
 
 	function queryDates(start, end) {
+
+		var difference = end.diff(start, 'days') + 1;
 
 		//only show the loader if the call takes longer than a second
 		var timer;
@@ -136,8 +133,8 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 		// The call uses exlcusive for start date
 		EventContentFactory.getEvents(start.clone().subtract(1, 'days'), end).success(function(result) {
-			setDates(start, result.eventData);
-			setMonth();
+			setDates(start, result.eventData, difference);
+			console.log($scope.days);
 			clearTimeout(timer);
 			$scope.loading = false;
 		}).error(function(err) {
@@ -147,13 +144,15 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		});
 	}
 
-	function setDates(firstDay, events) {
+	function setDates(firstDay, events, difference) {
 		$scope.days = [];
 		// add the actual calendar date to the $scope.days struct
-		for (var j = 0; j < daysToShow; j++) {
-			$scope.days.push({date: firstDay.clone()});
+		for (var j = 0; j < difference; j++) {
+			$scope.days.push({date: firstDay.clone(), insideMonth: j < $scope.backDays || j >= difference - $scope.forwardDays });
 			firstDay.add(1, 'days');
 		}
+
+		console.log($scope.days);
 
 		// add events into the appropriate days
 		var index = 0;
@@ -175,10 +174,10 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 
 	function setMonth() {
 		$scope.month = getMonthName($scope.startDay.month());
-		var next = $scope.startDay.clone().add(daysToShow - 1, 'days').month();
-		if (next !== $scope.startDay.month()) {
-			$scope.month += ' / ' + getMonthName(next);
-		}
+		// var next = $scope.startDay.clone().add(daysToShow - 1, 'days').month();
+		// if (next !== $scope.startDay.month()) {
+		// 	$scope.month += ' / ' + getMonthName(next);
+		// }
 	}
 
 	$scope.openAddDialog = function() {
@@ -318,13 +317,28 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		}
 		$scope.currentEvent = $scope.days[$scope.currentDayIndex].events[$scope.currentEventIndex];
 		setCurrentEventData();
-		console.log('here');
 	};
 
 	function setCurrentEventData() {
 		$scope.currentTitle = $scope.currentEvent.name;
 		$scope.currentDescription = $scope.currentEvent.note;
 		$scope.currentDate = moment($scope.currentEvent.date).format('YYYY MMM Do');
+	}
+
+	function setEndOfMonthAndQuery() {
+		setMonth();
+
+		// These will be used for the grayed out dates
+		$scope.backDays = $scope.startDay.day();
+
+		var monthEnd = $scope.startDay.clone().endOf('month');
+		$scope.startDay.subtract($scope.startDay.day(), 'days');
+
+		// These will be used for the grayed out dates
+		$scope.forwardDays = 6 - monthEnd.day();
+
+		monthEnd.add(6 - monthEnd.day(), 'days');
+		queryDates($scope.startDay.clone(), monthEnd);
 	}
 
 });

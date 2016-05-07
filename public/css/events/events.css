@@ -52,6 +52,11 @@
     text-align: center;
 }
 
+.disabled {
+    pointer-events: none;
+    opacity: .2;
+}
+
 .event_add-btn:hover {
     color: #2790B0;
 }
