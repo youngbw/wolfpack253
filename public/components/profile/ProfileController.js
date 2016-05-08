@@ -36,7 +36,7 @@ angular.module('app')
 
         $scope.currentUser.username = usernameVal === '' ? $scope.currentUser.username : usernameVal;
         $scope.currentUser.email = emailVal === '' ? $scope.currentUser.email : emailVal;
-        $scope.currentUser.accounts.steam.username = usernameVal === '' ? $scope.currentUser.accounts.steam.username : steamNameVal;
+        $scope.currentUser.accounts.steam.username = steamNameVal === '' ? $scope.currentUser.accounts.steam.username : steamNameVal;
         $scope.currentUser.accounts.steam.password = steamPWVal === '' ? $scope.currentUser.accounts.steam.password : steamPWVal;
 
         // handle PW change
