@@ -102,6 +102,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 			});
 		} else {
 			ErrorService.moveToError('An Event title is required.');
+			$scope.closeModal();
 		}
 	}
 
