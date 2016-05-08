@@ -54,6 +54,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	var dateFormat = 'Do';
 	var daysToShow = 28;
 	var numDeletes = 0;
+	var deletedIndices = [];
 
 
 	function init() {
@@ -97,7 +98,10 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 				setEndOfMonthAndQuery();
 			}).error(function(result) {
 				ErrorService.moveToError(result.details);
+				$scope.closeModal();
 			});
+		} else {
+			ErrorService.moveToError('An Event title is required.');
 		}
 	}
 
@@ -107,6 +111,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 				$scope.closeModal();
 				setEndOfMonthAndQuery();
 			}).error(function(result) {
+				$scope.closeModal();
 				ErrorService.moveToError(result.details);
 			});
 		}
@@ -117,6 +122,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 			$scope.closeModal();
 			setEndOfMonthAndQuery();
 		}).error(function(result) {
+			$scope.closeModal();
 			ErrorService.moveToError(result.details);
 		});
 	}
@@ -204,12 +210,12 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 		var title = $('#eventNameField').val();
 		var note = $('#eventDescField').val();
 		var theDate;
-		if (typeof $scope.picker !== 'undefined') {
+		if (typeof $scope.picker !== 'undefined' && $('#eventDate').val() !== '') {
 			theDate = moment($scope.picker.get('select', 'yyyy-mm-dd'));
 		} else {
-			theDate = moment(new Date()).subtract(1, 'days');
+			theDate = moment(new Date());
 		}
-		// theDate = moment(theDate).subtract(1, 'days');
+
 		createEvent(title, note, theDate);
 	}
 
@@ -227,7 +233,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	};
 
 	function openModal() {
-		numDeletes = 0;
+		deletedIndices = [];
 		addEventDialog = ngDialog.open({
 			template: '/events/eventModal.jade',
 			scope: $scope,
@@ -277,16 +283,18 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	};
 
 	$scope.deleteEvent = function(index) {
-		numDeletes += 1;
-		if (numDeletes == 1) {
-			$('#deleteBtn').removeClass('btn-warning').addClass('btn-danger');
-		} else if (numDeletes == 2) {
-			if (index !== undefined) {
-				$scope.currentEvent = $scope.days[$scope.currentDayIndex].events[index];
-			}
+		if (index === undefined) {
+			index = 0;
+		}
+
+		if (deletedIndices.indexOf(index) === -1) {
+			deletedIndices.push(index);
+			$('.deleteBtn').eq(index).removeClass('btn-warning').addClass('btn-danger');
+		} else {
+			$scope.currentEvent = $scope.days[$scope.currentDayIndex].events[index];
 			performDelete();
-			numDeletes = 0;
-			numDeletes = 0;$('#deleteBtn').removeClass('btn-danger').addClass('btn-warning');
+			delete deletedIndices[deletedIndices.indexOf(index)];
+			// $('.deleteBtn').eq(index).removeClass('btn-danger').addClass('btn-warning');
 
 		}
 	};

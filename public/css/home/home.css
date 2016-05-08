@@ -162,6 +162,7 @@ li .active {
 	font-size: 1.2em;
 	opacity: .75;
 	text-align: center;
+	z-index: 999999;
 }
 
 
