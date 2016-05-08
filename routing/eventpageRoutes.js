@@ -14,11 +14,10 @@ module.exports = function(app) {
         .sort({'date': 1})
         .exec(function(err, eventList) {
             if (err) {
-                res.json({status: 'error', info: err});
-                return;
+                return res.status(500).json({status: 'error', info: err, details: 'An error occurred when retrieving events.'});
             }
 
-            res.json({status: 'success', eventData: eventList});
+            res.status(200).json({status: 'success', eventData: eventList});
         });
 
     })
@@ -33,14 +32,14 @@ module.exports = function(app) {
             myEvent.save(function(err, createdEvent) {
 
                 if (err) {
-                    return res.json({status: 'error', statusCode: 500});
+                    return res.status(500).json({status: 'error', statusCode: 500, details: 'An error occurred when saving the event.'});
                 }
-                res.json({status: 'success', details: createdEvent});
+                res.status(200).json({status: 'success', details: createdEvent});
                 return;
             });
 
         } else {
-            return new Error('Missing Parameter');
+            return res.status(400).json({status: 'error', details: 'Could not create event; missing parameter.'});
         }
     });
 
@@ -48,20 +47,19 @@ module.exports = function(app) {
     .put(function(req, res) {
         Event.findByIdAndUpdate(req.params.event_id, {$set: req.body}, function(err, updatedEvent) {
             if (err) {
-                res.json({status: 'error', info: err});
-                return;
+                return res.status(500).json({status: 'error', info: err, details: 'Could not update the existing event.'});
             }
 
-            res.json({ status: 'success', details: updatedEvent});
+            return res.status(200).json({ status: 'success', details: updatedEvent});
 
          });
     })
     .delete(function(req, res) {
         Event.remove({_id: req.params.event_id}, function(err) {
             if (err) {
-                return new Error('Could not find ID to delete or something went wrong');
+                return res.status(500).json({info: err, details: 'Could not delete the existing event.'});
             }
-            res.json({status: 'success'});
+            res.status(200).json({status: 'success'});
         });
     });
 

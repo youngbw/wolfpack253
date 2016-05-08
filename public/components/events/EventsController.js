@@ -1,4 +1,4 @@
-angular.module('app').controller('EventsController', function($scope, moment, EventContentFactory, ngDialog, $rootScope) {
+angular.module('app').controller('EventsController', function($scope, moment, EventContentFactory, ngDialog, $rootScope, ErrorService) {
 
 	var months = [
 		'January',
@@ -96,7 +96,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 				$scope.closeModal();
 				setEndOfMonthAndQuery();
 			}).error(function(result) {
-				console.log(result);
+				ErrorService.moveToError(result.details);
 			});
 		}
 	}
@@ -107,7 +107,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 				$scope.closeModal();
 				setEndOfMonthAndQuery();
 			}).error(function(result) {
-				console.log(result);
+				ErrorService.moveToError(result.details);
 			});
 		}
 	}
@@ -117,7 +117,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 			$scope.closeModal();
 			setEndOfMonthAndQuery();
 		}).error(function(result) {
-			console.log(result);
+			ErrorService.moveToError(result.details);
 		});
 	}
 
@@ -140,8 +140,8 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 			setDates(start, result.eventData, difference);
 			clearTimeout(timer);
 			$scope.loading = false;
-		}).error(function(err) {
-			console.log(err);
+		}).error(function(result) {
+			ErrorService.moveToError(result.details);
 			clearTimeout(timer);
 			$scope.loading = false;
 		});

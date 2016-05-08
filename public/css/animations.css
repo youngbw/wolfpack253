@@ -14,31 +14,12 @@
 
 .animate-error-show {
     opacity: .8;
-    width: 100%;
 }
 
 .animate-error-show.ng-hide-add, .animate-error-show.ng-hide-remove {
-    transition: all linear 0.75s;
+    transition: all linear 0.5s;
 }
 
 .animate-error-show.ng-hide {
-    display: none;
-}
-
-
-/*.animate-hide_calendar {
-    bottom: 10em;
-    right: 10em;
-}
-
-.animate-hide_calendar.ng-hide {
-    bottom: 1em;
-    right: 1em;
-    position: absolute;
-}
-
-.animate-hide_calendar.ng-hide-add, .animate-hide_calendar.ng-hide-remove {
-    transition: all ease-in .4s;*/
-
-
+    opacity: 0;
 }

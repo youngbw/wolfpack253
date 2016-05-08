@@ -12,31 +12,31 @@ module.exports = function(app) {
     router.route('/serverinfo').get(function(req, res) {
         server.find(function(err, info) {
             if (err) {
-                res.json({status: 'error', info: err})
-                return;
+                return res.status(500).json({status: 'error', details: err});
             }
 
-            res.json(info);
-            return;
+            return res.status(200).json(info);
 
         });
     }).put(function(req, res) {
+        if (!req.body.name || !req.body.port || !req.body.password) {
+            return res.status(400).json({status: 'error', details: 'Could not update server info; missing parameter.'});
+        }
         server.find(function(err, info) {
-            if (!info || !req.body.name || !req.body.port || !req.body.password) {
-                return new Error('Invalid Request, missing parameters');
+            if (!info) {
+                return res.status(500).json({status: 'error', details: 'There was an error trying to locate the current server info.'})
             }
             if (err) {
-                res.json({status: 'error', info: err});
-                return;
+                return res.status(500).json({status: 'error', details: 'There was an error updating the server info.'});
             }
 
             var current = info[0];
             current.updateServerInfo(req.body.name, req.body.password, req.body.port, function(err, current) {
                 if (err) {
-                    res.json({status: 'error', info: err});
+                    res.status(500).json({status: 'error', details: 'There was an error updating the server info.'});
                     return;
                 }
-                return res.json(current);
+                return res.status(200).json(current);
             });
 
         });
@@ -49,11 +49,12 @@ module.exports = function(app) {
 
             next.save(function(err, next) {
                 if (err) {
-                    res.json({status: 'error', info: err});
-                    return;
+                    return res.status(500).json({status: 'error', details: 'There was an error saving the server info.'});
                 }
-                res.json(next);
+                return res.status(200).json(next);
             });
+        } else {
+            return res.status(400).json({status: 'error', details: 'Count not create server info; missing parameter.'});
         }
     });
 

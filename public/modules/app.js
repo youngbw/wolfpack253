@@ -14,7 +14,7 @@ angular.module('app', ['ui.router', 'ngRoute', 'ngAnimate', 'angularMoment', 'ng
         });
 })
 
-.run(function($rootScope, $location, $cookieStore, $http) {
+.run(function($rootScope, $location, $cookieStore, $http, ErrorService) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
@@ -22,6 +22,7 @@ angular.module('app', ['ui.router', 'ngRoute', 'ngAnimate', 'angularMoment', 'ng
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        ErrorService.clearError();
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $.inArray($location.path(), ['/', '/login', '/register']) === -1;
         var loggedIn = $rootScope.globals.currentUser;

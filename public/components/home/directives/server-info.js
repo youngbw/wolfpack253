@@ -1,4 +1,4 @@
-angular.module('app').directive('serverInfo', function(HomeContentFactory) {
+angular.module('app').directive('serverInfo', function(HomeContentFactory, ErrorService) {
 
     return {
         restrict: 'A',
@@ -55,6 +55,8 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory) {
                         scope.serverName = result.name;
                         scope.serverPW = result.password;
                         scope.serverPort = result.port;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 };
 
@@ -63,6 +65,8 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory) {
                         scope.serverName = result.name;
                         scope.serverPW = result.password;
                         scope.serverPort = result.port;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 }
 
@@ -71,6 +75,8 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory) {
                         scope.serverName = result.name;
                         scope.serverPW = result.password;
                         scope.serverPort = result.port;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 }
 
