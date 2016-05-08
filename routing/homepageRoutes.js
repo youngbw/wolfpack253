@@ -66,39 +66,49 @@ module.exports = function(app) {
         message.find(function (err, motd) {
 
             if (err) {
-                res.json({status: 'error', info: err});
+                res.status(500).json({status: 'error', info: err, details: 'There was an error loading homepage content.'});
                 return
             }
 
             var current = motd[0];
 
-            res.json(current);
+            res.status(200).json(current);
         });
 
     }).put(function(req, res) {
 
         message.find(function(err, motd) {
-            if (!motd || !req.body.message) return new Error('Could not find MOTD');
-            if (err) return err;
+
+            if (!motd || !req.body.message) {
+                return res.status(400).json({status: 'error', details:  'Could not retrieve message or an updated message was not provided.'});
+            }
+            if (err) {
+                return res.status(400).json({status: 'error', details: 'An error occurred when trying to update the message.'});
+            }
+
             var current = motd[0];
-            current.updateMessage(req.body.message, req.body.author, function(err, current) {
-                if (err) return err;
-                return res.json(current);
+            current.updateMessage(req.body.message, req.body.author, function(err, theCurrent) {
+                if (err) {
+                    return res.status(400).json({status: 'error', details: 'An error occurred when trying to update the message.'});
+                } else {
+                    return res.status(200).json(theCurrent);
+                }
             });
         });
     }).post(function(req, res) {
-
         if (req.body.message && req.body.author) {
             var message = new daily(req.body);
             message.message = req.body.message;
             message.author = req.body.author;
 
             message.save(function(err, daily) {
-                if (err) return err;
-                res.json(daily);
+                if (err) {
+                    return res.status(500).json({status: 'error', details: 'There was an error saving the new message.'});
+                }
+                return res.status(200).json(daily);
             });
         } else {
-            return new Error('Missing parameters');
+            return res.status(400).json({status: 'error', details: 'Failed to create message, missing either the message body or the author of the post.'});
         }
 
     });

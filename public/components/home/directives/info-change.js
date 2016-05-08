@@ -1,4 +1,4 @@
-angular.module('app').directive('infoChange', function(HomeContentFactory, UserService, $cookieStore) {
+angular.module('app').directive('infoChange', function(HomeContentFactory, UserService, $cookieStore, ErrorService) {
 
     return {
         restrict: 'A',
@@ -16,12 +16,16 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                 scope.sendChange = function() {
                     var theMessage = $('#dailyMessageField').val();
                     $('#dailyMessageField').val('');
-                    if (scope.message !== '') {
-                        changeMessage(theMessage, scope.currentUserName);
+                    if (scope.currentUserName !== null) {
+                        if (scope.message !== '') {
+                            changeMessage(theMessage, scope.currentUserName);
+                        } else {
+                            createMessage(theMessage, scope.currentUserName);
+                        }
+                        scope.isShowing = false;
                     } else {
-                        createMessage(theMessage, scope.currentUserName);
+                        ErrorService.moveToError('There is no user currently logged in to associate with  this post.');
                     }
-                    scope.isShowing = false;
                 }
 
 
@@ -36,6 +40,8 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                     HomeContentFactory.getMOTD().success(function(result) {
                         scope.message = result.message;
                         scope.author = result.author;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 }
 
@@ -43,6 +49,8 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                     HomeContentFactory.changeMessage({message: theMessage, author: theAuthor}).success(function(result) {
                         scope.message = result.message;
                         scope.author = result.author;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 }
 
@@ -50,6 +58,8 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                     HomeContentFactory.createMessage({message: theMessage, author: scope.currentUserName}).success(function(result) {
                         scope.message = result.message;
                         scope.author = result.author;
+                    }).error(function(result) {
+                        ErrorService.moveToError(result.details);
                     });
                 }
 

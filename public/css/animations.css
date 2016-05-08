@@ -12,6 +12,19 @@
   width: 0;
 }
 
+.animate-error-show {
+    opacity: .8;
+    width: 100%;
+}
+
+.animate-error-show.ng-hide-add, .animate-error-show.ng-hide-remove {
+    transition: all linear 0.75s;
+}
+
+.animate-error-show.ng-hide {
+    display: none;
+}
+
 
 /*.animate-hide_calendar {
     bottom: 10em;
