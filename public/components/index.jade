@@ -36,8 +36,6 @@ html
                                     li(role="separator" class="divider")
                                     li <a ng-click="logout()">Logout</a>
         
-        div(ng-show="errorMessage !== '' " class="error_message-container container animate-error-show")
-        
-            div(class="error_message") {{errorMessage}}
+        div(error-alert)
         
         div(ui-view)

@@ -1,16 +1,5 @@
 angular.module('app')
-    .controller('GatewayController', function($scope, AuthenticationService, ErrorService) {
-
-
-        $scope.errorMessage = ''; // This will serve as the "global" error message
-
-        ErrorService.moveToError = function(msg) { // call this method like ErrorService.moveToError(msg) from other controllers to invoke an error div
-            $scope.errorMessage = msg;
-        };
-
-        ErrorService.clearError = function() { // This will remove the error div from the screen
-            $scope.errorMessage = '';
-        }
+    .controller('GatewayController', function($scope, AuthenticationService) {
 
         $scope.logout = function() {
             AuthenticationService.ClearCredentials();

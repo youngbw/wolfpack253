@@ -22,7 +22,9 @@ angular.module('app', ['ui.router', 'ngRoute', 'ngAnimate', 'angularMoment', 'ng
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        ErrorService.clearError();
+        if (ErrorService.clearError) {
+            ErrorService.clearError();
+        }
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $.inArray($location.path(), ['/', '/login', '/register']) === -1;
         var loggedIn = $rootScope.globals.currentUser;

@@ -17,7 +17,7 @@
 }
 
 .animate-error-show.ng-hide-add, .animate-error-show.ng-hide-remove {
-    transition: all linear 0.5s;
+    transition: all linear 0.3s;
 }
 
 .animate-error-show.ng-hide {

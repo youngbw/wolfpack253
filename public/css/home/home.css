@@ -162,9 +162,16 @@ li .active {
 	font-size: 1.2em;
 	opacity: .75;
 	text-align: center;
-	z-index: 999999;
+	position: relative;
+
 }
 
+.error_exit {
+	position: absolute;
+	top: .5em;
+	right: .5em;
+	cursor: pointer;
+}
 
 /* Small Screen Widths */
 @media (max-width: 799px) {
