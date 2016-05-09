@@ -11,27 +11,35 @@ module.exports = function(app) {
             if (req.body.username && req.body.password && req.body.admin) {
                 var params = {username: req.body.username, password: req.body.password, admin: req.body.admin};
 
-                var myUser = new User(params);
-                myUser.save(function(err, createdUser) {
-
+                var oldUser = User.findOne({'username': req.body.username}, 'username', function(err, user) {
                     if (err) {
-                        return res.json({status: 'error', statusCode: 500});
+                        return res.status(500).json({details: 'There was an erroring checking your username.'});
+                    } else if (user) {
+                        return res.status(400).json({details: 'That username is already in use.'});
+                    } else {
+                        var myUser = new User(params);
+                        myUser.save(function(err, createdUser) {
+
+                            if (err) {
+                                return res.status(500).json({status: 'error', statusCode: 500, details: 'There was an error saving your new account.'});
+                            }
+                            return res.status(200).json({success: true, status: 'success', details: createdUser});
+                        });
                     }
-                    res.json({success: true, status: 'success', details: createdUser});
-                    return;
                 });
 
             } else {
-                return new Error('Missing Parameter');
+                return res.status(400).json({details: 'You need to provide both a unique username and a password.'})
             }
     });
 
     router.route('/api/users/:name')
         .get(function(req, res) {
             User.findOne({ 'username': req.params.name }, function (err, user) {
-              if (err) return res.json({status: 'error', message: 'could not find username'});
-
-              return res.json({success: true, details: user, status: 'success'});
+              if (err) {
+                  return res.status(500).json({status: 'error', details: 'Could not locate a user with that username.'});
+              }
+              return res.status(200).json({success: true, details: user, status: 'success'});
           });
         });
 
@@ -39,18 +47,18 @@ module.exports = function(app) {
         .put(function(req, res) {
             User.findByIdAndUpdate(req.params.user_id, {$set: req.body}, function(err, updatedUser){
                 if (err) {
-                    return res.json({status: 'error', success: false, details: err});
+                    return res.status(500).json({status: 'error', success: false, details: 'An error occurred when updating the user.'});
                 }
 
-                return res.json({success: true, status: 'success', details: updatedUser});
+                return res.status(200).json({success: true, status: 'success', details: updatedUser});
             });
         })
         .delete(function(req, res) {
             User.remove({_id: req.params.user_id}, function(err) {
                 if (err) {
-                    return new Error('Could not find ID to delete or something went wrong');
+                    return res.status(500).json({details: 'Unable to delete the user at this time.'})
                 }
-                res.json({status: 'success', success: true});
+                res.status(200).json({status: 'success', success: true});
             });
         });
 

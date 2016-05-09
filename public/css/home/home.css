@@ -176,7 +176,27 @@ li .active {
 /* Small Screen Widths */
 @media (max-width: 799px) {
 
-	.container {
+
+	.error_message-container {
+		padding: 1em;
+		margin-bottom: 1em;
+		color: black;
+		background-color: #ff6666;
+		font-size: 1.2em;
+		opacity: .75;
+		text-align: center;
+		position: relative;
+
+	}
+
+	.error_exit {
+		position: absolute;
+		top: .5em;
+		right: .5em;
+		cursor: pointer;
+	}
+
+	/*.container {
 		margin: auto;
 		max-width: 800px;
 		background-color: rgba(0, 0, 0, 0.75);
@@ -185,7 +205,7 @@ li .active {
 		align-content: center;
 		display: flex;
 		flex-direction: column;
-	}
+	}*/
 
 	.left-panel {
 		margin: auto;

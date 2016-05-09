@@ -1,5 +1,5 @@
 angular.module('app')
-    .factory('AuthenticationService', function($http, $cookieStore, $rootScope, $timeout, UserService, BaseEncode, $location) {
+    .factory('AuthenticationService', function($http, $cookieStore, $rootScope, $timeout, UserService, BaseEncode, $location, ErrorService) {
         var service = {};
 
         service.Login = Login;
@@ -13,6 +13,8 @@ angular.module('app')
             UserService.GetByUsername(username)
                .success(function (response) {
                    callback(response);
+               }).error(function(result) {
+                   ErrorService.moveToError(result.details);
                });
 
         }

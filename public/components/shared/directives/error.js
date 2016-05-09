@@ -23,7 +23,7 @@ angular.module('app')
                     {
                         scope.errorMessage = '';
                     },
-                    1000);
+                    2000);
                 }
 
                 scope.clear = function() {

@@ -1,7 +1,8 @@
 angular.module('app')
-.controller('ProfileController', function($scope, $cookieStore, $rootScope, UserService, AuthenticationService) {
+.controller('ProfileController', function($scope, $cookieStore, $rootScope, UserService, AuthenticationService, ErrorService) {
 
-
+    $scope.showExtAccounts = false;
+    $scope.showUserInfo = false;
     $scope.currentUser = null;
     $scope.errorMessage = '';
     $scope.numDeletes = 0;
@@ -11,7 +12,9 @@ angular.module('app')
 
             result.details.password = "";
             $scope.currentUser = result.details;
-            console.log($scope.currentUser);
+
+        }).error(function(result) {
+            ErrorService.moveToError(result.details);
         });
     }
     init();
@@ -19,8 +22,8 @@ angular.module('app')
 
     $scope.save = function() {
         var goodToGo = true;
-        $scope.errorMessage = '';
         $scope.numDeletes = 0;
+        ErrorService.clearError();
 
         //grab the form values;
 
@@ -42,7 +45,7 @@ angular.module('app')
         // handle PW change
         if (passwordVal !== '' && passwordVal !== password2Val) {
             goodToGo = false;
-            $scope.errorMessage += 'Passwords do not match';
+            ErrorService.moveToError('Passwords do not match');
         } else if (passwordVal !== '') {
             $scope.currentUser.password = passwordVal;
         } else {
@@ -60,13 +63,14 @@ angular.module('app')
 
                 clearForm();
             }).error(function(result) {
-                console.log(result);
+                ErrorService.moveToError(result.details);
             });
         }
 
     };
 
     $scope.delete = function() {
+        ErrorService.clearError();
         if ($scope.numDeletes === 1) {
             UserService.Delete($scope.currentUser._id).success(function() {
                 AuthenticationService.ClearCredentials();

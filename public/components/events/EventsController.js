@@ -129,7 +129,7 @@ angular.module('app').controller('EventsController', function($scope, moment, Ev
 	}
 
 	function queryDates(start, end) {
-
+		ErrorService.clearError();
 		var difference = end.diff(start, 'days') + 1;
 
 		//only show the loader if the call takes longer than a second

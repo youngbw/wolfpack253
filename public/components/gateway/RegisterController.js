@@ -1,8 +1,9 @@
-angular.module('app').controller('RegisterController', function($scope, AuthenticationService, $location, $rootScope, $cookies, UserService) {
+angular.module('app').controller('RegisterController', function($scope, AuthenticationService, $location, $rootScope, $cookies, UserService, ErrorService) {
     $scope.title = 'Register here is a title';
     $scope.dataLoading = false;
 
     function registerUser(username, password, adminPassword) {
+        ErrorService.clearError();
         $scope.dataLoading = true;
         var isAdmin = false;
         var user = {
@@ -16,18 +17,23 @@ angular.module('app').controller('RegisterController', function($scope, Authenti
 
         user.admin = isAdmin;
 
-        UserService.Create(user)
-            .then(function (response) {
-                console.log(response);
-                if (response.data.success) {
-                    AuthenticationService.SetCredentials(username, password, true);
+        UserService.Create(user).success(function(result) {
+            AuthenticationService.SetCredentials(username, password, true);
+            $location.path('/home');
+        }).error(function(result) {
+            ErrorService.moveToError(result.details);
+        });
 
-                    $location.path('/home');
-                } else {
-                    console.log(response.message);
-                    $scope.dataLoading = false;
-                }
-            });
+            // .then(function (response) {
+            //     if (response.data.success) {
+            //         AuthenticationService.SetCredentials(username, password, true);
+            //
+            //         $location.path('/home');
+            //     } else {
+            //         console.log(response.message);
+            //         $scope.dataLoading = false;
+            //     }
+            // });
     };
 
     function checkAdmin(pw) {

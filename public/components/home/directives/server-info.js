@@ -13,6 +13,7 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory, Error
                 scope.serverPort = '';
 
                 scope.sendServerChange = function() {
+                    ErrorService.clearError();
                     var name = $('#serverNameField').val();
                     var password = $('#serverPWField').val();
                     var port = $('#serverPortField').val();

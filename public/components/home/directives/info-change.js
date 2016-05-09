@@ -14,6 +14,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                 scope.currentUserName = null;
 
                 scope.sendChange = function() {
+                    ErrorService.clearError();
                     var theMessage = $('#dailyMessageField').val();
                     $('#dailyMessageField').val('');
                     if (scope.currentUserName !== null) {
