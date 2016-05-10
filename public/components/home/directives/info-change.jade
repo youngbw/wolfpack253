@@ -3,7 +3,7 @@ div(class="col-md-12")
 
     h3(class="panel-content") Message of the Day
     
-    label(class="edit-link fa fa-pencil pull-right" ng-click="showInfo()")
+    label(ng-if="isAdmin" class="edit-link fa fa-pencil pull-right" ng-click="showInfo()")
 
     div(class="col-md-12 home-message")
         

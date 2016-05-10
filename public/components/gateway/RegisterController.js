@@ -2,49 +2,36 @@ angular.module('app').controller('RegisterController', function($scope, Authenti
     $scope.title = 'Register here is a title';
     $scope.dataLoading = false;
 
-    function registerUser(username, password, adminPassword) {
+    function registerUser(username, password) {
         ErrorService.clearError();
         $scope.dataLoading = true;
-        var isAdmin = false;
         var user = {
             username: username,
             password: password
         };
 
-        if (adminPassword !== undefined) {
-            isAdmin = checkAdmin(adminPassword);
-        }
-
-        user.admin = isAdmin;
-
         UserService.Create(user).success(function(result) {
             AuthenticationService.SetCredentials(username, password, true);
-            $location.path('/home');
+            var checked = document.getElementById('adminCheckbox').checked;
+            if (checked) {
+                UserService.requestAdmin(username).success(function(result2) {
+                    $location.path('/home');
+                }).error(function(err) {
+                    ErrorService.moveToError(err.details);
+                });
+            }
         }).error(function(result) {
             ErrorService.moveToError(result.details);
         });
 
-            // .then(function (response) {
-            //     if (response.data.success) {
-            //         AuthenticationService.SetCredentials(username, password, true);
-            //
-            //         $location.path('/home');
-            //     } else {
-            //         console.log(response.message);
-            //         $scope.dataLoading = false;
-            //     }
-            // });
-    };
 
-    function checkAdmin(pw) {
-        return true;
-    }
+    };
 
     $scope.attemptRegister = function() {
         var username = $('#username').val();
         var pw = $('#password').val();
 
-        registerUser(username, pw, 1);
+        registerUser(username, pw);
     };
 
 });

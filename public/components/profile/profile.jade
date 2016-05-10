@@ -11,7 +11,7 @@ div(class="container" ng-controller="ProfileController")
     
         h4 User Information
     
-        a(class="edit-link fa fa-pencil" ng-click="showUserInfo = !showUserInfo") Edit
+        a(class="edit-link fa fa-pencil" ng-click="toggleSection('userinfo')") Edit
     
         form(class="profile_user-info-section animate-show" ng-show="showUserInfo" id="userInfoForm")
         
@@ -42,7 +42,7 @@ div(class="container" ng-controller="ProfileController")
     
         h4 External Accounts
     
-        a(class="edit-link fa fa-pencil" ng-click="showExtAccounts = !showExtAccounts") Edit
+        a(class="edit-link fa fa-pencil" ng-click="toggleSection('externalAccounts')") Edit
     
         div(class="profile_user-info-section animate-show" ng-show="showExtAccounts")
         

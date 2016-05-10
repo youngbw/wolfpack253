@@ -173,6 +173,21 @@ li .active {
 	cursor: pointer;
 }
 
+.register_footer {
+	position: relative;
+	margin-bottom: 1em;
+}
+
+.register_admin {
+	position: absolute;
+	right: 1em;
+	top: 50%;
+}
+
+.admin_label {
+	vertical-align: top;
+}
+
 /* Small Screen Widths */
 @media (max-width: 799px) {
 

@@ -2,13 +2,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var User = mongoose.model('User');
+var Admin = mongoose.model('AdminRequest');
 
 module.exports = function(app) {
 
 
     router.route('/api/users')
         .post(function(req, res) {
-            if (req.body.username && req.body.password && req.body.admin) {
+            if (req.body.username && req.body.password) {
                 var params = {username: req.body.username, password: req.body.password, admin: req.body.admin};
 
                 var oldUser = User.findOne({'username': req.body.username}, 'username', function(err, user) {
@@ -62,6 +63,51 @@ module.exports = function(app) {
             });
         });
 
+
+    router.route('/api/users/admin')
+    .get(function(req, res) {
+        Admin.find({decisionMade: false}).exec(function(err, requests) {
+            if (err) {
+                return res.status(500).json({details: 'There was an error retrieving the admin requests.'})
+            }
+
+            return res.status(200).json({success: true, details: requests});
+        });
+    })
+    .post(function(req, res) {
+        var admin = new Admin();
+        if (req.body.username) {
+            admin.username = req.body.username;
+            admin.save(function(err, theAdmin) {
+                if (err) {
+                    return res.status(500).json({details: 'An error occurred when creating your admin request. You can still login with the account.'});
+                }
+
+                return res.status(200).json({success: true, details: theAdmin});
+            });
+        } else {
+            return res.status(400).json({details: 'A username is required.'});
+        }
+    });
+
+    router.route('/api/users/:current_admin_id/admin/:request_admin_id')
+        .put(function(req, res) {
+            // Check that the current user is an Admin
+            User.findOne({_id: req.params.current_admin_id}, function(err, user) {
+                if (!err && user.admin) {
+                    User.findOneAndUpdate({_id: request_admin_id}, function(err, requestUser) {
+                        if (!err) {
+                            AdminRequest.findOneAndUpdate({username: requestUser.username}, {$set: {approved: req.body.decision, approvedBy: user.username}}, {new: true}, function(err, adminrequest) {
+                                if (!err) {
+                                    return res.status(200).json({details: adminrequest});
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            return res.status(500).json({details: 'There was an error updating the user'});
+        });
 
     app.use(router);
 

@@ -88,5 +88,20 @@ angular.module('app')
         document.getElementById('userInfoForm').reset();
     }
 
+    $scope.toggleSection = function(section) {
+        if (section === 'userinfo') {
+            $scope.showUserInfo = !$scope.showUserInfo;
+            if (!$scope.showUserInfo) {
+                document.getElementById('userInfoForm').reset();
+            }
+        } else if (section === 'externalAccounts') {
+            $scope.showExtAccounts = !$scope.showExtAccounts;
+            if (!$scope.showExtAccounts) {
+                document.getElementById('extAccountForm').reset();
+            }
+        }
+
+        ErrorService.clearError();
+    };
 
 });

@@ -2,7 +2,7 @@ div(class="col-md-12")
 
     h3(class="panel-content") Voice Chat Info
     
-    label(class="fa fa-pencil pull-right edit-link" ng-click="showServerInfo()")
+    label(ng-if="isAdmin" class="fa fa-pencil pull-right edit-link" ng-click="showServerInfo()")
     
     div(class="home-message col-md-12")
     

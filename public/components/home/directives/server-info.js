@@ -1,4 +1,4 @@
-angular.module('app').directive('serverInfo', function(HomeContentFactory, ErrorService) {
+angular.module('app').directive('serverInfo', function(HomeContentFactory, ErrorService, UserService, $cookieStore) {
 
     return {
         restrict: 'A',
@@ -11,6 +11,7 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory, Error
                 scope.serverName = '';
                 scope.serverPW = '';
                 scope.serverPort = '';
+                scope.isAdmin = false;
 
                 scope.sendServerChange = function() {
                     ErrorService.clearError();
@@ -46,6 +47,7 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory, Error
                 init();
                 function init() {
                     scope.heading = 'What changes would you like to make?';
+                    getCurrentUser();
                     getServerInfo();
                 }
 
@@ -91,6 +93,14 @@ angular.module('app').directive('serverInfo', function(HomeContentFactory, Error
                     var isPW = scope.serverPW === '' && pw === '';
                     var isPort = scope.serverPort === '' && port === '';
                     return !isName && !isPW && !isPort;
+                }
+
+                function getCurrentUser() {
+                    UserService.GetByUsername($cookieStore.get('globals').currentUser.username).success(function(result) {
+                        scope.isAdmin = result.details.admin;
+                    }).error(function(result) {
+                        ErrorService.moveToError('Unable to verify admin status.');
+                    })
                 }
             }
         }

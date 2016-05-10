@@ -24,7 +24,6 @@ angular.module('app')
             var authdata = BaseEncode.encode(username + ':' + password);
             var expireDate = new Date();
             expireDate.setDate(expireDate.getDate() + 1);
-            console.log(expireDate);
             $rootScope.globals = {
                 currentUser: {
                     username: username,

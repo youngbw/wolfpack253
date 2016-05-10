@@ -8,6 +8,9 @@ angular.module('app')
     service.Create = Create;
     service.Update = Update;
     service.Delete = Delete;
+    service.getAllAdminRequests = getAllAdminRequests;
+    service.updateAdmin = updateAdmin;
+    service.requestAdmin = requestAdmin;
 
     return service;
 
@@ -33,6 +36,18 @@ angular.module('app')
 
     function Delete(id) {
         return $http.delete('/api/users/' + id);
+    }
+
+    function getAllAdminRequests() {
+        return $http.get('/api/users/admin');
+    }
+
+    function updateAdmin(trueAdminID, requesterId, decision) {
+        return $http.put('/api/users/' + trueAdminID + '/admin/' + requesterId, {decision: decision});
+    }
+
+    function requestAdmin(username) {
+        return $http.post('/api/users/admin', {username: username});
     }
 
     // private functions

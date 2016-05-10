@@ -10,6 +10,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                 scope.message = '';
                 scope.author = '';
                 scope.isShowing = false;
+                scope.isAmin = false;
 
                 scope.currentUserName = null;
 
@@ -34,6 +35,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                 function init() {
                     scope.heading = 'What changes would you like to make?';
                     scope.currentUserName = $cookieStore.get('globals').currentUser.username;
+                    getCurrentUser();
                     getDailyMessage();
                 }
 
@@ -61,6 +63,14 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                         scope.author = result.author;
                     }).error(function(result) {
                         ErrorService.moveToError(result.details);
+                    });
+                }
+
+                function getCurrentUser() {
+                    UserService.GetByUsername($cookieStore.get('globals').currentUser.username).success(function(result) {
+                        scope.isAdmin = result.details.admin;
+                    }).error(function(result) {
+                        ErrorService.moveToError('Could not verify admin status.');
                     });
                 }
 
