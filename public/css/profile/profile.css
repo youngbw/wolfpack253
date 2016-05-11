@@ -44,7 +44,7 @@
 
 }
 
-.profile_edit-section .edit-link {
+.profile_edit-section .edit-link, .notification_section .edit-link {
     position: absolute;
     right: 1em;
     top: 2em;

@@ -24,6 +24,7 @@ app.use(flash());
 
 // Setup database
 require('./config/db.js')(mongoose);
+require('./models/AdminModels');
 require('./models/User');
 require('./models/DailyMessage');
 require('./models/EventModels');

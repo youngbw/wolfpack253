@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var User = mongoose.model('User');
-var Admin = mongoose.model('AdminRequest');
+var Admin = mongoose.model('AdminRequests');
 
 module.exports = function(app) {
 
@@ -64,9 +64,8 @@ module.exports = function(app) {
         });
 
 
-    router.route('/api/users/admin')
-    .get(function(req, res) {
-        Admin.find({decisionMade: false}).exec(function(err, requests) {
+    router.route('/api/admin').get(function(req, res) {
+        Admin.find(function(err, requests) {
             if (err) {
                 return res.status(500).json({details: 'There was an error retrieving the admin requests.'})
             }

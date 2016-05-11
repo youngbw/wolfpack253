@@ -35,6 +35,7 @@ angular.module('app').directive('infoChange', function(HomeContentFactory, UserS
                 function init() {
                     scope.heading = 'What changes would you like to make?';
                     scope.currentUserName = $cookieStore.get('globals').currentUser.username;
+                    console.log(scope.currentUserName + 'name');
                     getCurrentUser();
                     getDailyMessage();
                 }

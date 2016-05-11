@@ -19,15 +19,17 @@ var UserSchema = new mongoose.Schema({
 });
 
 
-var AdminRequestSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    approved: {type: Boolean, default: false},
-    approvedBy: {type: String, default: ''},
-    decisionMade: {type: Boolean, default: false},
-    dateRequested: {type: Date, default: new Date()}
-});
-
-
+// var AdminRequestSchema = new mongoose.Schema({
+//     username: {type: String, required: true, unique: true},
+//     approved: {type: Boolean, default: false},
+//     approvedBy: {type: String, default: ''},
+//     decisionMade: {type: Boolean, default: false},
+//     dateRequested: {type: Date, default: new Date()}
+// });
+//
+//
+// mongoose.model('AdminRequest', AdminRequestSchema);
+mongoose.model('User', UserSchema);
 // UserSchema.methods.setPassword = function(password) {
 //     this.salt = crypto.randomBytes(32).toString('hex');
 //     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
@@ -51,5 +53,5 @@ var AdminRequestSchema = new mongoose.Schema({
 //     }, vars.secret);
 // };
 
-mongoose.model('AdminRequest', AdminRequestSchema);
+// mongoose.model('AdminRequest', AdminRequestSchema);
 mongoose.model('User', UserSchema);

@@ -1,0 +1,30 @@
+.notification_section {
+    padding: 1em;
+    margin-top: 1em;
+    background-color: rgba(242, 242, 242, .2);
+    position: relative;
+    border-radius: 10px;
+}
+
+.notifications_container {
+    padding-bottom: 1em;
+}
+
+.notifications_admin-request {
+    display: block;
+}
+
+.notification {
+    padding: 2em;
+    background-color: black;
+    opacity: .8;
+    position: relative;
+    box-shadow: -2px 0px 3px 2px gray;
+    margin-bottom: .6em;
+}
+
+.notification_decision {
+    position: absolute;
+    right: 1em;
+    top: 25%;
+}

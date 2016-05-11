@@ -39,7 +39,7 @@ angular.module('app')
     }
 
     function getAllAdminRequests() {
-        return $http.get('/api/users/admin');
+        return $http.get('/api/admin');
     }
 
     function updateAdmin(trueAdminID, requesterId, decision) {
@@ -47,7 +47,7 @@ angular.module('app')
     }
 
     function requestAdmin(username) {
-        return $http.post('/api/users/admin', {username: username});
+        return $http.post('/api/admin', {username: username});
     }
 
     // private functions

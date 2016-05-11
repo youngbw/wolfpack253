@@ -12,6 +12,9 @@ angular.module('app').config([
 		}).state('profile', {
 			url: '/profile',
 			templateUrl: 'profile/profile.jade'
+		}).state('notifications', {
+			url: '/notifications',
+			templateUrl: 'profile/notifications.jade'
 		}).state('home', {
 			url: '/home',
 			templateUrl: 'home/home.jade'

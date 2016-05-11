@@ -1,0 +1,23 @@
+div(class="container notifications_container" ng-controller="NotificationsController")
+
+    div(class="notification_section")
+
+        a(class="edit-link" ng-click="requestShowing = !requestShowing") View
+
+        h4 Admin Requests: {{adminRequests.length}} total
+        
+        div(ng-show="requestShowing" class="notifications_content animate-show")
+            
+            div(ng-repeat="request in adminRequests" class="notification")
+                
+                span(class="notifications_admin-request") {{request.username}}
+                
+                span(class="notifications_admin-request") Date Requested: {{request.dateRequested | date}}
+                
+                div(class="notification_decision")
+                
+                    button(type="submit" class="btn btn-danger") Deny
+                    
+                    button(type="submit" class="btn btn-success") Approve
+        
+        

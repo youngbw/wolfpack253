@@ -1,6 +1,6 @@
 .animate-show {
   opacity: 1;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
@@ -9,8 +9,10 @@
 
 .animate-show.ng-hide {
   opacity: 0;
-  width: 0;
+  /*width: 0;*/
 }
+
+/* ERROR ANIMATIONS */
 
 .animate-error-show {
     opacity: .8;
